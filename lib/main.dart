@@ -78,6 +78,13 @@ Future<void> _openOfficialResources(BuildContext context) async {
   final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
   if (!ok && context.mounted) {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تعذر فتح منصة TelmidTICE')));
+  Widget _answerButton(String label, bool correct) => Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: OutlinedButton(
+          onPressed: () => answerQuiz(correct),
+          child: Text(label),
+        ),
+      );
   }
 }
 
@@ -241,14 +248,45 @@ class InteractivePage extends StatefulWidget {
 class _InteractivePageState extends State<InteractivePage> {
   int? selectedDigit;
   String? feedback;
+  int quizIndex = 0;
+  bool? quizCorrect;
+  bool showAskAnswer = false;
+
+  static const quizQuestions = [
+    'ما قيمة الرقم 7 في العدد 523 741؟',
+    'في أي منزلة يوجد الرقم 2 في العدد 523 741؟',
+    'ما قيمة الرقم 5 في العدد 523 741؟',
+    'أي رقم يوجد في منزلة الآلاف؟',
+  ];
 
   static const digits = [5, 2, 3, 7, 4, 1];
   static const places = ['مئات الألوف', 'عشرات الألوف', 'آلاف', 'مئات', 'عشرات', 'آحاد'];
   static const values = [500000, 20000, 3000, 700, 40, 1];
 
   void selectDigit(int index) {
-    setState(() => feedback =
-        'الرقم ${digits[index]} في منزلة ${places[index]}، وقيمته ${values[index]}.');
+    setState(() {
+      selectedDigit = index;
+      feedback =
+          'الرقم ${digits[index]} في منزلة ${places[index]}، وقيمته ${values[index]}.';
+      showAskAnswer = false;
+    });
+  }
+
+  void answerQuiz(bool correct) {
+    setState(() {
+      quizCorrect = correct;
+      feedback = correct
+          ? 'أحسنت! إجابتك صحيحة. حاول الآن تفسير السبب باستعمال جدول القيمة المكانية.'
+          : 'لنراجع معًا: اختر الإجابة المرتبطة بالمنزلة أو القيمة، ثم أعد المحاولة.';
+    });
+  }
+
+  void nextQuiz() {
+    setState(() {
+      quizIndex = (quizIndex + 1) % quizQuestions.length;
+      quizCorrect = null;
+      feedback = null;
+    });
   }
 
   @override
@@ -297,12 +335,7 @@ class _InteractivePageState extends State<InteractivePage> {
                               selected: selectedDigit == index,
                               label: Text('${digits[index]}',
                                   style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-                              onSelected: (_) {
-                                setState(() {
-                                  selectedDigit = index;
-                                  feedback = 'الرقم ${digits[index]} في منزلة ${places[index]}، وقيمته ${values[index]}.';
-                                });
-                              },
+                              onSelected: (_) => selectDigit(index),
                             ),
                           ),
                         ),
@@ -358,6 +391,113 @@ class _InteractivePageState extends State<InteractivePage> {
                 ),
               ),
               const SizedBox(height: 10),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 250),
+                child: selectedDigit == null
+                    ? const Card(
+                        key: ValueKey('no-selection'),
+                        child: Padding(
+                          padding: EdgeInsets.all(18),
+                          child: Column(
+                            children: [
+                              Icon(Icons.touch_app, size: 38),
+                              SizedBox(height: 8),
+                              Text('اختر رقمًا لنُظهر منزلته وقيمته بصريًا خطوة بخطوة.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                      )
+                    : Card(
+                        key: ValueKey('selected-place'),
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        child: Padding(
+                          padding: const EdgeInsets.all(18),
+                          child: Column(
+                            children: [
+                              Text('الرقم ${digits[selectedDigit!]}',
+                                  style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                              const SizedBox(height: 4),
+                              Text('منزلة ${places[selectedDigit!]}',
+                                  style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+                              const SizedBox(height: 12),
+                              Text(
+                                '${digits[selectedDigit!]} × ${values[selectedDigit!] ~/ digits[selectedDigit!]} = ${values[selectedDigit!]}',
+                                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'إذن قيمة الرقم ${digits[selectedDigit!]} هي ${values[selectedDigit!]}.',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(fontSize: 18),
+                              ),
+                              const SizedBox(height: 12),
+                              LinearProgressIndicator(
+                                value: (selectedDigit! + 1) / digits.length,
+                                minHeight: 10,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              const SizedBox(height: 6),
+                              Text('المنزلة ${selectedDigit! + 1} من ${digits.length}'),
+                            ],
+                          ),
+                        ),
+                      ),
+              ),
+              const SizedBox(height: 10),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text('تحدٍ سريع',
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 6),
+                      Text(quizQuestions[quizIndex],
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 10),
+                      if (quizIndex == 0) ...[
+                        _answerButton('700', true),
+                        _answerButton('70', false),
+                        _answerButton('7', false),
+                      ] else if (quizIndex == 1) ...[
+                        _answerButton('عشرات الألوف', true),
+                        _answerButton('آلاف', false),
+                        _answerButton('مئات الألوف', false),
+                      ] else if (quizIndex == 2) ...[
+                        _answerButton('500 000', true),
+                        _answerButton('50 000', false),
+                        _answerButton('5 000', false),
+                      ] else ...[
+                        _answerButton('3', true),
+                        _answerButton('7', false),
+                        _answerButton('4', false),
+                      ],
+                      if (quizCorrect != null)
+                        Text(
+                          quizCorrect! ? '✓ ممتاز! فهمت العلاقة بين الرقم والمنزلة.' : 'جرّب مرة أخرى.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: quizCorrect!
+                                ? Theme.of(context).colorScheme.primary
+                                : Theme.of(context).colorScheme.error,
+                          ),
+                        ),
+                      const SizedBox(height: 8),
+                      OutlinedButton.icon(
+                        onPressed: nextQuiz,
+                        icon: const Icon(Icons.refresh),
+                        label: const Text('سؤال آخر'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              const SizedBox(height: 10),
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.lightbulb_outline),
@@ -404,15 +544,24 @@ class _InteractivePageState extends State<InteractivePage> {
                         runSpacing: 8,
                         children: [
                           OutlinedButton.icon(
-                            onPressed: () {},
+                            onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('الصوت سيُربط بمحرك النطق في المرحلة التالية.')),
+                            ),
                             icon: const Icon(Icons.volume_up),
                             label: const Text('استمع'),
                           ),
                           OutlinedButton.icon(
-                            onPressed: () {},
+                            onPressed: () => setState(() => showAskAnswer = !showAskAnswer),
                             icon: const Icon(Icons.question_answer_outlined),
                             label: const Text('اسأل Cprof'),
                           ),
+                          if (showAskAnswer)
+                            const Padding(
+                              padding: EdgeInsets.only(top: 12),
+                              child: Text(
+                                'سؤال مقترح: لماذا أصبحت قيمة الرقم 7 هي 700؟ لأن الرقم 7 يوجد في منزلة المئات، وقيمة كل رقم تتغير حسب منزلته.',
+                              ),
+                            ),
                         ],
                       ),
                     ],
