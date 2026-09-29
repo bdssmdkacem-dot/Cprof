@@ -582,6 +582,40 @@ class _InteractivePageState extends State<InteractivePage> {
     });
   }
 
+  Widget _buildHotspot(
+    BuildContext context, {
+    required Alignment alignment,
+    required int index,
+    required String label,
+  }) {
+    return Align(
+      alignment: alignment,
+      child: GestureDetector(
+        onTap: () => setState(() {
+          selectedInteraction = index;
+          feedback = null;
+        }),
+        child: Container(
+          width: 118,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.92),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primary,
+              width: 2,
+            ),
+          ),
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final hasPage = _controller != null;
@@ -627,24 +661,72 @@ class _InteractivePageState extends State<InteractivePage> {
                 clipBehavior: Clip.antiAlias,
                 child: SizedBox(
                   height: 520,
-                  child: PdfViewPinch(
-                    controller: _controller!,
-                    builders: PdfViewPinchBuilders<DefaultBuilderOptions>(
-                      options: const DefaultBuilderOptions(),
-                      documentLoaderBuilder: (_) =>
-                          const Center(child: CircularProgressIndicator()),
-                      pageLoaderBuilder: (_) =>
-                          const Center(child: CircularProgressIndicator()),
-                      errorBuilder: (_, error) => Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Text(
-                            'تعذر فتح الصفحة الأصلية. $error',
-                            textAlign: TextAlign.center,
+                  child: Stack(
+                    children: [
+                      PdfViewPinch(
+                        controller: _controller!,
+                        builders: PdfViewPinchBuilders<DefaultBuilderOptions>(
+                          options: const DefaultBuilderOptions(),
+                          documentLoaderBuilder: (_) =>
+                              const Center(child: CircularProgressIndicator()),
+                          pageLoaderBuilder: (_) =>
+                              const Center(child: CircularProgressIndicator()),
+                          errorBuilder: (_, error) => Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                'تعذر فتح الصفحة الأصلية. $error',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                      if (widget.lessonNumber == 13)
+                        Positioned.fill(
+                          child: IgnorePointer(
+                            ignoring: selectedInteraction == null,
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                return Stack(
+                                  children: [
+                                    _buildHotspot(
+                                      context,
+                                      alignment: const Alignment(0.45, -0.35),
+                                      index: 0,
+                                      label: 'العنوان',
+                                    ),
+                                    _buildHotspot(
+                                      context,
+                                      alignment: const Alignment(-0.55, 0.15),
+                                      index: 1,
+                                      label: 'المحور العمودي',
+                                    ),
+                                    _buildHotspot(
+                                      context,
+                                      alignment: const Alignment(0.35, 0.65),
+                                      index: 2,
+                                      label: 'المحور الأفقي',
+                                    ),
+                                    _buildHotspot(
+                                      context,
+                                      alignment: const Alignment(0.05, 0.20),
+                                      index: 3,
+                                      label: 'الأعمدة',
+                                    ),
+                                    _buildHotspot(
+                                      context,
+                                      alignment: const Alignment(0.60, 0.55),
+                                      index: 4,
+                                      label: 'الهوايات',
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ),
