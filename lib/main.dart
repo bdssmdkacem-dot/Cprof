@@ -244,7 +244,7 @@ class LessonPage extends StatelessWidget {
                   title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: Text(
                     subject.title == 'الرياضيات' && mathLessonPdfPages.containsKey(lessonNumber)
-                        ? 'كتاب الجيد • الصفحة المطبوعة ' + mathLessonPrintedPages[lessonNumber].toString() + ' • فتح مباشر'
+                        ? 'كتاب الجيد • الصفحة المطبوعة ${mathLessonPrintedPages[lessonNumber]} • فتح مباشر'
                         : 'كتاب الجيد • هذه الصفحة غير موجودة في نسخة PDF المرفقة',
                   ),
                   trailing: const Icon(Icons.menu_book),
@@ -350,7 +350,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
                     preferredSize: const Size.fromHeight(28),
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 6),
-                      child: Text('صفحة الكتاب المطبوعة ' + widget.printedPage.toString()),
+                      child: Text('صفحة الكتاب المطبوعة ${widget.printedPage}'),
                     ),
                   ),
           ),
