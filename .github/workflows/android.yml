@@ -15,6 +15,7 @@ jobs:
           flutter-version: '3.24.5'
           channel: stable
           cache: true
+      - run: flutter create . --platforms=android --project-name=cprof
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter build apk --debug
