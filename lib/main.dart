@@ -170,14 +170,14 @@ class LessonPage extends StatelessWidget {
     if (subject.title == 'الرياضيات' && lessonNumber <= mathLessons.length) {
       return mathLessons[lessonNumber - 1];
     }
-    return 'الدرس ' + lessonNumber.toString();
+    return 'الدرس $lessonNumber';
   }
 
   @override
   Widget build(BuildContext context) => Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
-          appBar: AppBar(title: Text('الدرس ' + lessonNumber.toString() + ' — ' + subject.title)),
+          appBar: AppBar(title: Text('الدرس $lessonNumber — ${subject.title}')),
           body: ListView(
             padding: const EdgeInsets.all(16),
             children: [
