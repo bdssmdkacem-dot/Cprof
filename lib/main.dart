@@ -476,7 +476,7 @@ class InteractivePage extends StatefulWidget {
 }
 
 class _InteractivePageState extends State<InteractivePage> {
-  PdfControllerPinch? _controller;
+  PdfController? _controller;
   int? selectedInteraction;
   String? feedback;
 
@@ -525,7 +525,7 @@ class _InteractivePageState extends State<InteractivePage> {
                 'المحور الأفقي يمثل «الهواية». نقرأ عليه أسماء الهوايات ثم نرجع إلى ارتفاع العمود لمعرفة العدد.',
           ),
           LessonInteraction(
-            title: 'ماذا تمثل الأعمدة الملونة؟',
+            title: 'الأعمدة الملونة',
             explanation:
                 'السؤال الموجود في الصفحة يطلب تحديد معنى الأعمدة الملونة. وهي تمثل عدد التلاميذ حسب الهواية المفضلة.',
             answers: [
@@ -538,7 +538,7 @@ class _InteractivePageState extends State<InteractivePage> {
                 'الأعمدة الملونة تمثل عدد التلاميذ حسب الهواية المفضلة.',
           ),
           LessonInteraction(
-            title: 'الهوايات الموجودة في المبيان',
+            title: 'الهوايات في المبيان',
             explanation:
                 'الأسماء الظاهرة على المحور الأفقي في الصفحة هي: تربية القطط، الطبخ، الرسم، والقراءة.',
             answers: [
@@ -560,7 +560,7 @@ class _InteractivePageState extends State<InteractivePage> {
   void initState() {
     super.initState();
     if (widget.initialPage != null) {
-      _controller = PdfControllerPinch(
+      _controller = PdfController(
         document: PdfDocument.openAsset('assets/books/math/jayd_math_grade4.pdf'),
         initialPage: widget.initialPage!,
       );
@@ -571,15 +571,6 @@ class _InteractivePageState extends State<InteractivePage> {
   void dispose() {
     _controller?.dispose();
     super.dispose();
-  }
-
-  void chooseAnswer(int index) {
-    final item = interactions[selectedInteraction!];
-    setState(() {
-      feedback = index == item.correctIndex
-          ? '✓ أحسنت. ${item.correction}'
-          : 'لنصححها معًا. ${item.correction}';
-    });
   }
 
   Future<void> _openInteraction(int index) async {
@@ -669,31 +660,34 @@ class _InteractivePageState extends State<InteractivePage> {
     );
   }
 
-  Widget _buildHotspot(
-    BuildContext context, {
-    required Alignment alignment,
+  Widget _hotspot({
     required int index,
-    required String label,
+    required double left,
+    required double top,
+    required double width,
+    required double height,
   }) {
-    return Align(
-      alignment: alignment,
+    final selected = selectedInteraction == index;
+    return Positioned(
+      left: left,
+      top: top,
+      width: width,
+      height: height,
       child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () => _openInteraction(index),
-        child: Container(
-          width: 118,
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        child: DecoratedBox(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.92),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.primary,
-              width: 2,
-            ),
-          ),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            color: selected
+                ? Theme.of(context).colorScheme.primary.withOpacity(0.10)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
+            border: selected
+                ? Border.all(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 2,
+                  )
+                : null,
           ),
         ),
       ),
@@ -702,7 +696,6 @@ class _InteractivePageState extends State<InteractivePage> {
 
   @override
   Widget build(BuildContext context) {
-    final hasPage = _controller != null;
     final items = interactions;
 
     return Directionality(
@@ -721,177 +714,152 @@ class _InteractivePageState extends State<InteractivePage> {
                   ),
                 ),
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(12),
-          children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(widget.lessonTitle,
-                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 6),
-                    const Text(
-                      'الصفحة الأصلية تبقى هي المرجع. اختر عنصرًا تعليميًا مرتبطًا بهذا الدرس لبدء الشرح والتدريب.',
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            if (hasPage)
-              Card(
-                clipBehavior: Clip.antiAlias,
-                child: SizedBox(
-                  height: 520,
-                  child: Stack(
-                    children: [
-                      PdfViewPinch(
-                        controller: _controller!,
-                        builders: PdfViewPinchBuilders<DefaultBuilderOptions>(
-                          options: const DefaultBuilderOptions(),
-                          documentLoaderBuilder: (_) =>
-                              const Center(child: CircularProgressIndicator()),
-                          pageLoaderBuilder: (_) =>
-                              const Center(child: CircularProgressIndicator()),
-                          errorBuilder: (_, error) => Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Text(
-                                'تعذر فتح الصفحة الأصلية. $error',
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      if (widget.lessonNumber == 13)
-                        Positioned.fill(
-                          child: LayoutBuilder(
-                            builder: (context, _) {
-                              return Stack(
-                                children: [
-                                    _buildHotspot(
-                                      context,
-                                      alignment: const Alignment(0.45, -0.35),
-                                      index: 0,
-                                      label: 'العنوان',
-                                    ),
-                                    _buildHotspot(
-                                      context,
-                                      alignment: const Alignment(-0.55, 0.15),
-                                      index: 1,
-                                      label: 'المحور العمودي',
-                                    ),
-                                    _buildHotspot(
-                                      context,
-                                      alignment: const Alignment(0.35, 0.65),
-                                      index: 2,
-                                      label: 'المحور الأفقي',
-                                    ),
-                                    _buildHotspot(
-                                      context,
-                                      alignment: const Alignment(0.05, 0.20),
-                                      index: 3,
-                                      label: 'الأعمدة',
-                                    ),
-                                    _buildHotspot(
-                                      context,
-                                      alignment: const Alignment(0.60, 0.55),
-                                      index: 4,
-                                      label: 'الهوايات',
-                                    ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-            const SizedBox(height: 8),
-            if (items.isEmpty)
-              const Card(
-                child: Padding(
-                  padding: EdgeInsets.all(18),
-                  child: Column(
-                    children: [
-                      Icon(Icons.pending_actions, size: 42),
-                      SizedBox(height: 8),
-                      Text(
-                        'التفاعل الدقيق لهذا الدرس يحتاج تحديد عناصر الصفحة الأصلية أولًا.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 6),
-                      Text(
-                        'لن نضع أسئلة أو أمثلة عامة مكان محتوى الكتاب.',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+        body: items.isEmpty
+            ? const Center(
+                child: Text(
+                  'التفاعل الدقيق لهذا الدرس يحتاج تحديد عناصر الصفحة الأصلية أولًا.',
+                  textAlign: TextAlign.center,
                 ),
               )
-            else ...[
-              const Text('عناصر الدرس',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 8),
-              ...List.generate(items.length, (index) {
-                final item = items[index];
-                return Card(
-                  child: ListTile(
-                    leading: CircleAvatar(child: Text('${index + 1}')),
-                    title: Text(item.title,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    subtitle: const Text('شرح مبسط ثم سؤال قصير'),
-                    trailing: const Icon(Icons.touch_app),
-                    onTap: () => _openInteraction(index),
-                  ),
-                );
-              }),
-              if (selectedInteraction != null) ...[
-                const SizedBox(height: 8),
-                Card(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(items[selectedInteraction!].title,
-                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        const SizedBox(height: 8),
-                        Text(items[selectedInteraction!].explanation,
-                            style: const TextStyle(fontSize: 17)),
-                        const SizedBox(height: 14),
-                        const Text('جرب بنفسك',
-                            style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
-                        const SizedBox(height: 8),
-                        ...List.generate(
-                          items[selectedInteraction!].answers.length,
-                          (index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: OutlinedButton(
-                              onPressed: () => chooseAnswer(index),
-                              child: Text(items[selectedInteraction!].answers[index]),
-                            ),
-                          ),
-                        ),
-                        if (feedback != null) ...[
-                          const SizedBox(height: 8),
-                          Text(feedback!,
-                              style: const TextStyle(fontWeight: FontWeight.bold)),
-                        ],
-                      ],
+            : Column(
+                children: [
+                  Expanded(
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      margin: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final w = constraints.maxWidth;
+                          final h = constraints.maxHeight;
+                          return Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              if (_controller != null)
+                                PdfView(
+                                  controller: _controller!,
+                                  builders: PdfViewBuilders<DefaultBuilderOptions>(
+                                    options: const DefaultBuilderOptions(),
+                                    documentLoaderBuilder: (_) =>
+                                        const Center(child: CircularProgressIndicator()),
+                                    pageLoaderBuilder: (_) =>
+                                        const Center(child: CircularProgressIndicator()),
+                                    errorBuilder: (_, error) => Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20),
+                                        child: Text(
+                                          'تعذر فتح الصفحة الأصلية. $error',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              else
+                                const Center(
+                                  child: Text('لا توجد صفحة كتاب مرتبطة بهذا الدرس.'),
+                                ),
+
+                              // مناطق لمس شفافة فوق الصفحة الأصلية.
+                              // لا نغطي النص ولا نعيد تصميم الكتاب؛ عند الاختيار فقط
+                              // يظهر إطار خفيف، ثم يفتح شرح العنصر.
+                              if (widget.lessonNumber == 13 && _controller != null) ...[
+                                _hotspot(
+                                  index: 0,
+                                  left: w * 0.12,
+                                  top: h * 0.03,
+                                  width: w * 0.76,
+                                  height: h * 0.15,
+                                ),
+                                _hotspot(
+                                  index: 1,
+                                  left: 0,
+                                  top: h * 0.24,
+                                  width: w * 0.30,
+                                  height: h * 0.36,
+                                ),
+                                _hotspot(
+                                  index: 2,
+                                  left: w * 0.18,
+                                  top: h * 0.54,
+                                  width: w * 0.70,
+                                  height: h * 0.16,
+                                ),
+                                _hotspot(
+                                  index: 3,
+                                  left: w * 0.28,
+                                  top: h * 0.22,
+                                  width: w * 0.55,
+                                  height: h * 0.34,
+                                ),
+                                _hotspot(
+                                  index: 4,
+                                  left: w * 0.28,
+                                  top: h * 0.48,
+                                  width: w * 0.60,
+                                  height: h * 0.16,
+                                ),
+                              ],
+                            ],
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ],
-          ],
-        ),
+                  SafeArea(
+                    top: false,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 4, 10, 8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              onPressed: _controller == null
+                                  ? null
+                                  : () => _controller!.previousPage(
+                                        duration: const Duration(milliseconds: 250),
+                                        curve: Curves.easeOut,
+                                      ),
+                              icon: const Icon(Icons.chevron_right),
+                              label: const Text('السابق'),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              onPressed: _controller == null
+                                  ? null
+                                  : () => _controller!.nextPage(
+                                        duration: const Duration(milliseconds: 250),
+                                        curve: Curves.easeOut,
+                                      ),
+                              icon: const Icon(Icons.chevron_left),
+                              label: const Text('التالي'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 82,
+                    child: ListView.separated(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: items.length,
+                      separatorBuilder: (_, _) => const SizedBox(width: 8),
+                      itemBuilder: (context, index) {
+                        return ActionChip(
+                          avatar: CircleAvatar(
+                            child: Text('${index + 1}'),
+                          ),
+                          label: Text(items[index].title),
+                          onPressed: () => _openInteraction(index),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
       ),
     );
   }
