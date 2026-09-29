@@ -599,20 +599,20 @@ class _InteractivePageState extends State<InteractivePage> {
               ),
             const SizedBox(height: 8),
             if (items.isEmpty)
-              Card(
+              const Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(18),
+                  padding: EdgeInsets.all(18),
                   child: Column(
                     children: [
-                      const Icon(Icons.pending_actions, size: 42),
-                      const SizedBox(height: 8),
-                      const Text(
+                      Icon(Icons.pending_actions, size: 42),
+                      SizedBox(height: 8),
+                      Text(
                         'التفاعل الدقيق لهذا الدرس يحتاج تحديد عناصر الصفحة الأصلية أولًا.',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 6),
-                      const Text(
+                      SizedBox(height: 6),
+                      Text(
                         'لن نضع أسئلة أو أمثلة عامة مكان محتوى الكتاب.',
                         textAlign: TextAlign.center,
                       ),
