@@ -267,10 +267,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
                 child: PdfViewPinch(
                   controller: _controller,
                   builders: PdfViewPinchBuilders(
-                    options: const PdfViewPinchOptions(
-                      swipeHorizontal: false,
-                      pageSnapping: true,
-                    ),
+                    options: const DefaultBuilderOptions(),
                     documentLoaderBuilder: (_) => const Center(child: CircularProgressIndicator()),
                     pageLoaderBuilder: (_) => const Center(child: CircularProgressIndicator()),
                     errorBuilder: (_, error) => Center(
