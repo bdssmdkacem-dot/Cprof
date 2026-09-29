@@ -155,6 +155,175 @@ class LessonPage extends StatelessWidget {
   final int lessonNumber;
   const LessonPage({required this.subject, required this.lessonNumber, super.key});
 
+  static const mathLessons = [
+    'الجمع والطرح والضرب (0 إلى 9 999)',
+    'الرباعيات الاعتيادية',
+    'الأعداد الصحيحة من 0 إلى 999 999',
+    'تنظيم ومعالجة البيانات (1)',
+    'التقنية الاعتيادية للجمع والطرح من 0 إلى 999 999',
+    'قياس المساحات: المتر المربع',
+    'الأعداد الكسرية (1)',
+    'تنظيم ومعالجة البيانات (2)',
+  ];
+
+  String get title {
+    if (subject.title == 'الرياضيات' && lessonNumber <= mathLessons.length) {
+      return mathLessons[lessonNumber - 1];
+    }
+    return 'الدرس ' + lessonNumber.toString();
+  }
+
+  @override
+  Widget build(BuildContext context) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(title: Text('الدرس ' + lessonNumber.toString() + ' — ' + subject.title)),
+          body: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.menu_book_outlined),
+                  title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text('المحتوى مرتبط بالمستوى الرابع • اضغط لفتح الصفحة التفاعلية'),
+                  trailing: const Icon(Icons.arrow_back_ios_new),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => InteractivePage(subject: subject, lessonTitle: title),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text('🤖 التعلم التفاعلي',
+                          style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'عند توفر نسخة PDF مرخصة للكتاب، سنضع الصفحة الأصلية هنا ونحدد عليها مناطق النصوص والصور والتمارين.',
+                      ),
+                      const SizedBox(height: 14),
+                      FilledButton.icon(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => InteractivePage(subject: subject, lessonTitle: title),
+                          ),
+                        ),
+                        icon: const Icon(Icons.touch_app),
+                        label: const Text('فتح النموذج التفاعلي'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+}
+
+class InteractivePage extends StatefulWidget {
+  final Subject subject;
+  final String lessonTitle;
+  const InteractivePage({required this.subject, required this.lessonTitle, super.key});
+
+  @override
+  State<InteractivePage> createState() => _InteractivePageState();
+}
+
+class _InteractivePageState extends State<InteractivePage> {
+  String? selected;
+
+  @override
+  Widget build(BuildContext context) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(title: const Text('الصفحة التفاعلية')),
+          body: Column(
+            children: [
+              Expanded(
+                child: InteractiveViewer(
+                  minScale: .8,
+                  maxScale: 3,
+                  child: Center(
+                    child: AspectRatio(
+                      aspectRatio: .707,
+                      child: Card(
+                        margin: const EdgeInsets.all(16),
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(24),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(widget.subject.title,
+                                      style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 10),
+                                  Text(widget.lessonTitle,
+                                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                  const Divider(height: 30),
+                                  const Text('نموذج الصفحة الأولى التفاعلية',
+                                      style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 14),
+                                  if (widget.subject.title == 'الرياضيات') ...[
+                                    const Text('مثال: 1 250 + 340 = 1 590',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
+                                    const SizedBox(height: 18),
+                                    const Text('لاحظ الأعداد، ثم اختر الجزء الذي تريد أن يشرحه لك Cprof.'),
+                                  ] else
+                                    const Text('هذه منطقة تجريبية. عند إدخال الصفحة الأصلية سيتم وضع مناطق التفاعل فوق النصوص والصور والتمارين.'),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              top: 125,
+                              right: 20,
+                              left: 20,
+                              height: 82,
+                              child: _Hotspot(
+                                label: 'اضغط للشرح',
+                                onTap: () => setState(() => selected = 'شرح مفهوم الدرس'),
+                              ),
+                            ),
+                            Positioned(
+                              top: 235,
+                              right: 35,
+                              left: 35,
+                              height: 82,
+                              child: _Hotspot(
+                                label: 'اضغط على التمرين',
+                                onTap: () => setState(() => selected = 'حل التمرين خطوة بخطوة'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              if (selected != null)
+                _ExplanationPanel(subject: widget.subject.title, title: selected!),
+            ],
+          ),
+        ),
+      );
+}
+
+class LessonPage extends StatelessWidget {
+  final Subject subject;
+  final int lessonNumber;
+  const LessonPage({required this.subject, required this.lessonNumber, super.key});
+
   @override
   Widget build(BuildContext context) => Directionality(
         textDirection: TextDirection.rtl,
