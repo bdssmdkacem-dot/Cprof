@@ -266,7 +266,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
               Expanded(
                 child: PdfViewPinch(
                   controller: _controller,
-                  builders: PdfViewPinchBuilders(
+                  builders: PdfViewPinchBuilders<DefaultBuilderOptions>(
                     options: const DefaultBuilderOptions(),
                     documentLoaderBuilder: (_) => const Center(child: CircularProgressIndicator()),
                     pageLoaderBuilder: (_) => const Center(child: CircularProgressIndicator()),
