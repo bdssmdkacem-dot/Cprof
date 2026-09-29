@@ -239,171 +239,189 @@ class InteractivePage extends StatefulWidget {
 }
 
 class _InteractivePageState extends State<InteractivePage> {
-  String? selected;
+  int? selectedDigit;
+  String? feedback;
+
+  static const digits = [5, 2, 3, 7, 4, 1];
+  static const places = ['مئات الألوف', 'عشرات الألوف', 'آلاف', 'مئات', 'عشرات', 'آحاد'];
+  static const values = [500000, 20000, 3000, 700, 40, 1];
+
+  void selectDigit(int index) {
+    setState(() => feedback =
+        'الرقم ${digits[index]} في منزلة ${places[index]}، وقيمته ${values[index]}.');
+  }
 
   @override
-  Widget build(BuildContext context) => Directionality(
-        textDirection: TextDirection.rtl,
-        child: Scaffold(
-          appBar: AppBar(title: const Text('الصفحة التفاعلية')),
-          body: Column(
-            children: [
-              Expanded(
-                child: InteractiveViewer(
-                  minScale: .8,
-                  maxScale: 3,
-                  child: Center(
-                    child: AspectRatio(
-                      aspectRatio: .707,
-                      child: Card(
-                        margin: const EdgeInsets.all(16),
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(widget.subject.title,
-                                      style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                                  const SizedBox(height: 10),
-                                  Text(widget.lessonTitle,
-                                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                                  const Divider(height: 30),
-                                  const Text('نموذج الصفحة الأولى التفاعلية',
-                                      style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
-                                  const SizedBox(height: 14),
-                                  if (widget.subject.title == 'الرياضيات') ...[
-                                    const Text('مثال: 1 250 + 340 = 1 590',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
-                                    const SizedBox(height: 18),
-                                    const Text('لاحظ الأعداد، ثم اختر الجزء الذي تريد أن يشرحه لك Cprof.'),
-                                  ] else
-                                    const Text('هذه منطقة تجريبية. عند إدخال الصفحة الأصلية سيتم وضع مناطق التفاعل فوق النصوص والصور والتمارين.'),
-                                ],
-                              ),
+  Widget build(BuildContext context) {
+    final isMath = widget.subject.title == 'الرياضيات';
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(title: const Text('صفحة تعليمية تفاعلية')),
+        body: ListView(
+          padding: const EdgeInsets.all(14),
+          children: [
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(widget.lessonTitle,
+                        style: const TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 6),
+                    const Text('تعلم بالضغط: اختر أي عنصر لتحصل على شرح أو تدريب.'),
+                  ],
+                ),
+              ),
+            ),
+            if (isMath) ...[
+              const SizedBox(height: 10),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      const Text('الأعداد من 0 إلى 999999',
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 8),
+                      const Text('اضغط على أي رقم لمعرفة منزلته وقيمته.'),
+                      const SizedBox(height: 14),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        children: List.generate(
+                          digits.length,
+                          (index) => Padding(
+                            padding: const EdgeInsets.all(3),
+                            child: ChoiceChip(
+                              selected: selectedDigit == index,
+                              label: Text('${digits[index]}',
+                                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                              onSelected: (_) {
+                                setState(() {
+                                  selectedDigit = index;
+                                  feedback = 'الرقم ${digits[index]} في منزلة ${places[index]}، وقيمته ${values[index]}.';
+                                });
+                              },
                             ),
-                            Positioned(
-                              top: 125,
-                              right: 20,
-                              left: 20,
-                              height: 82,
-                              child: _Hotspot(
-                                label: 'اضغط للشرح',
-                                onTap: () => setState(() => selected = 'شرح مفهوم الدرس'),
-                              ),
-                            ),
-                            Positioned(
-                              top: 235,
-                              right: 35,
-                              left: 35,
-                              height: 82,
-                              child: _Hotspot(
-                                label: 'اضغط على التمرين',
-                                onTap: () => setState(() => selected = 'حل التمرين خطوة بخطوة'),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                      const SizedBox(height: 14),
+                      if (feedback != null)
+                        Text(feedback!, textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    ],
                   ),
                 ),
               ),
-              if (selected != null)
-                _ExplanationPanel(subject: widget.subject.title, title: selected!),
-            ],
-          ),
-        ),
-      );
-}
-
-class _Hotspot extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
-  const _Hotspot({required this.label, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) => Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).colorScheme.primary,
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              label,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      );
-}
-
-class _ExplanationPanel extends StatelessWidget {
-  final String subject;
-  final String title;
-  const _ExplanationPanel({required this.subject, required this.title});
-
-  @override
-  Widget build(BuildContext context) => Card(
-        margin: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                '🤖 $subject — $title',
-                style: const TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
+              const SizedBox(height: 10),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text('جدول القيمة المكانية',
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 10),
+                      Table(
+                        border: TableBorder.all(color: Theme.of(context).colorScheme.outlineVariant),
+                        children: [
+                          TableRow(
+                            children: List.generate(
+                              places.length,
+                              (i) => Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Text(places[i], textAlign: TextAlign.center,
+                                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                          ),
+                          TableRow(
+                            children: List.generate(
+                              digits.length,
+                              (i) => InkWell(
+                                onTap: () => selectDigit(i),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Text('${digits[i]}', textAlign: TextAlign.center,
+                                      style: const TextStyle(fontSize: 22)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 8),
-              const Text(
-                'سيظهر هنا شرح الذكاء الاصطناعي المعتمد على محتوى الكتاب وسياق الدرس وبمستوى مناسب للمتعلم.',
+              const SizedBox(height: 10),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.lightbulb_outline),
+                  title: const Text('مثال محلول'),
+                  subtitle: const Text('523 741 = 500 000 + 20 000 + 3 000 + 700 + 40 + 1'),
+                  onTap: () => setState(() => feedback =
+                      'نفكك العدد حسب المنازل: 500000 + 20000 + 3000 + 700 + 40 + 1.'),
+                ),
               ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.volume_up),
-                    label: const Text('استمع'),
+              const SizedBox(height: 10),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.quiz_outlined),
+                  title: const Text('اختبر نفسك'),
+                  subtitle: const Text('ما قيمة الرقم 7 في العدد 523 741؟'),
+                  trailing: FilledButton(
+                    onPressed: () => setState(() => feedback = 'الإجابة الصحيحة: 700، لأن 7 في منزلة المئات.'),
+                    child: const Text('تحقق'),
                   ),
-                  OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.help_outline),
-                    label: const Text('اختبرني'),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.lightbulb_outline),
-                    label: const Text('مثال'),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.question_answer_outlined),
-                    label: const Text('اسأل'),
-                  ),
-                ],
+                ),
               ),
-            ],
-          ),
+            ] else
+              const Card(
+                child: Padding(
+                  padding: EdgeInsets.all(18),
+                  child: Text('هذه صفحة تفاعلية أولية. ستستخدم البنية نفسها لبقية المواد عند إدخال المحتوى المرخص.'),
+                ),
+              ),
+            if (feedback != null)
+              Card(
+                margin: const EdgeInsets.only(top: 10, bottom: 20),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text('🤖 شرح Cprof',
+                          style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 8),
+                      Text(feedback!),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          OutlinedButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(Icons.volume_up),
+                            label: const Text('استمع'),
+                          ),
+                          OutlinedButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(Icons.question_answer_outlined),
+                            label: const Text('اسأل Cprof'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }
