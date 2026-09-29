@@ -489,7 +489,7 @@ class _InteractivePageState extends State<InteractivePage> {
                         ),
                       )
                     : Card(
-                        key: ValueKey('selected-place'),
+                        key: const ValueKey('selected-place'),
                         color: Theme.of(context).colorScheme.primaryContainer,
                         child: Padding(
                           padding: const EdgeInsets.all(18),
