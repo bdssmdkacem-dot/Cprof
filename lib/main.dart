@@ -595,7 +595,7 @@ class _InteractivePageState extends State<InteractivePage> {
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
-      builder: (sheetContext) {
+      builder: (_) {
         var selectedAnswer = -1;
         String? localFeedback;
 
@@ -769,7 +769,7 @@ class _InteractivePageState extends State<InteractivePage> {
                       if (widget.lessonNumber == 13)
                         Positioned.fill(
                           child: LayoutBuilder(
-                            builder: (context, constraints) {
+                            builder: (context, _) {
                               return Stack(
                                 children: [
                                     _buildHotspot(
