@@ -82,68 +82,139 @@ Future<void> _openOfficialResources(BuildContext context) async {
   }
 }
 
-class BookPage extends StatefulWidget {
+class BookPage extends StatelessWidget {
   final Subject subject;
   const BookPage({required this.subject, super.key});
-  @override
-  State<BookPage> createState() => _BookPageState();
-}
 
-class _BookPageState extends State<BookPage> {
-  String? selected;
+  static const lessonCounts = <String, int>{
+    'الرياضيات': 35,
+    'التربية الإسلامية': 25,
+    'اللغة العربية': 71,
+    'اللغة الفرنسية': 67,
+    'النشاط العلمي': 27,
+    'الاجتماعيات': 19,
+    'اللغة الأمازيغية': 21,
+  };
 
   @override
   Widget build(BuildContext context) => Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
-          appBar: AppBar(title: Text(widget.subject.title)),
-          body: Column(
+          appBar: AppBar(title: Text(subject.title), centerTitle: true),
+          body: ListView(
+            padding: const EdgeInsets.all(16),
             children: [
-              Expanded(
-                child: InteractiveViewer(
-                  minScale: .7,
-                  maxScale: 3,
-                  child: Center(
-                    child: AspectRatio(
-                      aspectRatio: .707,
-                      child: Card(
-                        margin: const EdgeInsets.all(16),
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(28),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(widget.subject.title, style: const TextStyle(fontSize: 27, fontWeight: FontWeight.bold)),
-                                  const SizedBox(height: 24),
-                                  const Text('صفحة تفاعلية تجريبية', style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold)),
-                                  const SizedBox(height: 14),
-                                  const Text('ستُستبدل هذه الصفحة بصفحة الكتاب المرخصة. كل نص أو صورة أو تمرين يمكن أن يصبح منطقة قابلة للضغط.', style: TextStyle(fontSize: 17)),
-                                  const SizedBox(height: 30),
-                                  Text(widget.subject.title == 'الرياضيات' ? '24 ÷ 6 = 4' : 'اضغط هنا للتجربة', textAlign: TextAlign.center, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              top: 120, right: 20, left: 20, height: 88,
-                              child: _Hotspot(label: 'الشرح / النشاط', onTap: () => setState(() => selected = 'الشرح / النشاط')),
-                            ),
-                            Positioned(
-                              top: 270, right: 25, left: 25, height: 90,
-                              child: _Hotspot(
-                                label: widget.subject.title == 'الرياضيات' ? '24 ÷ 6 = 4' : 'عنصر من الصفحة',
-                                onTap: () => setState(() => selected = widget.subject.title == 'الرياضيات' ? '24 ÷ 6 = 4' : 'عنصر من الصفحة'),
-                              ),
-                            ),
-                          ],
-                        ),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Icon(subject.icon, size: 48),
+                      const SizedBox(height: 10),
+                      Text(subject.title, textAlign: TextAlign.center,
+                          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 6),
+                      Text(subject.subtitle, textAlign: TextAlign.center),
+                      const SizedBox(height: 10),
+                      Text(
+                        'البرنامج المتاح على TelmidTICE: ${lessonCounts[subject.title] ?? 0} درساً',
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              const Text('الدروس', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              ...List.generate(
+                lessonCounts[subject.title] ?? 0,
+                (index) => Card(
+                  child: ListTile(
+                    leading: CircleAvatar(child: Text('${index + 1}')),
+                    title: Text('الدرس ${index + 1}'),
+                    subtitle: const Text('صفحات الكتاب • شرح تفاعلي • تمارين'),
+                    trailing: const Icon(Icons.arrow_back_ios_new, size: 18),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => LessonPage(subject: subject, lessonNumber: index + 1),
                       ),
                     ),
                   ),
                 ),
               ),
-              if (selected != null) _ExplanationPanel(subject: widget.subject.title, title: selected!),
+            ],
+          ),
+        ),
+      );
+}
+
+class LessonPage extends StatelessWidget {
+  final Subject subject;
+  final int lessonNumber;
+  const LessonPage({required this.subject, required this.lessonNumber, super.key});
+
+  @override
+  Widget build(BuildContext context) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(title: Text('الدرس $lessonNumber — ${subject.title}')),
+          body: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.menu_book_outlined),
+                  title: const Text('صفحات الكتاب'),
+                  subtitle: const Text('ستظهر هنا صفحات الكتاب المرتبطة بهذا الدرس'),
+                  trailing: const Icon(Icons.arrow_back_ios_new),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => BookPage(subject: subject)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text('🤖 التعلم التفاعلي',
+                          style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'بعد ربط صفحات الكتاب، يستطيع التلميذ الضغط على النص أو الصورة أو التمرين للحصول على شرح مناسب لمستواه.',
+                      ),
+                      const SizedBox(height: 14),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          OutlinedButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(Icons.volume_up),
+                            label: const Text('استمع'),
+                          ),
+                          OutlinedButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(Icons.quiz_outlined),
+                            label: const Text('اختبرني'),
+                          ),
+                          OutlinedButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(Icons.question_answer_outlined),
+                            label: const Text('اسأل'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
