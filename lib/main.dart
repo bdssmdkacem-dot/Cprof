@@ -684,12 +684,10 @@ class _InteractivePageState extends State<InteractivePage> {
                       ),
                       if (widget.lessonNumber == 13)
                         Positioned.fill(
-                          child: IgnorePointer(
-                            ignoring: selectedInteraction == null,
-                            child: LayoutBuilder(
-                              builder: (context, constraints) {
-                                return Stack(
-                                  children: [
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              return Stack(
+                                children: [
                                     _buildHotspot(
                                       context,
                                       alignment: const Alignment(0.45, -0.35),
@@ -720,10 +718,9 @@ class _InteractivePageState extends State<InteractivePage> {
                                       index: 4,
                                       label: 'الهوايات',
                                     ),
-                                  ],
-                                );
-                              },
-                            ),
+                                ],
+                              );
+                            },
                           ),
                         ),
                     ],
