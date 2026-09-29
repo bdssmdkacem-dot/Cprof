@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const CprofApp());
 
@@ -44,7 +45,17 @@ class HomePage extends StatelessWidget {
               const Text('المستوى الرابع ابتدائي', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               const Text('اختر المادة، ثم اضغط على أي جزء من الكتاب لشرحِه والتفاعل معه.'),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.verified_outlined),
+                  title: const Text('مصادر المستوى الرابع الرسمية'),
+                  subtitle: const Text('دروس وموارد السنة الرابعة على TelmidTICE'),
+                  trailing: const Icon(Icons.open_in_new),
+                  onTap: () => _openOfficialResources(context),
+                ),
+              ),
+              const SizedBox(height: 8),
               ...subjects.map((s) => Card(
                     child: ListTile(
                       leading: CircleAvatar(child: Icon(s.icon)),
@@ -61,6 +72,14 @@ class HomePage extends StatelessWidget {
           ),
         ),
       );
+}
+
+Future<void> _openOfficialResources(BuildContext context) async {
+  final uri = Uri.parse('https://telmidtice.men.gov.ma/courses?category=67b5fffa7f28e1675db7d683&level=1');
+  final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
+  if (!ok && context.mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تعذر فتح منصة TelmidTICE')));
+  }
 }
 
 class BookPage extends StatefulWidget {
