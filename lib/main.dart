@@ -87,7 +87,7 @@ class BookPage extends StatelessWidget {
   const BookPage({required this.subject, super.key});
 
   static const lessonCounts = <String, int>{
-    'الرياضيات': 35,
+    'الرياضيات': 40,
     'التربية الإسلامية': 25,
     'اللغة العربية': 71,
     'اللغة الفرنسية': 67,
@@ -157,15 +157,71 @@ class LessonPage extends StatelessWidget {
   const LessonPage({required this.subject, required this.lessonNumber, super.key});
 
   static const mathLessons = [
-    'الجمع والطرح والضرب (0 إلى 9 999)',
-    'الرباعيات الاعتيادية',
-    'الأعداد الصحيحة من 0 إلى 999 999',
-    'تنظيم ومعالجة البيانات (1)',
-    'التقنية الاعتيادية للجمع والطرح من 0 إلى 999 999',
-    'قياس المساحات: المتر المربع',
-    'الأعداد الكسرية (1)',
-    'تنظيم ومعالجة البيانات (2)',
+    'الأعداد من 0 إلى 999 999 - قراءة وكتابة',
+    'الأعداد من 0 إلى 999 999 - تفكيك وتركيب',
+    'تقريب الأعداد إلى العشرة، إلى المئة',
+    'حل المسائل (البحث عن الكل أو الجزء) (1)',
+    'جمع الأعداد من 0 إلى 9 999',
+    'طرح الأعداد من 0 إلى 9 999',
+    'جمع وطرح الأعداد من 0 إلى 9 999',
+    'حل المسائل (البحث عن الكل أو الجزء) (2)',
+    'ضرب عددين من رقمين في عدد من رقمين',
+    'ضرب عدد من ثلاثة أرقام في عدد من رقمين',
+    'وضع وإنجاز عمليات ضرب',
+    'حل المسائل (البحث عن الكل أو الجزء) (3)',
+    'قراءة بيانات بالأعمدة (1)',
+    'قراءة بيانات بالأعمدة (2)',
+    'قراءة بيانات بالأعمدة (3)',
+    'حل المسائل (البحث عن الكل أو الجزء) (4)',
+    'قراءة وكتابة الكسور العشرية',
+    'تفكيك كسور عشرية',
+    'الكسور العشرية المتكافئة',
+    'حل المسائل (توليف)',
+    'التوازي والتعامد',
+    'خاصيات المضلعات الرباعية (1)',
+    'خاصيات المضلعات الرباعية (2)',
+    'حل المسائل (وضعيات المقارنة) (1)',
+    'قواسم عدد',
+    'مضاعفات عدد',
+    'المضاعفات والقواسم المشتركة لعددين',
+    'حل المسائل (وضعيات المقارنة) (2)',
+    'التناسبية (1)',
+    'التناسبية (2)',
+    'التناسبية (3)',
+    'حل المسائل (وضعيات المقارنة) (3)',
+    'حساب محيطي المربع والمستطيل',
+    'مقارنة مساحتين',
+    'حساب مساحتي المربع والمستطيل',
+    'حل المسائل (القياس)',
+    'قراءة وكتابة الكسور العشرية',
+    'تمثيل وموضعة كسور عشرية',
+    'تفكيك الأعداد الكسرية العشرية',
+    'حل المسائل (توليف)',
   ];
+
+  // Verified against the table of contents and the scanned pages in the PDF.
+  // Values are PDF page numbers (1-based), not printed textbook page numbers.
+  // The attached file does not contain printed pages 8–36, so lessons 1–12
+  // intentionally have no direct page mapping yet.
+  static const mathLessonPdfPages = <int, int>{
+    13: 6, 14: 8, 15: 10, 16: 12,
+    17: 16, 18: 17, 19: 19, 20: 21,
+    21: 31, 22: 33, 23: 35, 24: 37,
+    25: 41, 26: 43, 27: 45, 28: 47,
+    29: 51, 30: 53, 31: 55, 32: 57,
+    33: 61, 34: 63, 35: 65, 36: 67,
+    37: 71, 38: 73, 39: 75, 40: 77,
+  };
+
+  static const mathLessonPrintedPages = <int, int>{
+    13: 38, 14: 40, 15: 42, 16: 44,
+    17: 48, 18: 50, 19: 52, 20: 54,
+    21: 64, 22: 66, 23: 68, 24: 70,
+    25: 74, 26: 76, 27: 78, 28: 80,
+    29: 84, 30: 86, 31: 88, 32: 90,
+    33: 94, 34: 96, 35: 98, 36: 100,
+    37: 104, 38: 106, 39: 108, 40: 110,
+  };
 
   String get title {
     if (subject.title == 'الرياضيات' && lessonNumber <= mathLessons.length) {
@@ -186,12 +242,25 @@ class LessonPage extends StatelessWidget {
                 child: ListTile(
                   leading: const Icon(Icons.menu_book_outlined),
                   title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text('من كتاب الجيد في الرياضيات • افتح صفحة الكتاب الأصلية'),
+                  subtitle: Text(
+                    subject.title == 'الرياضيات' && mathLessonPdfPages.containsKey(lessonNumber)
+                        ? 'كتاب الجيد • الصفحة المطبوعة ' + mathLessonPrintedPages[lessonNumber].toString() + ' • فتح مباشر'
+                        : 'كتاب الجيد • هذه الصفحة غير موجودة في نسخة PDF المرفقة',
+                  ),
                   trailing: const Icon(Icons.menu_book),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => BookReaderPage(subject: subject, lessonTitle: title),
+                      builder: (_) => BookReaderPage(
+                        subject: subject,
+                        lessonTitle: title,
+                        initialPage: subject.title == 'الرياضيات'
+                            ? mathLessonPdfPages[lessonNumber]
+                            : null,
+                        printedPage: subject.title == 'الرياضيات'
+                            ? mathLessonPrintedPages[lessonNumber]
+                            : null,
+                      ),
                     ),
                   ),
                 ),
@@ -206,8 +275,10 @@ class LessonPage extends StatelessWidget {
                       const Text('🤖 التعلم التفاعلي',
                           style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 8),
-                      const Text(
-                        'عند توفر نسخة PDF مرخصة للكتاب، سنضع الصفحة الأصلية هنا ونحدد عليها مناطق النصوص والصور والتمارين.',
+                      Text(
+                        subject.title == 'الرياضيات' && mathLessonPdfPages.containsKey(lessonNumber)
+                            ? 'تم العثور على صفحة هذا الدرس في النسخة المرفقة، ويمكن فتحها مباشرة من بطاقة الكتاب.'
+                            : 'النسخة المرفقة لا تحتوي على صفحات هذا الدرس بعد. يمكن فتح الكتاب يدويًا، أو إضافة النسخة الكاملة لاحقًا لإكمال الربط.',
                       ),
                       const SizedBox(height: 14),
                       FilledButton.icon(
@@ -233,7 +304,16 @@ class LessonPage extends StatelessWidget {
 class BookReaderPage extends StatefulWidget {
   final Subject subject;
   final String lessonTitle;
-  const BookReaderPage({required this.subject, required this.lessonTitle, super.key});
+  final int? initialPage;
+  final int? printedPage;
+
+  const BookReaderPage({
+    required this.subject,
+    required this.lessonTitle,
+    this.initialPage,
+    this.printedPage,
+    super.key,
+  });
 
   @override
   State<BookReaderPage> createState() => _BookReaderPageState();
@@ -247,6 +327,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
     super.initState();
     _controller = PdfControllerPinch(
       document: PdfDocument.openAsset('assets/books/math/jayd_math_grade4.pdf'),
+      initialPage: widget.initialPage ?? 1,
     );
   }
 
@@ -260,7 +341,19 @@ class _BookReaderPageState extends State<BookReaderPage> {
   Widget build(BuildContext context) => Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
-          appBar: AppBar(title: Text(widget.lessonTitle), centerTitle: true),
+          appBar: AppBar(
+            title: Text(widget.lessonTitle),
+            centerTitle: true,
+            bottom: widget.printedPage == null
+                ? null
+                : PreferredSize(
+                    preferredSize: const Size.fromHeight(28),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: Text('صفحة الكتاب المطبوعة ' + widget.printedPage.toString()),
+                    ),
+                  ),
+          ),
           body: Column(
             children: [
               Expanded(
