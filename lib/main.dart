@@ -582,6 +582,93 @@ class _InteractivePageState extends State<InteractivePage> {
     });
   }
 
+  Future<void> _openInteraction(int index) async {
+    if (index < 0 || index >= interactions.length) return;
+    final item = interactions[index];
+
+    setState(() {
+      selectedInteraction = index;
+      feedback = null;
+    });
+
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (sheetContext) {
+        var selectedAnswer = -1;
+        String? localFeedback;
+
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            return SafeArea(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  16,
+                  8,
+                  16,
+                  16 + MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        item.title,
+                        style: const TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        item.explanation,
+                        style: const TextStyle(fontSize: 17),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'جرب بنفسك',
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      ...List.generate(
+                        item.answers.length,
+                        (answerIndex) => Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: OutlinedButton(
+                            onPressed: () {
+                              setSheetState(() {
+                                selectedAnswer = answerIndex;
+                                localFeedback = answerIndex == item.correctIndex
+                                    ? '✓ أحسنت. ${item.correction}'
+                                    : 'لنصححها معًا. ${item.correction}';
+                              });
+                            },
+                            child: Text(item.answers[answerIndex]),
+                          ),
+                        ),
+                      ),
+                      if (selectedAnswer >= 0 && localFeedback != null) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          localFeedback!,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   Widget _buildHotspot(
     BuildContext context, {
     required Alignment alignment,
@@ -591,10 +678,7 @@ class _InteractivePageState extends State<InteractivePage> {
     return Align(
       alignment: alignment,
       child: GestureDetector(
-        onTap: () => setState(() {
-          selectedInteraction = index;
-          feedback = null;
-        }),
+        onTap: () => _openInteraction(index),
         child: Container(
           width: 118,
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
@@ -763,10 +847,7 @@ class _InteractivePageState extends State<InteractivePage> {
                         style: const TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: const Text('شرح مبسط ثم سؤال قصير'),
                     trailing: const Icon(Icons.touch_app),
-                    onTap: () => setState(() {
-                      selectedInteraction = index;
-                      feedback = null;
-                    }),
+                    onTap: () => _openInteraction(index),
                   ),
                 );
               }),
