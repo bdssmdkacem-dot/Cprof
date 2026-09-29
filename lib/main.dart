@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdfx/pdfx.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const CprofApp());
@@ -78,13 +79,6 @@ Future<void> _openOfficialResources(BuildContext context) async {
   final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
   if (!ok && context.mounted) {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تعذر فتح منصة TelmidTICE')));
-  Widget _answerButton(String label, bool correct) => Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: OutlinedButton(
-          onPressed: () => answerQuiz(correct),
-          child: Text(label),
-        ),
-      );
   }
 }
 
@@ -140,7 +134,7 @@ class BookPage extends StatelessWidget {
                   child: ListTile(
                     leading: CircleAvatar(child: Text('${index + 1}')),
                     title: Text('الدرس ${index + 1}'),
-                    subtitle: const Text('صفحات الكتاب • شرح تفاعلي • تمارين'),
+                    subtitle: const Text('الكتاب الأصلي • تصفح الصفحات • شرح تفاعلي • تمارين'),
                     trailing: const Icon(Icons.arrow_back_ios_new, size: 18),
                     onTap: () => Navigator.push(
                       context,
@@ -192,12 +186,12 @@ class LessonPage extends StatelessWidget {
                 child: ListTile(
                   leading: const Icon(Icons.menu_book_outlined),
                   title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text('المحتوى مرتبط بالمستوى الرابع • اضغط لفتح الصفحة التفاعلية'),
-                  trailing: const Icon(Icons.arrow_back_ios_new),
+                  subtitle: const Text('من كتاب الجيد في الرياضيات • افتح صفحة الكتاب الأصلية'),
+                  trailing: const Icon(Icons.menu_book),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => InteractivePage(subject: subject, lessonTitle: title),
+                      builder: (_) => BookReaderPage(subject: subject, lessonTitle: title),
                     ),
                   ),
                 ),
@@ -227,6 +221,86 @@ class LessonPage extends StatelessWidget {
                         label: const Text('فتح النموذج التفاعلي'),
                       ),
                     ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+}
+
+class BookReaderPage extends StatefulWidget {
+  final Subject subject;
+  final String lessonTitle;
+  const BookReaderPage({required this.subject, required this.lessonTitle, super.key});
+
+  @override
+  State<BookReaderPage> createState() => _BookReaderPageState();
+}
+
+class _BookReaderPageState extends State<BookReaderPage> {
+  late final PdfControllerPinch _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PdfControllerPinch(
+      document: PdfDocument.openAsset('assets/books/math/jayd_math_grade4.pdf'),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(title: Text(widget.lessonTitle), centerTitle: true),
+          body: Column(
+            children: [
+              Expanded(
+                child: PdfViewPinch(
+                  controller: _controller,
+                  builders: PdfViewPinchBuilders(
+                    options: const PdfViewPinchOptions(
+                      swipeHorizontal: false,
+                      pageSnapping: true,
+                    ),
+                    documentLoaderBuilder: (_) => const Center(child: CircularProgressIndicator()),
+                    pageLoaderBuilder: (_) => const Center(child: CircularProgressIndicator()),
+                    errorBuilder: (_, error) => Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          'تعذر فتح كتاب الرياضيات. تأكد من وجود ملف PDF داخل assets/books/math/.\n$error',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: FilledButton.icon(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => InteractivePage(
+                          subject: widget.subject,
+                          lessonTitle: widget.lessonTitle,
+                        ),
+                      ),
+                    ),
+                    icon: const Icon(Icons.touch_app),
+                    label: const Text('تفاعل مع هذا الدرس'),
                   ),
                 ),
               ),
@@ -271,6 +345,14 @@ class _InteractivePageState extends State<InteractivePage> {
       showAskAnswer = false;
     });
   }
+
+  Widget _answerButton(String label, bool correct) => Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: OutlinedButton(
+          onPressed: () => answerQuiz(correct),
+          child: Text(label),
+        ),
+      );
 
   void answerQuiz(bool correct) {
     setState(() {
