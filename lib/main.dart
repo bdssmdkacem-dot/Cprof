@@ -319,8 +319,6 @@ class _InteractivePageState extends State<InteractivePage> {
       );
 }
 
-}
-
 class _Hotspot extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
