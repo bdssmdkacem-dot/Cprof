@@ -306,7 +306,13 @@ class LessonPage extends StatelessWidget {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => InteractivePage(subject: subject, lessonTitle: title),
+                            builder: (_) => InteractivePage(
+                              subject: subject,
+                              lessonNumber: lessonNumber,
+                              lessonTitle: title,
+                              initialPage: subject.title == 'الرياضيات' ? mathLessonPdfPages[lessonNumber] : null,
+                              printedPage: subject.title == 'الرياضيات' ? mathLessonPrintedPages[lessonNumber] : null,
+                            ),
                           ),
                         ),
                         icon: const Icon(Icons.touch_app),
@@ -433,346 +439,246 @@ class _BookReaderPageState extends State<BookReaderPage> {
       );
 }
 
+class LessonInteraction {
+  final String title;
+  final String explanation;
+  final List<String> answers;
+  final int correctIndex;
+  final String correction;
+
+  const LessonInteraction({
+    required this.title,
+    required this.explanation,
+    required this.answers,
+    required this.correctIndex,
+    required this.correction,
+  });
+}
+
 class InteractivePage extends StatefulWidget {
   final Subject subject;
+  final int lessonNumber;
   final String lessonTitle;
-  const InteractivePage({required this.subject, required this.lessonTitle, super.key});
+  final int? initialPage;
+  final int? printedPage;
+
+  const InteractivePage({
+    required this.subject,
+    required this.lessonNumber,
+    required this.lessonTitle,
+    this.initialPage,
+    this.printedPage,
+    super.key,
+  });
 
   @override
   State<InteractivePage> createState() => _InteractivePageState();
 }
 
 class _InteractivePageState extends State<InteractivePage> {
-  int? selectedDigit;
+  PdfControllerPinch? _controller;
+  int? selectedInteraction;
   String? feedback;
-  int quizIndex = 0;
-  bool? quizCorrect;
-  bool showAskAnswer = false;
 
-  static const quizQuestions = [
-    'ما قيمة الرقم 7 في العدد 523 741؟',
-    'في أي منزلة يوجد الرقم 2 في العدد 523 741؟',
-    'ما قيمة الرقم 5 في العدد 523 741؟',
-    'أي رقم يوجد في منزلة الآلاف؟',
-  ];
-
-  static const digits = [5, 2, 3, 7, 4, 1];
-  static const places = ['مئات الألوف', 'عشرات الألوف', 'آلاف', 'مئات', 'عشرات', 'آحاد'];
-  static const values = [500000, 20000, 3000, 700, 40, 1];
-
-  void selectDigit(int index) {
-    setState(() {
-      selectedDigit = index;
-      feedback =
-          'الرقم ${digits[index]} في منزلة ${places[index]}، وقيمته ${values[index]}.';
-      showAskAnswer = false;
-    });
+  List<LessonInteraction> get interactions {
+    if (widget.subject.title != 'الرياضيات') return const [];
+    switch (widget.lessonNumber) {
+      case 13:
+        return const [
+          LessonInteraction(
+            title: 'قراءة البيانات بالأعمدة',
+            explanation: 'نقرأ عنوان التمثيل، ثم نحدد ماذا يمثل كل عمود، وبعد ذلك نقارن القيم قبل الإجابة.',
+            answers: ['أحدد معنى المحور والقيم أولًا', 'أختار أعلى عمود دائمًا', 'أجيب دون قراءة المقياس'],
+            correctIndex: 0,
+            correction: 'الصحيح: نفهم المحاور والمقياس أولًا، ثم نقرأ قيمة العمود المطلوب.',
+          ),
+          LessonInteraction(
+            title: 'مقارنة عمودين',
+            explanation: 'للمقارنة بين عمودين نقرأ قيمة كل واحد منهما وفق المقياس نفسه، ثم نحدد الأكبر أو الفرق عند الحاجة.',
+            answers: ['أقرأ القيمتين ثم أقارنهما', 'أعتمد على لون العمود فقط', 'أختار العمود الأعرض'],
+            correctIndex: 0,
+            correction: 'الصحيح: المقارنة تكون بالقيم التي تمثلها الأعمدة، وليس باللون أو العرض.',
+          ),
+        ];
+      default:
+        return const [];
+    }
   }
 
-  Widget _answerButton(String label, bool correct) => Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: OutlinedButton(
-          onPressed: () => answerQuiz(correct),
-          child: Text(label),
-        ),
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialPage != null) {
+      _controller = PdfControllerPinch(
+        document: PdfDocument.openAsset('assets/books/math/jayd_math_grade4.pdf'),
+        initialPage: widget.initialPage!,
       );
-
-  void answerQuiz(bool correct) {
-    setState(() {
-      quizCorrect = correct;
-      feedback = correct
-          ? 'أحسنت! إجابتك صحيحة. حاول الآن تفسير السبب باستعمال جدول القيمة المكانية.'
-          : 'لنراجع معًا: اختر الإجابة المرتبطة بالمنزلة أو القيمة، ثم أعد المحاولة.';
-    });
+    }
   }
 
-  void nextQuiz() {
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  void chooseAnswer(int index) {
+    final item = interactions[selectedInteraction!];
     setState(() {
-      quizIndex = (quizIndex + 1) % quizQuestions.length;
-      quizCorrect = null;
-      feedback = null;
+      feedback = index == item.correctIndex
+          ? '✓ أحسنت. ' + item.correction
+          : 'لنصححها معًا. ' + item.correction;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final isMath = widget.subject.title == 'الرياضيات';
+    final hasPage = _controller != null;
+    final items = interactions;
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: AppBar(title: const Text('صفحة تعليمية تفاعلية')),
+        appBar: AppBar(
+          title: const Text('التعلم على صفحة الكتاب'),
+          centerTitle: true,
+          bottom: widget.printedPage == null
+              ? null
+              : PreferredSize(
+                  preferredSize: const Size.fromHeight(28),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 6),
+                    child: Text('صفحة الكتاب المطبوعة ' + widget.printedPage.toString()),
+                  ),
+                ),
+        ),
         body: ListView(
-          padding: const EdgeInsets.all(14),
+          padding: const EdgeInsets.all(12),
           children: [
             Card(
               child: Padding(
-                padding: const EdgeInsets.all(18),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(widget.lessonTitle,
-                        style: const TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
+                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 6),
-                    const Text('تعلم بالضغط: اختر أي عنصر لتحصل على شرح أو تدريب.'),
+                    const Text(
+                      'الصفحة الأصلية تبقى هي المرجع. اختر عنصرًا تعليميًا مرتبطًا بهذا الدرس لبدء الشرح والتدريب.',
+                    ),
                   ],
                 ),
               ),
             ),
-            if (isMath) ...[
-              const SizedBox(height: 10),
+            if (hasPage)
+              Card(
+                clipBehavior: Clip.antiAlias,
+                child: SizedBox(
+                  height: 520,
+                  child: PdfViewPinch(
+                    controller: _controller!,
+                    builders: PdfViewPinchBuilders<DefaultBuilderOptions>(
+                      options: const DefaultBuilderOptions(),
+                      documentLoaderBuilder: (_) =>
+                          const Center(child: CircularProgressIndicator()),
+                      pageLoaderBuilder: (_) =>
+                          const Center(child: CircularProgressIndicator()),
+                      errorBuilder: (_, error) => Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            'تعذر فتح الصفحة الأصلية. ' + error.toString(),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            const SizedBox(height: 8),
+            if (items.isEmpty)
               Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(18),
                   child: Column(
                     children: [
-                      const Text('الأعداد من 0 إلى 999999',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      const Icon(Icons.pending_actions, size: 42),
                       const SizedBox(height: 8),
-                      const Text('اضغط على أي رقم لمعرفة منزلته وقيمته.'),
-                      const SizedBox(height: 14),
-                      Wrap(
-                        alignment: WrapAlignment.center,
-                        children: List.generate(
-                          digits.length,
-                          (index) => Padding(
-                            padding: const EdgeInsets.all(3),
-                            child: ChoiceChip(
-                              selected: selectedDigit == index,
-                              label: Text('${digits[index]}',
-                                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-                              onSelected: (_) => selectDigit(index),
-                            ),
-                          ),
-                        ),
+                      const Text(
+                        'التفاعل الدقيق لهذا الدرس يحتاج تحديد عناصر الصفحة الأصلية أولًا.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 14),
-                      if (feedback != null)
-                        Text(feedback!, textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text('جدول القيمة المكانية',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 10),
-                      Table(
-                        border: TableBorder.all(color: Theme.of(context).colorScheme.outlineVariant),
-                        children: [
-                          TableRow(
-                            children: List.generate(
-                              places.length,
-                              (i) => Padding(
-                                padding: const EdgeInsets.all(8),
-                                child: Text(places[i], textAlign: TextAlign.center,
-                                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                              ),
-                            ),
-                          ),
-                          TableRow(
-                            children: List.generate(
-                              digits.length,
-                              (i) => InkWell(
-                                onTap: () => selectDigit(i),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12),
-                                  child: Text('${digits[i]}', textAlign: TextAlign.center,
-                                      style: const TextStyle(fontSize: 22)),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 250),
-                child: selectedDigit == null
-                    ? const Card(
-                        key: ValueKey('no-selection'),
-                        child: Padding(
-                          padding: EdgeInsets.all(18),
-                          child: Column(
-                            children: [
-                              Icon(Icons.touch_app, size: 38),
-                              SizedBox(height: 8),
-                              Text('اختر رقمًا لنُظهر منزلته وقيمته بصريًا خطوة بخطوة.',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                        ),
-                      )
-                    : Card(
-                        key: const ValueKey('selected-place'),
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        child: Padding(
-                          padding: const EdgeInsets.all(18),
-                          child: Column(
-                            children: [
-                              Text('الرقم ${digits[selectedDigit!]}',
-                                  style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                              const SizedBox(height: 4),
-                              Text('منزلة ${places[selectedDigit!]}',
-                                  style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
-                              const SizedBox(height: 12),
-                              Text(
-                                '${digits[selectedDigit!]} × ${values[selectedDigit!] ~/ digits[selectedDigit!]} = ${values[selectedDigit!]}',
-                                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'إذن قيمة الرقم ${digits[selectedDigit!]} هي ${values[selectedDigit!]}.',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(fontSize: 18),
-                              ),
-                              const SizedBox(height: 12),
-                              LinearProgressIndicator(
-                                value: (selectedDigit! + 1) / digits.length,
-                                minHeight: 10,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              const SizedBox(height: 6),
-                              Text('المنزلة ${selectedDigit! + 1} من ${digits.length}'),
-                            ],
-                          ),
-                        ),
-                      ),
-              ),
-              const SizedBox(height: 10),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text('تحدٍ سريع',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 6),
-                      Text(quizQuestions[quizIndex],
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 10),
-                      if (quizIndex == 0) ...[
-                        _answerButton('700', true),
-                        _answerButton('70', false),
-                        _answerButton('7', false),
-                      ] else if (quizIndex == 1) ...[
-                        _answerButton('عشرات الألوف', true),
-                        _answerButton('آلاف', false),
-                        _answerButton('مئات الألوف', false),
-                      ] else if (quizIndex == 2) ...[
-                        _answerButton('500 000', true),
-                        _answerButton('50 000', false),
-                        _answerButton('5 000', false),
-                      ] else ...[
-                        _answerButton('3', true),
-                        _answerButton('7', false),
-                        _answerButton('4', false),
-                      ],
-                      if (quizCorrect != null)
-                        Text(
-                          quizCorrect! ? '✓ ممتاز! فهمت العلاقة بين الرقم والمنزلة.' : 'جرّب مرة أخرى.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: quizCorrect!
-                                ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.error,
+                      const Text(
+                        'لن نضع أسئلة أو أمثلة عامة مكان محتوى الكتاب.',
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            else ...[
+              const Text('عناصر الدرس',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              ...List.generate(items.length, (index) {
+                final item = items[index];
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(child: Text((index + 1).toString())),
+                    title: Text(item.title,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    subtitle: const Text('شرح مبسط ثم سؤال قصير'),
+                    trailing: const Icon(Icons.touch_app),
+                    onTap: () => setState(() {
+                      selectedInteraction = index;
+                      feedback = null;
+                    }),
+                  ),
+                );
+              }),
+              if (selectedInteraction != null) ...[
+                const SizedBox(height: 8),
+                Card(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(items[selectedInteraction!].title,
+                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 8),
+                        Text(items[selectedInteraction!].explanation,
+                            style: const TextStyle(fontSize: 17)),
+                        const SizedBox(height: 14),
+                        const Text('جرب بنفسك',
+                            style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 8),
+                        ...List.generate(
+                          items[selectedInteraction!].answers.length,
+                          (index) => Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: OutlinedButton(
+                              onPressed: () => chooseAnswer(index),
+                              child: Text(items[selectedInteraction!].answers[index]),
+                            ),
                           ),
                         ),
-                      const SizedBox(height: 8),
-                      OutlinedButton.icon(
-                        onPressed: nextQuiz,
-                        icon: const Icon(Icons.refresh),
-                        label: const Text('سؤال آخر'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const SizedBox(height: 10),
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.lightbulb_outline),
-                  title: const Text('مثال محلول'),
-                  subtitle: const Text('523 741 = 500 000 + 20 000 + 3 000 + 700 + 40 + 1'),
-                  onTap: () => setState(() => feedback =
-                      'نفكك العدد حسب المنازل: 500000 + 20000 + 3000 + 700 + 40 + 1.'),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.quiz_outlined),
-                  title: const Text('اختبر نفسك'),
-                  subtitle: const Text('ما قيمة الرقم 7 في العدد 523 741؟'),
-                  trailing: FilledButton(
-                    onPressed: () => setState(() => feedback = 'الإجابة الصحيحة: 700، لأن 7 في منزلة المئات.'),
-                    child: const Text('تحقق'),
-                  ),
-                ),
-              ),
-            ] else
-              const Card(
-                child: Padding(
-                  padding: EdgeInsets.all(18),
-                  child: Text('هذه صفحة تفاعلية أولية. ستستخدم البنية نفسها لبقية المواد عند إدخال المحتوى المرخص.'),
-                ),
-              ),
-            if (feedback != null)
-              Card(
-                margin: const EdgeInsets.only(top: 10, bottom: 20),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text('🤖 شرح Cprof',
-                          style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 8),
-                      Text(feedback!),
-                      const SizedBox(height: 12),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          OutlinedButton.icon(
-                            onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('الصوت سيُربط بمحرك النطق في المرحلة التالية.')),
-                            ),
-                            icon: const Icon(Icons.volume_up),
-                            label: const Text('استمع'),
-                          ),
-                          OutlinedButton.icon(
-                            onPressed: () => setState(() => showAskAnswer = !showAskAnswer),
-                            icon: const Icon(Icons.question_answer_outlined),
-                            label: const Text('اسأل Cprof'),
-                          ),
-                          if (showAskAnswer)
-                            const Padding(
-                              padding: EdgeInsets.only(top: 12),
-                              child: Text(
-                                'سؤال مقترح: لماذا أصبحت قيمة الرقم 7 هي 700؟ لأن الرقم 7 يوجد في منزلة المئات، وقيمة كل رقم تتغير حسب منزلته.',
-                              ),
-                            ),
+                        if (feedback != null) ...[
+                          const SizedBox(height: 8),
+                          Text(feedback!,
+                              style: const TextStyle(fontWeight: FontWeight.bold)),
                         ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
+              ],
+            ],
           ],
         ),
       ),
