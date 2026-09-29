@@ -17,8 +17,7 @@ const subjects = [
   Subject('النشاط العلمي', 'الكائنات • الجسم • البيئة • المادة', Icons.science_outlined),
   Subject('التربية الإسلامية', 'القرآن • الحديث • السيرة • القيم', Icons.auto_stories_outlined),
   Subject('الاجتماعيات', 'التاريخ • الجغرافيا • التربية المدنية', Icons.public_outlined),
-  Subject('التربية الفنية', 'ملاحظة • إبداع • تعبير فني', Icons.palette_outlined),
-  Subject('التربية البدنية', 'حركة • ألعاب • صحة وسلامة', Icons.sports_soccer_outlined),
+  Subject('اللغة الأمازيغية', 'ⵜⴰⵎⴰⵣⵉⵖⵜ • قراءة • تواصل', Icons.language_outlined),
 ];
 
 class CprofApp extends StatelessWidget {
