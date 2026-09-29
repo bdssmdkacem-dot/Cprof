@@ -136,12 +136,33 @@ class BookPage extends StatelessWidget {
                     title: Text('الدرس ${index + 1}'),
                     subtitle: const Text('الكتاب الأصلي • تصفح الصفحات • شرح تفاعلي • تمارين'),
                     trailing: const Icon(Icons.arrow_back_ios_new, size: 18),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => LessonPage(subject: subject, lessonNumber: index + 1),
-                      ),
-                    ),
+                    onTap: () {
+                      final lessonNumber = index + 1;
+                      if (subject.title == 'الرياضيات' &&
+                          LessonPage.mathLessonPdfPages.containsKey(lessonNumber)) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => BookReaderPage(
+                              subject: subject,
+                              lessonTitle: LessonPage.mathLessons[lessonNumber - 1],
+                              initialPage: LessonPage.mathLessonPdfPages[lessonNumber],
+                              printedPage: LessonPage.mathLessonPrintedPages[lessonNumber],
+                            ),
+                          ),
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => LessonPage(
+                              subject: subject,
+                              lessonNumber: lessonNumber,
+                            ),
+                          ),
+                        );
+                      }
+                    },
                   ),
                 ),
               ),
@@ -378,19 +399,31 @@ class _BookReaderPageState extends State<BookReaderPage> {
               SafeArea(
                 top: false,
                 child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: FilledButton.icon(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => InteractivePage(
-                          subject: widget.subject,
-                          lessonTitle: widget.lessonTitle,
+                  padding: const EdgeInsets.fromLTRB(10, 6, 10, 10),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () => _controller.previousPage(
+                            duration: const Duration(milliseconds: 250),
+                            curve: Curves.easeOut,
+                          ),
+                          icon: const Icon(Icons.chevron_right),
+                          label: const Text('الصفحة السابقة'),
                         ),
                       ),
-                    ),
-                    icon: const Icon(Icons.touch_app),
-                    label: const Text('تفاعل مع هذا الدرس'),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () => _controller.nextPage(
+                            duration: const Duration(milliseconds: 250),
+                            curve: Curves.easeOut,
+                          ),
+                          icon: const Icon(Icons.chevron_left),
+                          label: const Text('الصفحة التالية'),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
