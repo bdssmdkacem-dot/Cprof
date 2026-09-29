@@ -526,8 +526,8 @@ class _InteractivePageState extends State<InteractivePage> {
     final item = interactions[selectedInteraction!];
     setState(() {
       feedback = index == item.correctIndex
-          ? '✓ أحسنت. ' + item.correction
-          : 'لنصححها معًا. ' + item.correction;
+          ? '✓ أحسنت. ${item.correction}'
+          : 'لنصححها معًا. ${item.correction}';
     });
   }
 
@@ -548,7 +548,7 @@ class _InteractivePageState extends State<InteractivePage> {
                   preferredSize: const Size.fromHeight(28),
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 6),
-                    child: Text('صفحة الكتاب المطبوعة ' + widget.printedPage.toString()),
+                    child: Text('صفحة الكتاب المطبوعة ${widget.printedPage}'),
                   ),
                 ),
         ),
@@ -588,7 +588,7 @@ class _InteractivePageState extends State<InteractivePage> {
                         child: Padding(
                           padding: const EdgeInsets.all(20),
                           child: Text(
-                            'تعذر فتح الصفحة الأصلية. ' + error.toString(),
+                            'تعذر فتح الصفحة الأصلية. $error',
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -628,7 +628,7 @@ class _InteractivePageState extends State<InteractivePage> {
                 final item = items[index];
                 return Card(
                   child: ListTile(
-                    leading: CircleAvatar(child: Text((index + 1).toString())),
+                    leading: CircleAvatar(child: Text('${index + 1}')),
                     title: Text(item.title,
                         style: const TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: const Text('شرح مبسط ثم سؤال قصير'),
