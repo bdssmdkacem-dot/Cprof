@@ -139,7 +139,7 @@ class BookPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => BookReaderPage(
+                              builder: (_) => InteractivePage(
                                 subject: subject,
                                 lessonTitle: LessonPage.mathLessons[lessonNumber - 1],
                                 initialPage: LessonPage.mathLessonPdfPages[lessonNumber],
