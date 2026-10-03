@@ -489,17 +489,17 @@ class _InteractivePageState extends State<InteractivePage> {
           correctIndex: 0,
           correction: 'أحسنت. انتقل الآن إلى النشاط المرتبط بهذه الصفحة.',
         ),
-        LessonInteraction(
+        const LessonInteraction(
           title: 'حدّد الفكرة الأساسية',
           explanation: 'اكتب في ذهنك الفكرة أو القاعدة الأساسية التي لاحظتها في الصفحة الأصلية.',
-          answers: const ['حددت الفكرة الأساسية', 'سأراجع الصفحة مرة أخرى'],
+          answers: ['حددت الفكرة الأساسية', 'سأراجع الصفحة مرة أخرى'],
           correctIndex: 0,
           correction: 'ممتاز. التفاعل هنا مرتبط بالوثيقة الأصلية ولا يضيف محتوى من خارج الكتاب.',
         ),
-        LessonInteraction(
+        const LessonInteraction(
           title: 'تحقق من الفهم',
           explanation: 'أنجز تمرين الفهم الموجود في الصفحة الأصلية، ثم اختر الحالة التي تعبّر عن تقدمك.',
-          answers: const ['أنجزت النشاط', 'أحتاج إلى مراجعة النشاط'],
+          answers: ['أنجزت النشاط', 'أحتاج إلى مراجعة النشاط'],
           correctIndex: 0,
           correction: 'تم تسجيل تقدمك في هذا النشاط.',
         ),
