@@ -245,7 +245,7 @@ class LessonPage extends StatelessWidget {
     if (catalog != null && lessonNumber >= 1 && lessonNumber <= catalog.lessons.length) {
       return catalog.lessons[lessonNumber - 1].title;
     }
-    return 'الدرس ' + lessonNumber.toString();
+    return 'الدرس $lessonNumber';
   }
 
   @override
