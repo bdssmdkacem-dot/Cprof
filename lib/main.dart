@@ -111,7 +111,7 @@ class BookPage extends StatelessWidget {
                       Text(subject.subtitle, textAlign: TextAlign.center),
                       const SizedBox(height: 10),
                       Text(
-                        'البرنامج المتاح على TelmidTICE: ${lessonCounts[subject.title] ?? 0} درساً',
+                        'البرنامج المتاح على TelmidTICE: $lessonCount درساً',
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -125,42 +125,43 @@ class BookPage extends StatelessWidget {
                 lessonCount,
                 (index) {
                   final lesson = subjectCatalogs[subject.title]!.lessons[index];
+                  final lessonNumber = lesson.number;
                   return Card(
                     child: ListTile(
-                      leading: CircleAvatar(child: Text(lesson.number.toString())),
+                      leading: CircleAvatar(child: Text(lessonNumber.toString())),
                       title: Text(lesson.title),
                       subtitle: const Text('الكتاب الأصلي • تصفح الصفحة • شرح تفاعلي • نشاط'),
                       trailing: const Icon(Icons.arrow_back_ios_new, size: 18),
                       onTap: () {
-                        final lessonNumber = lesson.number;
-                      if (subject.title == 'الرياضيات' &&
-                          LessonPage.mathLessonPdfPages.containsKey(lessonNumber)) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => BookReaderPage(
-                              subject: subject,
-                              lessonTitle: LessonPage.mathLessons[lessonNumber - 1],
-                              initialPage: LessonPage.mathLessonPdfPages[lessonNumber],
-                              printedPage: LessonPage.mathLessonPrintedPages[lessonNumber],
+                        if (subject.title == 'الرياضيات' &&
+                            LessonPage.mathLessonPdfPages.containsKey(lessonNumber)) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => BookReaderPage(
+                                subject: subject,
+                                lessonTitle: LessonPage.mathLessons[lessonNumber - 1],
+                                initialPage: LessonPage.mathLessonPdfPages[lessonNumber],
+                                printedPage: LessonPage.mathLessonPrintedPages[lessonNumber],
+                              ),
                             ),
-                          ),
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => LessonPage(
-                              subject: subject,
-                              lessonNumber: lessonNumber,
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => LessonPage(
+                                subject: subject,
+                                lessonNumber: lessonNumber,
+                              ),
                             ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                );
-              },
+                          );
+                        }
+                      },
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
