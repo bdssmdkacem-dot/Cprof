@@ -5,7 +5,7 @@ import 'lesson_catalog.dart';
 ///
 /// A lesson is not source-verified until its original textbook page has been
 /// inspected. Hotspots and questions therefore stay empty until verification.
-const mathLessonMap = <LessonPageMapping>[
+final mathLessonMap = <LessonPageMapping>[
   for (final lesson in _mathEntries)
     lesson.number == 13
         ? const LessonPageMapping(
@@ -27,10 +27,10 @@ const mathLessonMap = <LessonPageMapping>[
           ),
 ];
 
-const _mathEntries = <LessonCatalogEntry>[
-  for (var i = 0; i < mathLessonTitles.length; i++)
-    LessonCatalogEntry(i + 1, mathLessonTitles[i]),
-];
+final _mathEntries = List<LessonCatalogEntry>.generate(
+  mathLessonTitles.length,
+  (i) => LessonCatalogEntry(i + 1, mathLessonTitles[i]),
+);
 
 /// Repository-PDF navigation metadata only. It is not official-source
 /// verification and must not be used to invent lesson interactions.
