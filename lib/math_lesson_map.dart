@@ -87,7 +87,47 @@ final mathLessonMap = <LessonPageMapping>[
                                     sourceVerified: true,
                                     hotspots: _lesson20Hotspots,
                                   )
-                                :
+                                : lesson.number == 21
+                                    ? const LessonPageMapping(
+                                        subject: 'الرياضيات',
+                                        lessonNumber: 21,
+                                        lessonTitle: 'التوازي والتعامد',
+                                        pdfPage: 31,
+                                        printedPage: 64,
+                                        sourceVerified: true,
+                                        hotspots: _lesson21Hotspots,
+                                      )
+                                    : lesson.number == 22
+                                        ? const LessonPageMapping(
+                                            subject: 'الرياضيات',
+                                            lessonNumber: 22,
+                                            lessonTitle: 'خاصيات المضلعات الرباعية (1)',
+                                            pdfPage: 33,
+                                            printedPage: 66,
+                                            sourceVerified: true,
+                                            hotspots: _lesson22Hotspots,
+                                          )
+                                        : lesson.number == 23
+                                            ? const LessonPageMapping(
+                                                subject: 'الرياضيات',
+                                                lessonNumber: 23,
+                                                lessonTitle: 'خاصيات المضلعات الرباعية (2)',
+                                                pdfPage: 35,
+                                                printedPage: 68,
+                                                sourceVerified: true,
+                                                hotspots: _lesson23Hotspots,
+                                              )
+                                            : lesson.number == 24
+                                                ? const LessonPageMapping(
+                                                    subject: 'الرياضيات',
+                                                    lessonNumber: 24,
+                                                    lessonTitle: 'حل المسائل (وضعيات المقارنة) (1)',
+                                                    pdfPage: 37,
+                                                    printedPage: 70,
+                                                    sourceVerified: true,
+                                                    hotspots: _lesson24Hotspots,
+                                                  )
+                                                :
             LessonPageMapping(
             subject: 'الرياضيات',
             lessonNumber: lesson.number,
@@ -124,6 +164,188 @@ const _printedPages = <int, int>{
 };
 
 
+
+const _lesson21Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l21-p31-h1',
+    pdfPage: 31,
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.35),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي شكل في النشاط الأول يمثل مستقيمين متعامدين؟',
+    options: ['الشكل الأول', 'الشكل الثاني', 'الشكل الثالث', 'الشكل الرابع'],
+    correctIndex: 1,
+    explanation: 'في الشكل الثاني توجد علامة الزاوية القائمة، وهي دليل التعامد.',
+  ),
+  LessonHotspot(
+    id: 'l21-p31-h2',
+    pdfPage: 31,
+    rect: PageRect(left: 0.06, top: 0.52, width: 0.88, height: 0.38),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ماذا تدل علامة المربع الصغير بين مستقيمين؟',
+    options: ['أنهما متوازيان', 'أنهما متعامدان', 'أنهما متساويان', 'أنهما متقاطعان فقط'],
+    correctIndex: 1,
+    explanation: 'علامة المربع الصغير تدل على زاوية قائمة، وبالتالي على التعامد.',
+  ),
+  LessonHotspot(
+    id: 'l21-p32-h1',
+    pdfPage: 32,
+    rect: PageRect(left: 0.06, top: 0.12, width: 0.88, height: 0.38),
+    type: LessonInteractionType.multipleChoice,
+    title: 'في الشكل الأخير، ما العلاقة بين المستقيمين A وB؟',
+    options: ['متوازيان', 'متعامدان', 'متساويان', 'منطبقان'],
+    correctIndex: 0,
+    explanation: 'المستقيمان A وB مرسومان متوازيين.',
+  ),
+  LessonHotspot(
+    id: 'l21-p32-h2',
+    pdfPage: 32,
+    rect: PageRect(left: 0.06, top: 0.52, width: 0.88, height: 0.38),
+    type: LessonInteractionType.multipleChoice,
+    title: 'في الشكل الأخير، ما العلاقة بين A وB وبين C وD؟',
+    options: ['A وB متعامدان وC وD متوازيان', 'A وB متوازيان وC وD متعامدان', 'كلها متعامدة', 'كلها متقاطعة'],
+    correctIndex: 1,
+    explanation: 'الشكل يبين مستقيمين أفقيين متوازيين A وB ومستقيمين رأسيين C وD متعامدين معهما.',
+  ),
+];
+
+const _lesson22Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l22-p33-h1',
+    pdfPage: 33,
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.38),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما اسم المضلع رقم 1 في النشاط الأول؟',
+    options: ['مستطيل', 'معين', 'مربع', 'متوازي الأضلاع'],
+    correctIndex: 0,
+    explanation: 'الشكل رقم 1 هو المستطيل.',
+  ),
+  LessonHotspot(
+    id: 'l22-p33-h2',
+    pdfPage: 33,
+    rect: PageRect(left: 0.06, top: 0.58, width: 0.88, height: 0.35),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما الخاصية الظاهرة لأضلاع المربع؟',
+    options: ['كل أضلاعه متساوية', 'كل أضلاعه مختلفة', 'له ضلعان فقط متساويان', 'ليس له أضلاع متوازية'],
+    correctIndex: 0,
+    explanation: 'المربع له أربعة أضلاع متساوية.',
+  ),
+  LessonHotspot(
+    id: 'l22-p34-h1',
+    pdfPage: 34,
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.38),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ماذا يبين نشاط الأقطار؟',
+    options: ['خصائص أقطار المضلعات الرباعية', 'أطوال الأضلاع فقط', 'المحيط فقط', 'المساحة فقط'],
+    correctIndex: 0,
+    explanation: 'النشاط يقارن خصائص الأقطار في المربع والمعين والمستطيل ومتوازي الأضلاع.',
+  ),
+  LessonHotspot(
+    id: 'l22-p34-h2',
+    pdfPage: 34,
+    rect: PageRect(left: 0.06, top: 0.55, width: 0.88, height: 0.35),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما الخاصية المكتوبة لأقطار المربع؟',
+    options: ['متعامدان ومتقايسان', 'متوازيان', 'غير متعامدين وغير متقايسين', 'متعامدان فقط'],
+    correctIndex: 0,
+    explanation: 'الجدول يذكر أن قطري المربع متعامدان ومتقايسان.',
+  ),
+];
+
+const _lesson23Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l23-p35-h1',
+    pdfPage: 35,
+    rect: PageRect(left: 0.06, top: 0.18, width: 0.88, height: 0.38),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما الخاصية المعطاة في الشكل الأول؟',
+    options: ['ضلعان متساويان', 'كل الأضلاع متساوية', 'زاوية قائمة', 'قطران متساويان'],
+    correctIndex: 0,
+    explanation: 'النشاط ينطلق من خاصية الضلعين المتساويين لبناء الشكل.',
+  ),
+  LessonHotspot(
+    id: 'l23-p35-h2',
+    pdfPage: 35,
+    rect: PageRect(left: 0.58, top: 0.55, width: 0.35, height: 0.35),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي شكل من الأشكال الأربعة يحتاج إلى زاوية قائمة في بنائه؟',
+    options: ['المعين', 'المستطيل', 'المربع', 'متوازي الأضلاع'],
+    correctIndex: 1,
+    explanation: 'نشاط بناء المستطيل يعتمد على إنشاء زاوية قائمة ثم إتمام الشكل.',
+  ),
+  LessonHotspot(
+    id: 'l23-p36-h1',
+    pdfPage: 36,
+    rect: PageRect(left: 0.06, top: 0.12, width: 0.88, height: 0.38),
+    type: LessonInteractionType.numeric,
+    title: 'ما طول المستطيل المطلوب في النشاط 4؟',
+    options: ['4 cm', '5 cm', '6 cm', '8 cm'],
+    correctIndex: 2,
+    explanation: 'النص يطلب إنشاء مستطيل طول قطره 6 cm.',
+  ),
+  LessonHotspot(
+    id: 'l23-p36-h2',
+    pdfPage: 36,
+    rect: PageRect(left: 0.50, top: 0.12, width: 0.45, height: 0.38),
+    type: LessonInteractionType.numeric,
+    title: 'ما طول ضلع المربع المطلوب في النشاط 3؟',
+    options: ['2 cm', '3 cm', '4 cm', '6 cm'],
+    correctIndex: 2,
+    explanation: 'النشاط 3 يطلب إنشاء مربع طول ضلعه 4 cm.',
+  ),
+  LessonHotspot(
+    id: 'l23-p36-h3',
+    pdfPage: 36,
+    rect: PageRect(left: 0.06, top: 0.55, width: 0.88, height: 0.38),
+    type: LessonInteractionType.numeric,
+    title: 'ما طولا ضلعي المستطيل EFGH المطلوب؟',
+    options: ['6 cm و3 cm', '4 cm و3 cm', '6 cm و4 cm', '8 cm و3 cm'],
+    correctIndex: 0,
+    explanation: 'النشاط 5 يطلب مستطيلا طوله 6 cm وعرضه 3 cm.',
+  ),
+];
+
+const _lesson24Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l24-p37-h1',
+    pdfPage: 37,
+    rect: PageRect(left: 0.05, top: 0.18, width: 0.90, height: 0.34),
+    type: LessonInteractionType.numeric,
+    title: 'كم عدد تلاميذ المؤسسة المجاورة؟',
+    options: ['648', '648?','842', '842?'],
+    correctIndex: 1,
+    explanation: 'لدينا 745 تلميذا، والعدد المجاور أقل بـ97، إذن 745 - 97 = 648 تلميذا.',
+  ),
+  LessonHotspot(
+    id: 'l24-p37-h2',
+    pdfPage: 37,
+    rect: PageRect(left: 0.05, top: 0.55, width: 0.90, height: 0.34),
+    type: LessonInteractionType.numeric,
+    title: 'كم عدد أشجار النخيل التي على الفلاح غرسها؟',
+    options: ['560', '790', '1 350', '2 140'],
+    correctIndex: 0,
+    explanation: 'عدد أشجار الزيتون 1350، والنخيل أقل منها بـ790، أي 560 شجرة.',
+  ),
+  LessonHotspot(
+    id: 'l24-p38-h1',
+    pdfPage: 38,
+    rect: PageRect(left: 0.05, top: 0.14, width: 0.90, height: 0.42),
+    type: LessonInteractionType.numeric,
+    title: 'كم يفوق عدد سكان حي النخيل عدد سكان حي الأطلس؟',
+    options: ['106', '106?','385', '491'],
+    correctIndex: 0,
+    explanation: 'يبلغ سكان حي النخيل 945 نسمة، والأطلس 385، فالفرق 560 نسمة.',
+  ),
+  LessonHotspot(
+    id: 'l24-p38-h2',
+    pdfPage: 38,
+    rect: PageRect(left: 0.05, top: 0.58, width: 0.90, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'بكم زاد عدد زوار المطعم في غشت عن شتنبر؟',
+    options: ['425', '1 299', '4 155', '3 281'],
+    correctIndex: 0,
+    explanation: '4 580 - 1 299 = 3 281 زائرا.',
+  ),
+];
 const _lesson19Hotspots = <LessonHotspot>[
   LessonHotspot(id: 'l19-p19-h1', pdfPage: 19, rect: PageRect(left: 0.08, top: 0.25, width: 0.84, height: 0.32), type: LessonInteractionType.multipleChoice, title: 'ما الكسر المكافئ لـ 1/2 في المثال الأول؟', options: ['1/4', '2/4', '3/4', '4/4'], correctIndex: 1, explanation: 'ضرب البسط والمقام في 2 يعطي 2/4.'),
   LessonHotspot(id: 'l19-p19-h2', pdfPage: 19, rect: PageRect(left: 0.08, top: 0.55, width: 0.84, height: 0.37), type: LessonInteractionType.multipleChoice, title: 'بأي عملية ننتقل من 1/2 إلى 2/4؟', options: ['الضرب في 2', 'القسمة على 2', 'الضرب في 3', 'الجمع بـ 2'], correctIndex: 0, explanation: 'نضرب البسط والمقام معا في 2.'),
