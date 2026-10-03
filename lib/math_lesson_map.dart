@@ -17,7 +17,17 @@ final mathLessonMap = <LessonPageMapping>[
             sourceVerified: true,
             hotspots: _lesson13Hotspots,
           )
-        : LessonPageMapping(
+        : lesson.number == 14
+            ? const LessonPageMapping(
+                subject: 'الرياضيات',
+                lessonNumber: 14,
+                lessonTitle: 'قراءة بيانات بالأعمدة (2)',
+                pdfPage: 8,
+                printedPage: 40,
+                sourceVerified: true,
+                hotspots: _lesson14Hotspots,
+              )
+            : LessonPageMapping(
             subject: 'الرياضيات',
             lessonNumber: lesson.number,
             lessonTitle: lesson.title,
@@ -118,3 +128,99 @@ const _lesson13Hotspots = <LessonHotspot>[
     explanation: 'العمود الذي يبلغ 8 تلاميذ يمثل هواية تربية القطط.',
   ),
 ];
+/// Verified directly against printed pages 40–41 of the uploaded official PDF.
+/// Each question below is derived only from the charts and prompts visible
+/// on lesson 14; page 8 is printed page 40 and page 9 is printed page 41.
+const _lesson14Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l14-h1',
+    pdfPage: 8,
+    rect: PageRect(left: 0.04, top: 0.21, width: 0.40, height: 0.31),
+    type: LessonInteractionType.readAndAnswer,
+    title: 'ما الذي يمثله المحور الأفقي في البيان الأول؟',
+    options: ['المستويات الدراسية', 'أيام الأسبوع', 'المدن', 'الأشهر'],
+    correctIndex: 0,
+    explanation: 'المحور الأفقي يمثل المستويات الدراسية، كما هو موضح في الصفحة.',
+  ),
+  LessonHotspot(
+    id: 'l14-h2',
+    pdfPage: 8,
+    rect: PageRect(left: 0.04, top: 0.21, width: 0.40, height: 0.31),
+    type: LessonInteractionType.numeric,
+    title: 'كم عدد تلاميذ المستوى الرابع المشاركين في حصص الدعم؟',
+    options: ['15', '24', '25', '12'],
+    correctIndex: 2,
+    explanation: 'عمود المستوى الرابع يصل إلى 25 تلميذا.',
+  ),
+  LessonHotspot(
+    id: 'l14-h3',
+    pdfPage: 8,
+    rect: PageRect(left: 0.04, top: 0.21, width: 0.40, height: 0.31),
+    type: LessonInteractionType.numeric,
+    title: 'ما الفرق بين عدد المشاركين في المستوى الخامس والمستوى السادس؟',
+    options: ['9', '10', '8', '5'],
+    correctIndex: 0,
+    explanation: 'المستوى السادس 24 والمستوى الخامس 15، والفرق بينهما 9.',
+  ),
+  LessonHotspot(
+    id: 'l14-h4',
+    pdfPage: 8,
+    rect: PageRect(left: 0.04, top: 0.62, width: 0.40, height: 0.31),
+    type: LessonInteractionType.readAndAnswer,
+    title: 'ما الذي يمثله المحور الأفقي في البيان الثاني؟',
+    options: ['أيام الأسبوع', 'المستويات الدراسية', 'المدن المغربية', 'درجات الحرارة'],
+    correctIndex: 0,
+    explanation: 'البيان يعرض مصاريف سارة خلال خمسة أيام، والمحور الأفقي يمثل أيام الأسبوع.',
+  ),
+  LessonHotspot(
+    id: 'l14-h5',
+    pdfPage: 8,
+    rect: PageRect(left: 0.04, top: 0.62, width: 0.40, height: 0.31),
+    type: LessonInteractionType.numeric,
+    title: 'كم صرفت سارة يوم الثلاثاء؟',
+    options: ['16', '21', '25', '26'],
+    correctIndex: 1,
+    explanation: 'عمود يوم الثلاثاء يصل إلى 21 درهما.',
+  ),
+  LessonHotspot(
+    id: 'l14-h6',
+    pdfPage: 9,
+    rect: PageRect(left: 0.07, top: 0.22, width: 0.36, height: 0.28),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما المدينة التي عرفت أكبر درجة حرارة؟',
+    options: ['فاس', 'وجدة', 'أكادير', 'مراكش'],
+    correctIndex: 0,
+    explanation: 'أعلى عمود في البيان هو عمود فاس، وتبلغ درجته 27 درجة.',
+  ),
+  LessonHotspot(
+    id: 'l14-h7',
+    pdfPage: 9,
+    rect: PageRect(left: 0.07, top: 0.22, width: 0.36, height: 0.28),
+    type: LessonInteractionType.numeric,
+    title: 'ما الفرق بين درجتي حرارة مراكش والجديدة؟',
+    options: ['6', '8', '10', '12'],
+    correctIndex: 1,
+    explanation: 'درجة مراكش 21 والجديدة 13، والفرق بينهما 8 درجات.',
+  ),
+  LessonHotspot(
+    id: 'l14-h8',
+    pdfPage: 9,
+    rect: PageRect(left: 0.09, top: 0.55, width: 0.35, height: 0.31),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما الورشة التي شارك فيها أكبر عدد من الأطفال؟',
+    options: ['G', 'F', 'D', 'A'],
+    correctIndex: 2,
+    explanation: 'أعلى عمود في البيان هو الورشة D وقيمتها 8 أطفال.',
+  ),
+  LessonHotspot(
+    id: 'l14-h9',
+    pdfPage: 9,
+    rect: PageRect(left: 0.09, top: 0.55, width: 0.35, height: 0.31),
+    type: LessonInteractionType.numeric,
+    title: 'بكم يقل عدد المشاركين في الورشة G عن الورشة D؟',
+    options: ['3', '4', '5', '6'],
+    correctIndex: 2,
+    explanation: 'الورشة G فيها 3 أطفال والورشة D فيها 8، والفرق 5 أطفال.',
+  ),
+];
+
