@@ -127,7 +127,47 @@ final mathLessonMap = <LessonPageMapping>[
                                                     sourceVerified: true,
                                                     hotspots: _lesson24Hotspots,
                                                   )
-                                                :
+                                                : lesson.number == 25
+                                                    ? const LessonPageMapping(
+                                                        subject: 'الرياضيات',
+                                                        lessonNumber: 25,
+                                                        lessonTitle: 'قواسم عدد',
+                                                        pdfPage: 41,
+                                                        printedPage: 74,
+                                                        sourceVerified: true,
+                                                        hotspots: _lesson25Hotspots,
+                                                      )
+                                                    : lesson.number == 26
+                                                        ? const LessonPageMapping(
+                                                            subject: 'الرياضيات',
+                                                            lessonNumber: 26,
+                                                            lessonTitle: 'مضاعفات عدد',
+                                                            pdfPage: 43,
+                                                            printedPage: 76,
+                                                            sourceVerified: true,
+                                                            hotspots: _lesson26Hotspots,
+                                                          )
+                                                        : lesson.number == 27
+                                                            ? const LessonPageMapping(
+                                                                subject: 'الرياضيات',
+                                                                lessonNumber: 27,
+                                                                lessonTitle: 'المضاعفات والقواسم المشتركة لعددين',
+                                                                pdfPage: 45,
+                                                                printedPage: 78,
+                                                                sourceVerified: true,
+                                                                hotspots: _lesson27Hotspots,
+                                                              )
+                                                            : lesson.number == 28
+                                                                ? const LessonPageMapping(
+                                                                    subject: 'الرياضيات',
+                                                                    lessonNumber: 28,
+                                                                    lessonTitle: 'حل المسائل (وضعيات المقارنة) (2)',
+                                                                    pdfPage: 47,
+                                                                    printedPage: 80,
+                                                                    sourceVerified: true,
+                                                                    hotspots: _lesson28Hotspots,
+                                                                  )
+                                                                :
             LessonPageMapping(
             subject: 'الرياضيات',
             lessonNumber: lesson.number,
@@ -311,8 +351,8 @@ const _lesson24Hotspots = <LessonHotspot>[
     rect: PageRect(left: 0.05, top: 0.18, width: 0.90, height: 0.34),
     type: LessonInteractionType.numeric,
     title: 'كم عدد تلاميذ المؤسسة المجاورة؟',
-    options: ['648', '648?','842', '842?'],
-    correctIndex: 1,
+    options: ['648', '842', '745', '97'],
+    correctIndex: 0,
     explanation: 'لدينا 745 تلميذا، والعدد المجاور أقل بـ97، إذن 745 - 97 = 648 تلميذا.',
   ),
   LessonHotspot(
@@ -331,7 +371,7 @@ const _lesson24Hotspots = <LessonHotspot>[
     rect: PageRect(left: 0.05, top: 0.14, width: 0.90, height: 0.42),
     type: LessonInteractionType.numeric,
     title: 'كم يفوق عدد سكان حي النخيل عدد سكان حي الأطلس؟',
-    options: ['106', '106?','385', '491'],
+    options: ['560', '385', '945', '1 330'],
     correctIndex: 0,
     explanation: 'يبلغ سكان حي النخيل 945 نسمة، والأطلس 385، فالفرق 560 نسمة.',
   ),
@@ -342,7 +382,7 @@ const _lesson24Hotspots = <LessonHotspot>[
     type: LessonInteractionType.numeric,
     title: 'بكم زاد عدد زوار المطعم في غشت عن شتنبر؟',
     options: ['425', '1 299', '4 155', '3 281'],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: '4 580 - 1 299 = 3 281 زائرا.',
   ),
 ];
