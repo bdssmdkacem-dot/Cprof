@@ -661,6 +661,7 @@ class _InteractivePageState extends State<InteractivePage> {
   @override
   Widget build(BuildContext context) {
     final items = interactions;
+    final mapping = mathLessonMapping(widget.lessonNumber);
 
     return Directionality(
       textDirection: TextDirection.rtl,
