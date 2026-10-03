@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'lesson_catalog.dart';
+import 'math_lesson_map.dart';
 
 void main() => runApp(const CprofApp());
 
@@ -471,105 +472,11 @@ class _InteractivePageState extends State<InteractivePage> {
   String? feedback;
 
   List<LessonInteraction> get interactions {
-    if (widget.subject.title != 'الرياضيات') {
-      final guide = subjectCatalogs[widget.subject.title]?.interactionGuide ??
-          'ارجع إلى الصفحة الأصلية وأنجز النشاط المرتبط بها.';
-      return [
-        LessonInteraction(
-          title: 'اقرأ الصفحة الأصلية',
-          explanation: guide,
-          answers: const ['تمت القراءة', 'أحتاج إلى إعادة القراءة'],
-          correctIndex: 0,
-          correction: 'أحسنت. انتقل الآن إلى النشاط المرتبط بهذه الصفحة.',
-        ),
-        const LessonInteraction(
-          title: 'حدّد الفكرة الأساسية',
-          explanation: 'اكتب في ذهنك الفكرة أو القاعدة الأساسية التي لاحظتها في الصفحة الأصلية.',
-          answers: ['حددت الفكرة الأساسية', 'سأراجع الصفحة مرة أخرى'],
-          correctIndex: 0,
-          correction: 'ممتاز. التفاعل هنا مرتبط بالوثيقة الأصلية ولا يضيف محتوى من خارج الكتاب.',
-        ),
-        const LessonInteraction(
-          title: 'تحقق من الفهم',
-          explanation: 'أنجز تمرين الفهم الموجود في الصفحة الأصلية، ثم اختر الحالة التي تعبّر عن تقدمك.',
-          answers: ['أنجزت النشاط', 'أحتاج إلى مراجعة النشاط'],
-          correctIndex: 0,
-          correction: 'تم تسجيل تقدمك في هذا النشاط.',
-        ),
-      ];
+    if (widget.subject.title == 'الرياضيات') {
+      final mapping = mathLessonMapping(widget.lessonNumber);
+      if (!mapping.sourceVerified) return const [];
     }
-    switch (widget.lessonNumber) {
-      case 13:
-        return const [
-          LessonInteraction(
-            title: 'عنوان المبيان',
-            explanation:
-                'العنوان المكتوب في الصفحة هو: «توزيع التلاميذ حسب هواياتهم». وهو يبين موضوع المبيان قبل قراءة الأعمدة.',
-            answers: [
-              'توزيع التلاميذ حسب هواياتهم',
-              'عدد التلاميذ حسب أعمارهم',
-              'توزيع التلاميذ حسب نقطهم',
-            ],
-            correctIndex: 0,
-            correction:
-                'العنوان الصحيح هو «توزيع التلاميذ حسب هواياتهم». نبدأ بقراءة العنوان حتى نعرف ماذا يمثل المبيان.',
-          ),
-          LessonInteraction(
-            title: 'المحور العمودي',
-            explanation:
-                'في الصفحة يظهر المحور العمودي بعنوان «عدد التلاميذ». هذا المحور يخبرنا أن ارتفاع كل عمود يرتبط بعدد التلاميذ.',
-            answers: [
-              'عدد التلاميذ',
-              'الهواية',
-              'عنوان المبيان',
-            ],
-            correctIndex: 0,
-            correction:
-                'المحور العمودي يمثل «عدد التلاميذ»، أما الهوايات فتظهر على المحور الأفقي.',
-          ),
-          LessonInteraction(
-            title: 'المحور الأفقي',
-            explanation:
-                'في الصفحة يظهر المحور الأفقي بعنوان «الهواية». وعلى هذا المحور توجد الهوايات التي يمثلها المبيان.',
-            answers: [
-              'الهواية',
-              'عدد التلاميذ',
-              'عدد الأعمدة فقط',
-            ],
-            correctIndex: 0,
-            correction:
-                'المحور الأفقي يمثل «الهواية». نقرأ عليه أسماء الهوايات ثم نرجع إلى ارتفاع العمود لمعرفة العدد.',
-          ),
-          LessonInteraction(
-            title: 'الأعمدة الملونة',
-            explanation:
-                'السؤال الموجود في الصفحة يطلب تحديد معنى الأعمدة الملونة. وهي تمثل عدد التلاميذ حسب الهواية المفضلة.',
-            answers: [
-              'عدد التلاميذ حسب الهواية المفضلة',
-              'أسماء الهوايات فقط',
-              'المحور الأفقي',
-            ],
-            correctIndex: 0,
-            correction:
-                'الأعمدة الملونة تمثل عدد التلاميذ حسب الهواية المفضلة.',
-          ),
-          LessonInteraction(
-            title: 'الهوايات في المبيان',
-            explanation:
-                'الأسماء الظاهرة على المحور الأفقي في الصفحة هي: تربية القطط، الطبخ، الرسم، والقراءة.',
-            answers: [
-              'تربية القطط، الطبخ، الرسم، القراءة',
-              'الرياضة، الموسيقى، السفر، الرسم',
-              'الطبخ، الكتابة، السباحة، كرة القدم',
-            ],
-            correctIndex: 0,
-            correction:
-                'الهوايات التي تظهر في المبيان هي: تربية القطط، الطبخ، الرسم، والقراءة.',
-          ),
-        ];
-      default:
-        return const [];
-    }
+    return const [];
   }
 
   @override
@@ -710,6 +617,37 @@ class _InteractivePageState extends State<InteractivePage> {
     );
   }
 
+  Widget _buildPendingSourceState() {
+    final mapping = widget.subject.title == 'الرياضيات'
+        ? mathLessonMapping(widget.lessonNumber)
+        : null;
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.menu_book_outlined, size: 52),
+            const SizedBox(height: 14),
+            Text(
+              'الدرس ${widget.lessonNumber}: ${widget.lessonTitle}',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              mapping?.pdfPage == null
+                  ? 'صفحة الكتاب الأصلية غير مرتبطة بعد. لن نضيف سؤالًا أو hotspot بالتخمين.'
+                  : 'الصفحة مرتبطة للتنقل فقط، لكنها لم تُعتمد كمصدر رسمي بعد. لن نضيف سؤالًا أو hotspot قبل التحقق.',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final items = interactions;
@@ -731,12 +669,7 @@ class _InteractivePageState extends State<InteractivePage> {
                 ),
         ),
         body: items.isEmpty
-            ? const Center(
-                child: Text(
-                  'التفاعل الدقيق لهذا الدرس يحتاج تحديد عناصر الصفحة الأصلية أولًا.',
-                  textAlign: TextAlign.center,
-                ),
-              )
+            ? _buildPendingSourceState()
             : Column(
                 children: [
                   Expanded(
@@ -778,43 +711,10 @@ class _InteractivePageState extends State<InteractivePage> {
                               // مناطق لمس شفافة فوق الصفحة الأصلية.
                               // لا نغطي النص ولا نعيد تصميم الكتاب؛ عند الاختيار فقط
                               // يظهر إطار خفيف، ثم يفتح شرح العنصر.
-                              if (widget.lessonNumber == 13 && _controller != null) ...[
-                                _hotspot(
-                                  index: 0,
-                                  left: w * 0.12,
-                                  top: h * 0.03,
-                                  width: w * 0.76,
-                                  height: h * 0.15,
-                                ),
-                                _hotspot(
-                                  index: 1,
-                                  left: 0,
-                                  top: h * 0.24,
-                                  width: w * 0.30,
-                                  height: h * 0.36,
-                                ),
-                                _hotspot(
-                                  index: 2,
-                                  left: w * 0.18,
-                                  top: h * 0.54,
-                                  width: w * 0.70,
-                                  height: h * 0.16,
-                                ),
-                                _hotspot(
-                                  index: 3,
-                                  left: w * 0.28,
-                                  top: h * 0.22,
-                                  width: w * 0.55,
-                                  height: h * 0.34,
-                                ),
-                                _hotspot(
-                                  index: 4,
-                                  left: w * 0.28,
-                                  top: h * 0.48,
-                                  width: w * 0.60,
-                                  height: h * 0.16,
-                                ),
-                              ],
+                              // Hotspots are generated only from verified
+                              // LessonPageMapping data. None are enabled until
+                              // the official source page is inspected.
+,
                             ],
                           );
                         },
