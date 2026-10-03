@@ -661,7 +661,9 @@ class _InteractivePageState extends State<InteractivePage> {
   @override
   Widget build(BuildContext context) {
     final items = interactions;
-    final mapping = mathLessonMapping(widget.lessonNumber);
+    final mapping = widget.subject.title == 'الرياضيات'
+        ? mathLessonMapping(widget.lessonNumber)
+        : null;
 
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -727,7 +729,8 @@ class _InteractivePageState extends State<InteractivePage> {
                               // مناطق لمس شفافة فوق الصفحة الأصلية.
                               // لا نغطي النص ولا نعيد تصميم الكتاب؛ عند الاختيار فقط
                               // يظهر إطار خفيف، ثم يفتح شرح العنصر.
-                              if (_currentPdfPage == mapping.pdfPage) ...[
+                              if (mapping != null &&
+                                  _currentPdfPage == mapping.pdfPage) ...[
                                 for (var i = 0; i < mapping.hotspots.length; i++)
                                   _hotspot(
                                     index: i,
