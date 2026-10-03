@@ -846,7 +846,7 @@ class _InteractivePageState extends State<InteractivePage> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       scrollDirection: Axis.horizontal,
                       itemCount: items.length,
-                      separatorBuilder: (_, _) => const SizedBox(width: 8),
+                      separatorBuilder: (_, __) => const SizedBox(width: 8),
                       itemBuilder: (context, index) {
                         return ActionChip(
                           avatar: CircleAvatar(
