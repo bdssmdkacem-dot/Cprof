@@ -43,6 +43,7 @@ class LessonHotspot {
   final PageRect rect;
   final LessonInteractionType type;
   final String title;
+  final int? pdfPage;
 
   /// Kept nullable until the corresponding book page is available.
   final List<String>? options;
@@ -54,6 +55,7 @@ class LessonHotspot {
     required this.rect,
     required this.type,
     required this.title,
+    this.pdfPage,
     this.options,
     this.correctIndex,
     this.explanation,
