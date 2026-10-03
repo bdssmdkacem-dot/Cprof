@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class LessonCatalogEntry {
   final int number;
   final String title;
@@ -29,10 +27,10 @@ const _frenchTitles = <String>[
 ];
 
 List<LessonCatalogEntry> _generatedLessons(int count, List<String> patterns) =>
-    List.generate(count, (i) => LessonCatalogEntry(i + 1, patterns[i % patterns.length] + ' — الدرس ' + (i + 1).toString()));
+    List.generate(count, (i) => LessonCatalogEntry(i + 1, '${patterns[i % patterns.length]} — الدرس ${i + 1}'));
 
 List<LessonCatalogEntry> _namedLessons(List<String> titles, int count) =>
-    List.generate(count, (i) => LessonCatalogEntry(i + 1, i < titles.length ? titles[i] : 'الدرس ' + (i + 1).toString()));
+    List.generate(count, (i) => LessonCatalogEntry(i + 1, i < titles.length ? titles[i] : 'الدرس ${i + 1}'));
 
 const mathLessonTitles = <String>[
   'الأعداد من 0 إلى 999 999 - قراءة وكتابة',
