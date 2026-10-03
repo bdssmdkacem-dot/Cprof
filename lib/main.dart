@@ -141,6 +141,7 @@ class BookPage extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (_) => InteractivePage(
                                 subject: subject,
+                                lessonNumber: lessonNumber,
                                 lessonTitle: LessonPage.mathLessons[lessonNumber - 1],
                                 initialPage: LessonPage.mathLessonPdfPages[lessonNumber],
                                 printedPage: LessonPage.mathLessonPrintedPages[lessonNumber],
