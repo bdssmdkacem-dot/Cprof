@@ -209,25 +209,19 @@ class LessonPage extends StatelessWidget {
     'حساب محيطي المربع والمستطيل',
     'مقارنة مساحتين',
     'حساب مساحتي المربع والمستطيل',
-    'حل المسائل (القياس)',
-    'قراءة وكتابة الكسور العشرية',
-    'تمثيل وموضعة كسور عشرية',
-    'تفكيك الأعداد الكسرية العشرية',
-    'حل المسائل (توليف)',
   ];
 
-  // Verified against the table of contents and the scanned pages in the PDF.
+  // The official TelmidTICE catalogue currently lists 35 mathematics lessons
+  // for grade 4. Page mappings below are partial and apply only to lessons
+  // whose pages are present in the repository PDF; lessons 1–12 remain pending.
   // Values are PDF page numbers (1-based), not printed textbook page numbers.
-  // The attached file does not contain printed pages 8–36, so lessons 1–12
-  // intentionally have no direct page mapping yet.
   static const mathLessonPdfPages = <int, int>{
     13: 6, 14: 8, 15: 10, 16: 12,
     17: 16, 18: 17, 19: 19, 20: 21,
     21: 31, 22: 33, 23: 35, 24: 37,
     25: 41, 26: 43, 27: 45, 28: 47,
     29: 51, 30: 53, 31: 55, 32: 57,
-    33: 61, 34: 63, 35: 65, 36: 67,
-    37: 71, 38: 73, 39: 75, 40: 77,
+    33: 61, 34: 63, 35: 65,
   };
 
   static const mathLessonPrintedPages = <int, int>{
@@ -236,8 +230,7 @@ class LessonPage extends StatelessWidget {
     21: 64, 22: 66, 23: 68, 24: 70,
     25: 74, 26: 76, 27: 78, 28: 80,
     29: 84, 30: 86, 31: 88, 32: 90,
-    33: 94, 34: 96, 35: 98, 36: 100,
-    37: 104, 38: 106, 39: 108, 40: 110,
+    33: 94, 34: 96, 35: 98,
   };
 
   String get title {
