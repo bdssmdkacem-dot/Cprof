@@ -729,16 +729,18 @@ class _InteractivePageState extends State<InteractivePage> {
                               // مناطق لمس شفافة فوق الصفحة الأصلية.
                               // لا نغطي النص ولا نعيد تصميم الكتاب؛ عند الاختيار فقط
                               // يظهر إطار خفيف، ثم يفتح شرح العنصر.
-                              if (mapping != null &&
-                                  _currentPdfPage == mapping.pdfPage) ...[
+                              if (mapping != null) ...[
                                 for (var i = 0; i < mapping.hotspots.length; i++)
-                                  _hotspot(
-                                    index: i,
-                                    left: mapping.hotspots[i].rect.left * w,
-                                    top: mapping.hotspots[i].rect.top * h,
-                                    width: mapping.hotspots[i].rect.width * w,
-                                    height: mapping.hotspots[i].rect.height * h,
-                                  ),
+                                  if (_currentPdfPage ==
+                                      (mapping.hotspots[i].pdfPage ??
+                                          mapping.pdfPage))
+                                    _hotspot(
+                                      index: i,
+                                      left: mapping.hotspots[i].rect.left * w,
+                                      top: mapping.hotspots[i].rect.top * h,
+                                      width: mapping.hotspots[i].rect.width * w,
+                                      height: mapping.hotspots[i].rect.height * h,
+                                    ),
                               ],
 
                             ],
