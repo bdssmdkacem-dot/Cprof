@@ -67,7 +67,27 @@ final mathLessonMap = <LessonPageMapping>[
                             sourceVerified: true,
                             hotspots: _lesson18Hotspots,
                           )
-                        :
+                        : lesson.number == 19
+                            ? const LessonPageMapping(
+                                subject: 'الرياضيات',
+                                lessonNumber: 19,
+                                lessonTitle: 'الكسور العشرية المتكافئة',
+                                pdfPage: 19,
+                                printedPage: 52,
+                                sourceVerified: true,
+                                hotspots: _lesson19Hotspots,
+                              )
+                            : lesson.number == 20
+                                ? const LessonPageMapping(
+                                    subject: 'الرياضيات',
+                                    lessonNumber: 20,
+                                    lessonTitle: 'حل المسائل (توليف)',
+                                    pdfPage: 21,
+                                    printedPage: 54,
+                                    sourceVerified: true,
+                                    hotspots: _lesson20Hotspots,
+                                  )
+                                :
             LessonPageMapping(
             subject: 'الرياضيات',
             lessonNumber: lesson.number,
@@ -103,6 +123,21 @@ const _printedPages = <int, int>{
   33: 94, 34: 96, 35: 98,
 };
 
+
+const _lesson19Hotspots = <LessonHotspot>[
+  LessonHotspot(id: 'l19-p19-h1', pdfPage: 19, rect: PageRect(left: 0.08, top: 0.25, width: 0.84, height: 0.32), type: LessonInteractionType.multipleChoice, title: 'ما الكسر المكافئ لـ 1/2 في المثال الأول؟', options: ['1/4', '2/4', '3/4', '4/4'], correctIndex: 1, explanation: 'ضرب البسط والمقام في 2 يعطي 2/4.'),
+  LessonHotspot(id: 'l19-p19-h2', pdfPage: 19, rect: PageRect(left: 0.08, top: 0.55, width: 0.84, height: 0.37), type: LessonInteractionType.multipleChoice, title: 'بأي عملية ننتقل من 1/2 إلى 2/4؟', options: ['الضرب في 2', 'القسمة على 2', 'الضرب في 3', 'الجمع بـ 2'], correctIndex: 0, explanation: 'نضرب البسط والمقام معا في 2.'),
+  LessonHotspot(id: 'l19-p20-h1', pdfPage: 20, rect: PageRect(left: 0.06, top: 0.18, width: 0.88, height: 0.48), type: LessonInteractionType.multipleChoice, title: 'ما الكسر المكافئ لـ 2/3 في التمرين؟', options: ['4/6', '6/8', '8/12', '3/6'], correctIndex: 0, explanation: 'ضرب البسط والمقام في 2 يعطي 4/6.'),
+  LessonHotspot(id: 'l19-p20-h2', pdfPage: 20, rect: PageRect(left: 0.06, top: 0.18, width: 0.88, height: 0.48), type: LessonInteractionType.multipleChoice, title: 'ما الكسر المكافئ لـ 3/4 عندما يصبح المقام 20؟', options: ['12/20', '15/20', '16/20', '20/20'], correctIndex: 1, explanation: 'نضرب 3/4 في 5/5 فنحصل على 15/20.'),
+  LessonHotspot(id: 'l19-p20-h3', pdfPage: 20, rect: PageRect(left: 0.06, top: 0.68, width: 0.88, height: 0.22), type: LessonInteractionType.multipleChoice, title: 'أي كسر من القائمة مكافئ لـ 6/4؟', options: ['4/2', '3/2', '8/6', '9/8'], correctIndex: 0, explanation: '6/4 و4/2 يمثلان القيمة نفسها 3/2.'),
+];
+
+const _lesson20Hotspots = <LessonHotspot>[
+  LessonHotspot(id: 'l20-p21-h1', pdfPage: 21, rect: PageRect(left: 0.06, top: 0.22, width: 0.88, height: 0.32), type: LessonInteractionType.numeric, title: 'ما المسافة التي قطعتها الحافلة خلال الرحلة؟', options: ['961', '1 061', '1 161', '1 261'], correctIndex: 1, explanation: '576 + 485 = 1 061 كيلومترا.'),
+  LessonHotspot(id: 'l20-p21-h2', pdfPage: 21, rect: PageRect(left: 0.06, top: 0.62, width: 0.88, height: 0.28), type: LessonInteractionType.numeric, title: 'ما مجموع الصفحات التي قرأتها ريم؟', options: ['1 048', '1 148', '1 248', '1 348'], correctIndex: 2, explanation: '26 × 48 = 1 248 صفحة.'),
+  LessonHotspot(id: 'l20-p22-h1', pdfPage: 22, rect: PageRect(left: 0.06, top: 0.17, width: 0.88, height: 0.32), type: LessonInteractionType.numeric, title: 'كم كيلومترا تبقى للحافلة حتى تصل إلى الرباط؟', options: ['162', '172', '182', '192'], correctIndex: 0, explanation: '547 - 127 - 258 = 162 كيلومترا.'),
+  LessonHotspot(id: 'l20-p22-h2', pdfPage: 22, rect: PageRect(left: 0.06, top: 0.57, width: 0.88, height: 0.32), type: LessonInteractionType.numeric, title: 'ما عدد القنينات التي تحملها الشاحنة؟', options: ['1 404', '1 504', '1 604', '1 704'], correctIndex: 3, explanation: '52 × 12 + 45 × 24 = 1 704 قنينة.'),
+];
 
 const _lesson15Hotspots = <LessonHotspot>[
   LessonHotspot(
