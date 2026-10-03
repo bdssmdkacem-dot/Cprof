@@ -167,7 +167,77 @@ final mathLessonMap = <LessonPageMapping>[
                                                                     sourceVerified: true,
                                                                     hotspots: _lesson28Hotspots,
                                                                   )
-                                                                :
+                                                                : lesson.number == 29
+                                                                    ? const LessonPageMapping(
+                                                                        subject: 'الرياضيات',
+                                                                        lessonNumber: 29,
+                                                                        lessonTitle: 'التناسبية (1)',
+                                                                        pdfPage: 51,
+                                                                        printedPage: 84,
+                                                                        sourceVerified: true,
+                                                                        hotspots: _lesson29Hotspots,
+                                                                      )
+                                                                    : lesson.number == 30
+                                                                        ? const LessonPageMapping(
+                                                                            subject: 'الرياضيات',
+                                                                            lessonNumber: 30,
+                                                                            lessonTitle: 'التناسبية (2)',
+                                                                            pdfPage: 53,
+                                                                            printedPage: 86,
+                                                                            sourceVerified: true,
+                                                                            hotspots: _lesson30Hotspots,
+                                                                          )
+                                                                        : lesson.number == 31
+                                                                            ? const LessonPageMapping(
+                                                                                subject: 'الرياضيات',
+                                                                                lessonNumber: 31,
+                                                                                lessonTitle: 'التناسبية (3)',
+                                                                                pdfPage: 55,
+                                                                                printedPage: 88,
+                                                                                sourceVerified: true,
+                                                                                hotspots: _lesson31Hotspots,
+                                                                              )
+                                                                            : lesson.number == 32
+                                                                                ? const LessonPageMapping(
+                                                                                    subject: 'الرياضيات',
+                                                                                    lessonNumber: 32,
+                                                                                    lessonTitle: 'حل المسائل (وضعيات المقارنة) (3)',
+                                                                                    pdfPage: 57,
+                                                                                    printedPage: 90,
+                                                                                    sourceVerified: true,
+                                                                                    hotspots: _lesson32Hotspots,
+                                                                                  )
+                                                                                : lesson.number == 33
+                                                                                    ? const LessonPageMapping(
+                                                                                        subject: 'الرياضيات',
+                                                                                        lessonNumber: 33,
+                                                                                        lessonTitle: 'حساب محيطي المربع والمستطيل',
+                                                                                        pdfPage: 61,
+                                                                                        printedPage: 94,
+                                                                                        sourceVerified: true,
+                                                                                        hotspots: _lesson33Hotspots,
+                                                                                      )
+                                                                                    : lesson.number == 34
+                                                                                        ? const LessonPageMapping(
+                                                                                            subject: 'الرياضيات',
+                                                                                            lessonNumber: 34,
+                                                                                            lessonTitle: 'مقارنة مساحتين',
+                                                                                            pdfPage: 63,
+                                                                                            printedPage: 96,
+                                                                                            sourceVerified: true,
+                                                                                            hotspots: _lesson34Hotspots,
+                                                                                          )
+                                                                                        : lesson.number == 35
+                                                                                            ? const LessonPageMapping(
+                                                                                                subject: 'الرياضيات',
+                                                                                                lessonNumber: 35,
+                                                                                                lessonTitle: 'حساب مساحتي المربع والمستطيل',
+                                                                                                pdfPage: 65,
+                                                                                                printedPage: 98,
+                                                                                                sourceVerified: true,
+                                                                                                hotspots: _lesson35Hotspots,
+                                                                                              )
+                                                                                            :
             LessonPageMapping(
             subject: 'الرياضيات',
             lessonNumber: lesson.number,
