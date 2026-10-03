@@ -470,19 +470,29 @@ class _InteractivePageState extends State<InteractivePage> {
   PdfController? _controller;
   int? selectedInteraction;
   String? feedback;
+  int? _currentPdfPage;
 
   List<LessonInteraction> get interactions {
-    if (widget.subject.title == 'الرياضيات') {
-      final mapping = mathLessonMapping(widget.lessonNumber);
-      if (!mapping.sourceVerified) return const [];
-    }
-    return const [];
+    if (widget.subject.title != 'الرياضيات') return const [];
+    final mapping = mathLessonMapping(widget.lessonNumber);
+    if (!mapping.sourceVerified) return const [];
+    return [
+      for (final hotspot in mapping.hotspots)
+        LessonInteraction(
+          title: hotspot.title,
+          explanation: hotspot.explanation ?? '',
+          answers: hotspot.options ?? const [],
+          correctIndex: hotspot.correctIndex ?? -1,
+          correction: hotspot.explanation ?? '',
+        ),
+    ];
   }
 
   @override
   void initState() {
     super.initState();
     if (widget.initialPage != null) {
+      _currentPdfPage = widget.initialPage;
       _controller = PdfController(
         document: PdfDocument.openAsset('assets/books/math/jayd_math_grade4.pdf'),
         initialPage: widget.initialPage!,
@@ -686,6 +696,11 @@ class _InteractivePageState extends State<InteractivePage> {
                               if (_controller != null)
                                 PdfView(
                                   controller: _controller!,
+                                  onPageChanged: (page) {
+                                    if (mounted) {
+                                      setState(() => _currentPdfPage = page);
+                                    }
+                                  },
                                   builders: PdfViewBuilders<DefaultBuilderOptions>(
                                     options: const DefaultBuilderOptions(),
                                     documentLoaderBuilder: (_) =>
@@ -711,10 +726,17 @@ class _InteractivePageState extends State<InteractivePage> {
                               // مناطق لمس شفافة فوق الصفحة الأصلية.
                               // لا نغطي النص ولا نعيد تصميم الكتاب؛ عند الاختيار فقط
                               // يظهر إطار خفيف، ثم يفتح شرح العنصر.
-                              // Hotspots are generated only from verified
-                              // LessonPageMapping data. None are enabled until
-                              // the official source page is inspected.
-,
+                              if (_currentPdfPage == mapping.pdfPage) ...[
+                                for (var i = 0; i < mapping.hotspots.length; i++)
+                                  _hotspot(
+                                    index: i,
+                                    left: mapping.hotspots[i].rect.left * w,
+                                    top: mapping.hotspots[i].rect.top * h,
+                                    width: mapping.hotspots[i].rect.width * w,
+                                    height: mapping.hotspots[i].rect.height * h,
+                                  ),
+                              ],
+
                             ],
                           );
                         },
