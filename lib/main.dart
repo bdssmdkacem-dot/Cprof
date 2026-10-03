@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'lesson_catalog.dart';
 
 void main() => runApp(const CprofApp());
 
@@ -86,15 +87,7 @@ class BookPage extends StatelessWidget {
   final Subject subject;
   const BookPage({required this.subject, super.key});
 
-  static const lessonCounts = <String, int>{
-    'الرياضيات': 40,
-    'التربية الإسلامية': 25,
-    'اللغة العربية': 71,
-    'اللغة الفرنسية': 67,
-    'النشاط العلمي': 27,
-    'الاجتماعيات': 19,
-    'اللغة الأمازيغية': 21,
-  };
+  int get lessonCount => subjectCatalogs[subject.title]?.lessonCount ?? 0;
 
   @override
   Widget build(BuildContext context) => Directionality(
@@ -129,15 +122,17 @@ class BookPage extends StatelessWidget {
               const Text('الدروس', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               ...List.generate(
-                lessonCounts[subject.title] ?? 0,
-                (index) => Card(
-                  child: ListTile(
-                    leading: CircleAvatar(child: Text('${index + 1}')),
-                    title: Text('الدرس ${index + 1}'),
-                    subtitle: const Text('الكتاب الأصلي • تصفح الصفحات • شرح تفاعلي • تمارين'),
-                    trailing: const Icon(Icons.arrow_back_ios_new, size: 18),
-                    onTap: () {
-                      final lessonNumber = index + 1;
+                lessonCount,
+                (index) {
+                  final lesson = subjectCatalogs[subject.title]!.lessons[index];
+                  return Card(
+                    child: ListTile(
+                      leading: CircleAvatar(child: Text(lesson.number.toString())),
+                      title: Text(lesson.title),
+                      subtitle: const Text('الكتاب الأصلي • تصفح الصفحة • شرح تفاعلي • نشاط'),
+                      trailing: const Icon(Icons.arrow_back_ios_new, size: 18),
+                      onTap: () {
+                        final lessonNumber = lesson.number;
                       if (subject.title == 'الرياضيات' &&
                           LessonPage.mathLessonPdfPages.containsKey(lessonNumber)) {
                         Navigator.push(
@@ -164,8 +159,8 @@ class BookPage extends StatelessWidget {
                       }
                     },
                   ),
-                ),
-              ),
+                );
+              },
             ],
           ),
         ),
@@ -245,10 +240,11 @@ class LessonPage extends StatelessWidget {
   };
 
   String get title {
-    if (subject.title == 'الرياضيات' && lessonNumber <= mathLessons.length) {
-      return mathLessons[lessonNumber - 1];
+    final catalog = subjectCatalogs[subject.title];
+    if (catalog != null && lessonNumber >= 1 && lessonNumber <= catalog.lessons.length) {
+      return catalog.lessons[lessonNumber - 1].title;
     }
-    return 'الدرس $lessonNumber';
+    return 'الدرس ' + lessonNumber.toString();
   }
 
   @override
@@ -481,7 +477,33 @@ class _InteractivePageState extends State<InteractivePage> {
   String? feedback;
 
   List<LessonInteraction> get interactions {
-    if (widget.subject.title != 'الرياضيات') return const [];
+    if (widget.subject.title != 'الرياضيات') {
+      final guide = subjectCatalogs[widget.subject.title]?.interactionGuide ??
+          'ارجع إلى الصفحة الأصلية وأنجز النشاط المرتبط بها.';
+      return [
+        LessonInteraction(
+          title: 'اقرأ الصفحة الأصلية',
+          explanation: guide,
+          answers: const ['تمت القراءة', 'أحتاج إلى إعادة القراءة'],
+          correctIndex: 0,
+          correction: 'أحسنت. انتقل الآن إلى النشاط المرتبط بهذه الصفحة.',
+        ),
+        LessonInteraction(
+          title: 'حدّد الفكرة الأساسية',
+          explanation: 'اكتب في ذهنك الفكرة أو القاعدة الأساسية التي لاحظتها في الصفحة الأصلية.',
+          answers: const ['حددت الفكرة الأساسية', 'سأراجع الصفحة مرة أخرى'],
+          correctIndex: 0,
+          correction: 'ممتاز. التفاعل هنا مرتبط بالوثيقة الأصلية ولا يضيف محتوى من خارج الكتاب.',
+        ),
+        LessonInteraction(
+          title: 'تحقق من الفهم',
+          explanation: 'أنجز تمرين الفهم الموجود في الصفحة الأصلية، ثم اختر الحالة التي تعبّر عن تقدمك.',
+          answers: const ['أنجزت النشاط', 'أحتاج إلى مراجعة النشاط'],
+          correctIndex: 0,
+          correction: 'تم تسجيل تقدمك في هذا النشاط.',
+        ),
+      ];
+    }
     switch (widget.lessonNumber) {
       case 13:
         return const [
