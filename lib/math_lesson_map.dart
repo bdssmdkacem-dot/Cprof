@@ -1026,26 +1026,29 @@ const _lesson20Hotspots = <LessonHotspot>[
   LessonHotspot(id: 'l20-p21-h2', pdfPage: 21, rect: PageRect(left: 0.06, top: 0.62, width: 0.88, height: 0.28), type: LessonInteractionType.numeric, title: 'ما مجموع الصفحات التي قرأتها ريم؟', options: ['1 048', '1 148', '1 248', '1 348'], correctIndex: 2, explanation: '26 × 48 = 1 248 صفحة.'),
   LessonHotspot(id: 'l20-p22-h1', pdfPage: 22, rect: PageRect(left: 0.06, top: 0.17, width: 0.88, height: 0.32), type: LessonInteractionType.numeric, title: 'كم كيلومترا تبقى للحافلة حتى تصل إلى الرباط؟', options: ['162', '172', '182', '192'], correctIndex: 0, explanation: '547 - 127 - 258 = 162 كيلومترا.'),
   LessonHotspot(id: 'l20-p22-h2', pdfPage: 22, rect: PageRect(left: 0.06, top: 0.57, width: 0.88, height: 0.32), type: LessonInteractionType.numeric, title: 'ما عدد القنينات التي تحملها الشاحنة؟', options: ['1 404', '1 504', '1 604', '1 704'], correctIndex: 3, explanation: '52 × 12 + 45 × 24 = 1 704 قنينة.'),
+
+
   LessonHotspot(
-    id: 'l20-p20-h5',
-    pdfPage: 20,
-    rect: PageRect(left: 0.05, top: 0.18, width: 0.90, height: 0.34),
+    id: 'l20-p21-h5',
+    pdfPage: 21,
+    rect: PageRect(left: 0.05, top: 0.25, width: 0.90, height: 0.35),
     type: LessonInteractionType.multipleChoice,
-    title: 'أي كسر في النشاط الرابع يكافئ 4/6؟',
-    options: ['12/18', '8/18', '10/18', '6/18'],
+    title: 'ما نموذج التمثيل المناسب لمسألة 576 + 485؟',
+    options: ['النموذج الأول', 'النموذج الثاني', 'النموذج الثالث', 'النموذج الرابع'],
     correctIndex: 0,
-    explanation: '4/6 = 12/18 بضرب البسط والمقام في 3.',
+    explanation: 'المطلوب إيجاد الكل من جزأين 576 و485، وهو ما يمثله النموذج الأول.',
   ),
   LessonHotspot(
-    id: 'l20-p20-h6',
-    pdfPage: 20,
-    rect: PageRect(left: 0.05, top: 0.52, width: 0.90, height: 0.32),
-    type: LessonInteractionType.multipleChoice,
-    title: 'أي عدد من القائمة يكافئ 6/4؟',
-    options: ['4/2', '3/2', '9/8', '8/6'],
+    id: 'l20-p22-h5',
+    pdfPage: 22,
+    rect: PageRect(left: 0.05, top: 0.56, width: 0.90, height: 0.36),
+    type: LessonInteractionType.numeric,
+    title: 'ما العدد الذي يمثله نموذج المسألة الخامسة؟',
+    options: ['58', '68', '78', '88'],
     correctIndex: 1,
-    explanation: '6/4 تبسط بقسمة البسط والمقام على 2، فنحصل على 3/2.',
+    explanation: 'النموذج يجمع 25 و18 و25، أي 25 + 18 + 25 = 68.',
   ),
+
 ];
 
 const _lesson15Hotspots = <LessonHotspot>[
