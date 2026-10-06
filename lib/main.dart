@@ -219,7 +219,7 @@ class LessonPage extends StatelessWidget {
   // whose pages are present in the repository PDF; lessons 1–12 remain pending.
   // Values are PDF page numbers (1-based), not printed textbook page numbers.
   static const mathLessonPdfPages = <int, int>{
-    13: 5, 14: 8, 15: 10, 16: 12,
+    13: 6, 14: 8, 15: 10, 16: 12,
     17: 16, 18: 17, 19: 19, 20: 21,
     21: 31, 22: 33, 23: 35, 24: 37,
     25: 41, 26: 43, 27: 45, 28: 47,
