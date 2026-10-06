@@ -3,6 +3,7 @@ import 'package:pdfx/pdfx.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'lesson_catalog.dart';
 import 'math_lesson_map.dart';
+import 'interactive_lesson_model.dart';
 
 void main() => runApp(const CprofApp());
 
