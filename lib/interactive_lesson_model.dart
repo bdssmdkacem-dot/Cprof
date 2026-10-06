@@ -70,6 +70,8 @@ class LessonPageMapping {
   final int? printedPage;
   final List<LessonHotspot> hotspots;
   final bool sourceVerified;
+  final bool isSupport;
+  final String? sourceLabel;
 
   const LessonPageMapping({
     required this.subject,
@@ -79,6 +81,8 @@ class LessonPageMapping {
     this.printedPage,
     this.hotspots = const [],
     this.sourceVerified = false,
+    this.isSupport = false,
+    this.sourceLabel,
   });
 }
 
