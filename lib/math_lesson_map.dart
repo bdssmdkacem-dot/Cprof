@@ -134,8 +134,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                         lessonTitle: 'قواسم عدد',
                                                         pdfPage: 41,
                                                         printedPage: 74,
-                                                        sourceVerified: false,
-                                                        hotspots: <LessonHotspot>[],
+                                                        sourceVerified: true,
+                                                        hotspots: _lesson25Hotspots,
                                                       )
                                                     : lesson.number == 26
                                                         ? const LessonPageMapping(
@@ -144,8 +144,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                             lessonTitle: 'مضاعفات عدد',
                                                             pdfPage: 43,
                                                             printedPage: 76,
-                                                            sourceVerified: false,
-                                                            hotspots: <LessonHotspot>[],
+                                                            sourceVerified: true,
+                                                            hotspots: _lesson26Hotspots,
                                                           )
                                                         : lesson.number == 27
                                                             ? const LessonPageMapping(
@@ -154,8 +154,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                 lessonTitle: 'المضاعفات والقواسم المشتركة لعددين',
                                                                 pdfPage: 45,
                                                                 printedPage: 78,
-                                                                sourceVerified: false,
-                                                                hotspots: <LessonHotspot>[],
+                                                                sourceVerified: true,
+                                                                hotspots: _lesson27Hotspots,
                                                               )
                                                             : lesson.number == 28
                                                                 ? const LessonPageMapping(
@@ -164,8 +164,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                     lessonTitle: 'حل المسائل (وضعيات المقارنة) (2)',
                                                                     pdfPage: 47,
                                                                     printedPage: 80,
-                                                                    sourceVerified: false,
-                                                                    hotspots: <LessonHotspot>[],
+                                                                    sourceVerified: true,
+                                                                    hotspots: _lesson28Hotspots,
                                                                   )
                                                                 : lesson.number == 29
                                                                     ? const LessonPageMapping(
@@ -174,8 +174,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                         lessonTitle: 'التناسبية (1)',
                                                                         pdfPage: 51,
                                                                         printedPage: 84,
-                                                                        sourceVerified: false,
-                                                                        hotspots: <LessonHotspot>[],
+                                                                        sourceVerified: true,
+                                                                        hotspots: _lesson29Hotspots,
                                                                       )
                                                                     : lesson.number == 30
                                                                         ? const LessonPageMapping(
@@ -184,8 +184,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                             lessonTitle: 'التناسبية (2)',
                                                                             pdfPage: 53,
                                                                             printedPage: 86,
-                                                                            sourceVerified: false,
-                                                                            hotspots: <LessonHotspot>[],
+                                                                            sourceVerified: true,
+                                                                            hotspots: _lesson30Hotspots,
                                                                           )
                                                                         : lesson.number == 31
                                                                             ? const LessonPageMapping(
@@ -194,8 +194,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                 lessonTitle: 'التناسبية (3)',
                                                                                 pdfPage: 55,
                                                                                 printedPage: 88,
-                                                                                sourceVerified: false,
-                                                                                hotspots: <LessonHotspot>[],
+                                                                                sourceVerified: true,
+                                                                                hotspots: _lesson31Hotspots,
                                                                               )
                                                                             : lesson.number == 32
                                                                                 ? const LessonPageMapping(
@@ -204,8 +204,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                     lessonTitle: 'حل المسائل (وضعيات المقارنة) (3)',
                                                                                     pdfPage: 57,
                                                                                     printedPage: 90,
-                                                                                    sourceVerified: false,
-                                                                                    hotspots: <LessonHotspot>[],
+                                                                                    sourceVerified: true,
+                                                                                    hotspots: _lesson32Hotspots,
                                                                                   )
                                                                                 : lesson.number == 33
                                                                                     ? const LessonPageMapping(
@@ -214,8 +214,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                         lessonTitle: 'حساب محيطي المربع والمستطيل',
                                                                                         pdfPage: 61,
                                                                                         printedPage: 94,
-                                                                                        sourceVerified: false,
-                                                                                        hotspots: <LessonHotspot>[],
+                                                                                        sourceVerified: true,
+                                                                                        hotspots: _lesson33Hotspots,
                                                                                       )
                                                                                     : lesson.number == 34
                                                                                         ? const LessonPageMapping(
@@ -224,8 +224,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                             lessonTitle: 'مقارنة مساحتين',
                                                                                             pdfPage: 63,
                                                                                             printedPage: 96,
-                                                                                            sourceVerified: false,
-                                                                                            hotspots: <LessonHotspot>[],
+                                                                                            sourceVerified: true,
+                                                                                            hotspots: _lesson34Hotspots,
                                                                                           )
                                                                                         : lesson.number == 35
                                                                                             ? const LessonPageMapping(
@@ -234,8 +234,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                                 lessonTitle: 'حساب مساحتي المربع والمستطيل',
                                                                                                 pdfPage: 65,
                                                                                                 printedPage: 98,
-                                                                                                sourceVerified: false,
-                                                                                                hotspots: <LessonHotspot>[],
+                                                                                                sourceVerified: true,
+                                                                                                hotspots: _lesson35Hotspots,
                                                                                               )
                                                                                             :
             LessonPageMapping(
@@ -274,6 +274,320 @@ const _printedPages = <int, int>{
 };
 
 
+
+
+const _lesson25Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l25-p41-h1',
+    pdfPage: 41,
+    rect: PageRect(left: 0.06, top: 0.22, width: 0.88, height: 0.36),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما قاسما العدد 10 الظاهران في النشاط الأول؟',
+    options: ['2 و5', '3 و7', '1 و10', '4 و6'],
+    correctIndex: 0,
+    explanation: 'يمثل النشاط العدد 10 على شكل 2 × 5، لذلك القاسمان هما 2 و5.',
+  ),
+  LessonHotspot(
+    id: 'l25-p41-h2',
+    pdfPage: 41,
+    rect: PageRect(left: 0.06, top: 0.58, width: 0.88, height: 0.34),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما قواسم العدد 8؟',
+    options: ['1 و2 و4 و8', '1 و3 و8', '2 و4 فقط', '1 و8 فقط'],
+    correctIndex: 0,
+    explanation: 'قواسم 8 هي 1 و2 و4 و8.',
+  ),
+];
+
+const _lesson26Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l26-p43-h1',
+    pdfPage: 43,
+    rect: PageRect(left: 0.06, top: 0.22, width: 0.88, height: 0.32),
+    type: LessonInteractionType.numeric,
+    title: 'ما ناتج 15 × 2 في النشاط الأول؟',
+    options: ['25', '30', '35', '45'],
+    correctIndex: 1,
+    explanation: '15 × 2 = 30، و30 من مضاعفات العدد 15.',
+  ),
+  LessonHotspot(
+    id: 'l26-p43-h2',
+    pdfPage: 43,
+    rect: PageRect(left: 0.06, top: 0.57, width: 0.88, height: 0.34),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي عدد من الآتية هو من مضاعفات العدد 9؟',
+    options: ['35', '54', '58', '65'],
+    correctIndex: 1,
+    explanation: '54 = 9 × 6، لذلك فهو من مضاعفات العدد 9.',
+  ),
+  LessonHotspot(
+    id: 'l26-p43-h3',
+    pdfPage: 43,
+    rect: PageRect(left: 0.06, top: 0.78, width: 0.88, height: 0.16),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما أول مضاعف للعدد 3 في السلسلة الظاهرة بعد 24؟',
+    options: ['27', '28', '30', '33'],
+    correctIndex: 0,
+    explanation: 'مضاعفات 3 تتتابع: 24، 27، 30، ...',
+  ),
+];
+
+const _lesson27Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l27-p45-h1',
+    pdfPage: 45,
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.36),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما القواسم المشتركة للعددين 20 و12؟',
+    options: ['1 و2 و4', '1 و3 و6', '2 و5 و10', '4 و6 و12'],
+    correctIndex: 0,
+    explanation: 'القواسم المشتركة للعددين 20 و12 هي 1 و2 و4.',
+  ),
+  LessonHotspot(
+    id: 'l27-p45-h2',
+    pdfPage: 45,
+    rect: PageRect(left: 0.06, top: 0.57, width: 0.88, height: 0.36),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما أصغر مضاعف مشترك للعددين 4 و6 في النشاط؟',
+    options: ['8', '10', '12', '24'],
+    correctIndex: 2,
+    explanation: 'المضاعفات المشتركة المعروضة تبدأ بـ12 ثم 24 ثم 36، لذلك الأصغر هو 12.',
+  ),
+];
+
+const _lesson28Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l28-p47-h1',
+    pdfPage: 47,
+    rect: PageRect(left: 0.05, top: 0.22, width: 0.90, height: 0.34),
+    type: LessonInteractionType.numeric,
+    title: 'بكم يفوق مبلغ عماد مبلغ ريم في المسألة الأولى؟',
+    options: ['70 درهما', '105 دراهم', '140 درهما', '175 درهما'],
+    correctIndex: 1,
+    explanation: 'لدى ريم 35 درهما، ولدى عماد 4 مرات ذلك أي 140 درهما، والفرق 140 − 35 = 105 دراهم.',
+  ),
+  LessonHotspot(
+    id: 'l28-p47-h2',
+    pdfPage: 47,
+    rect: PageRect(left: 0.05, top: 0.60, width: 0.90, height: 0.32),
+    type: LessonInteractionType.numeric,
+    title: 'بكم يزيد ما جمعه الفتيان عن 258 قارورة؟',
+    options: ['258', '516', '774', '1 032'],
+    correctIndex: 1,
+    explanation: 'جمع الفتيان 3 مرات 258، أي 774 قارورة، والفرق عن 258 هو 516 قارورة.',
+  ),
+];
+
+const _lesson29Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l29-p51-h1',
+    pdfPage: 51,
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'كم بيضة تلزم لإعداد 3 كعكات إذا كانت كل كعكة تحتاج 3 بيضات؟',
+    options: ['6', '9', '12', '15'],
+    correctIndex: 1,
+    explanation: '3 كعكات × 3 بيضات = 9 بيضات.',
+  ),
+  LessonHotspot(
+    id: 'l29-p51-h2',
+    pdfPage: 51,
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'ما ثمن 5 قصص إذا كان ثمن القصة الواحدة 7 دراهم؟',
+    options: ['28', '30', '35', '42'],
+    correctIndex: 2,
+    explanation: '5 × 7 = 35 درهما.',
+  ),
+  LessonHotspot(
+    id: 'l29-p51-h3',
+    pdfPage: 51,
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'كم لترا تستهلك السيارة في 100 كيلومتر وفق المعطى في الصفحة؟',
+    options: ['5 لترات', '10 لترات', '15 لترا', '20 لترا'],
+    correctIndex: 1,
+    explanation: 'تستهلك السيارة لترا واحدا لكل 10 كيلومترات، لذلك في 100 كيلومتر تستهلك 10 لترات.',
+  ),
+];
+
+const _lesson30Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l30-p53-h1',
+    pdfPage: 53,
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'ما ثمن 6 بيضات إذا كان ثمن البيضة درهمين؟',
+    options: ['8', '10', '12', '14'],
+    correctIndex: 2,
+    explanation: '6 × 2 = 12 درهما.',
+  ),
+  LessonHotspot(
+    id: 'l30-p53-h2',
+    pdfPage: 53,
+    rect: PageRect(left: 0.06, top: 0.22, width: 0.88, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'كم كيلوغراما من البرتقال تستهلك الأسرة خلال 7 أيام إذا استهلكت 2 كغ يوميا؟',
+    options: ['7 كغ', '9 كغ', '12 كغ', '14 كغ'],
+    correctIndex: 3,
+    explanation: '2 × 7 = 14 كغ.',
+  ),
+  LessonHotspot(
+    id: 'l30-p53-h3',
+    pdfPage: 53,
+    rect: PageRect(left: 0.06, top: 0.62, width: 0.88, height: 0.28),
+    type: LessonInteractionType.numeric,
+    title: 'ما ثمن 4 أقلام إذا كان ثمن القلم الواحد 6 دراهم؟',
+    options: ['18', '20', '24', '30'],
+    correctIndex: 2,
+    explanation: '4 × 6 = 24 درهما.',
+  ),
+];
+
+const _lesson31Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l31-p55-h1',
+    pdfPage: 55,
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'ما ثمن 4 مقلمات إذا كان ثمن الواحدة 12 درهما؟',
+    options: ['36', '48', '50', '60'],
+    correctIndex: 1,
+    explanation: '4 × 12 = 48 درهما.',
+  ),
+  LessonHotspot(
+    id: 'l31-p55-h2',
+    pdfPage: 55,
+    rect: PageRect(left: 0.05, top: 0.55, width: 0.90, height: 0.36),
+    type: LessonInteractionType.numeric,
+    title: 'كم يوما تحتاج ريم لتوفير 45 درهما إذا وفرت 9 دراهم يوميا؟',
+    options: ['4 أيام', '5 أيام', '6 أيام', '9 أيام'],
+    correctIndex: 1,
+    explanation: '45 ÷ 9 = 5 أيام.',
+  ),
+];
+
+const _lesson32Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l32-p57-h1',
+    pdfPage: 57,
+    rect: PageRect(left: 0.05, top: 0.22, width: 0.90, height: 0.34),
+    type: LessonInteractionType.numeric,
+    title: 'بكم يزيد عمر أمجد عن عمر سارة في المسألة الأولى؟',
+    options: ['5 سنوات', '7 سنوات', '9 سنوات', '12 سنة'],
+    correctIndex: 2,
+    explanation: 'عمر ياسين 7 سنوات، وهو أكبر من سارة بـ4 سنوات، إذن سارة 3 سنوات. وهو أصغر من أمجد بـ5 سنوات، إذن أمجد 12 سنة. الفرق بين أمجد وسارة 9 سنوات.',
+  ),
+  LessonHotspot(
+    id: 'l32-p57-h2',
+    pdfPage: 57,
+    rect: PageRect(left: 0.55, top: 0.58, width: 0.40, height: 0.30),
+    type: LessonInteractionType.tapHotspot,
+    title: 'اضغط على منطقة تمثيل المسألة الثانية على نموذج الأشرطة.',
+    options: ['نموذج الأشرطة', 'نص المسألة', 'منطقة الإجابة', 'عنوان الدرس'],
+    correctIndex: 0,
+    explanation: 'المسألة الثانية تطلب تمثيل المعطيات على نموذج الأشرطة قبل كتابة المساواة والحل.',
+  ),
+];
+
+const _lesson33Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l33-p61-h1',
+    pdfPage: 61,
+    rect: PageRect(left: 0.05, top: 0.20, width: 0.90, height: 0.34),
+    type: LessonInteractionType.numeric,
+    title: 'ما محيط ملعب طوله 38 م وعرضه 20 م؟',
+    options: ['96 م', '116 م', '120 م', '140 م'],
+    correctIndex: 1,
+    explanation: '38 + 20 + 38 + 20 = 116 م.',
+  ),
+  LessonHotspot(
+    id: 'l33-p61-h2',
+    pdfPage: 61,
+    rect: PageRect(left: 0.05, top: 0.55, width: 0.90, height: 0.34),
+    type: LessonInteractionType.numeric,
+    title: 'ما محيط الحديقة التي طولها 120 م وعرضها 80 م؟',
+    options: ['200 م', '320 م', '400 م', '480 م'],
+    correctIndex: 2,
+    explanation: '120 + 80 + 120 + 80 = 400 م.',
+  ),
+  LessonHotspot(
+    id: 'l33-p61-h3',
+    pdfPage: 61,
+    rect: PageRect(left: 0.54, top: 0.64, width: 0.40, height: 0.28),
+    type: LessonInteractionType.numeric,
+    title: 'ما محيط المربع الذي طول ضلعه 5 سم؟',
+    options: ['10 سم', '15 سم', '20 سم', '25 سم'],
+    correctIndex: 2,
+    explanation: '4 × 5 = 20 سم.',
+  ),
+];
+
+const _lesson34Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l34-p63-h1',
+    pdfPage: 63,
+    rect: PageRect(left: 0.05, top: 0.20, width: 0.90, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'ما مساحة الشكل A باستعمال الوحدة u؟',
+    options: ['12 u', '14 u', '16 u', '18 u'],
+    correctIndex: 1,
+    explanation: 'الصفحة تعطي مساحة الشكل A وهي 14 وحدة مربعة u.',
+  ),
+  LessonHotspot(
+    id: 'l34-p63-h2',
+    pdfPage: 63,
+    rect: PageRect(left: 0.52, top: 0.20, width: 0.42, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'ما مساحة الشكل B باستعمال الوحدة u؟',
+    options: ['12 u', '14 u', '16 u', '18 u'],
+    correctIndex: 2,
+    explanation: 'بعد عد الوحدات المربعة الملوّنة في الشكل B نجد 16 وحدة مربعة.',
+  ),
+  LessonHotspot(
+    id: 'l34-p63-h3',
+    pdfPage: 63,
+    rect: PageRect(left: 0.06, top: 0.58, width: 0.88, height: 0.34),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي مساحة أكبر في النشاط الثالث؟',
+    options: ['A', 'B', 'C', 'D'],
+    correctIndex: 1,
+    explanation: 'في النشاط الثالث تُقاس المساحات بالوحدة u، والشكل B هو الأكبر بين الأشكال المعروضة.',
+  ),
+];
+
+const _lesson35Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l35-p65-h1',
+    pdfPage: 65,
+    rect: PageRect(left: 0.05, top: 0.20, width: 0.90, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'ما مساحة المستطيل B في النشاط الأول؟',
+    options: ['4 cm²', '6 cm²', '8 cm²', '9 cm²'],
+    correctIndex: 1,
+    explanation: 'المستطيل B أبعاده 3 سم و2 سم، لذلك مساحته 3 × 2 = 6 cm².',
+  ),
+  LessonHotspot(
+    id: 'l35-p65-h2',
+    pdfPage: 65,
+    rect: PageRect(left: 0.05, top: 0.57, width: 0.90, height: 0.30),
+    type: LessonInteractionType.numeric,
+    title: 'ما مساحة المربع B في النشاط الثاني؟',
+    options: ['2 cm²', '4 cm²', '6 cm²', '8 cm²'],
+    correctIndex: 1,
+    explanation: 'ضلع المربع B يساوي 2 سم، لذلك 2 × 2 = 4 cm².',
+  ),
+  LessonHotspot(
+    id: 'l35-p65-h3',
+    pdfPage: 65,
+    rect: PageRect(left: 0.05, top: 0.74, width: 0.90, height: 0.22),
+    type: LessonInteractionType.numeric,
+    title: 'ما مساحة المستطيل B في النشاط الثالث؟',
+    options: ['8 cm²', '10 cm²', '12 cm²', '15 cm²'],
+    correctIndex: 1,
+    explanation: 'من شبكة الصفحة: عرض المستطيل 2 سم وارتفاعه 5 سم، لذلك مساحته 10 cm².',
+  ),
+];
 
 const _lesson21Hotspots = <LessonHotspot>[
   LessonHotspot(
