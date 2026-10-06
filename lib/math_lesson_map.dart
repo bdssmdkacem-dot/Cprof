@@ -408,10 +408,10 @@ const _lesson26Hotspots = <LessonHotspot>[
     pdfPage: 43,
     rect: PageRect(left: 0.06, top: 0.68, width: 0.88, height: 0.25),
     type: LessonInteractionType.multipleChoice,
-    title: 'ما أول عشرة مضاعفات للعدد 7 تتضمنه السلسلة؟',
-    options: ['7، 14، 21، 28', '8، 16، 24، 32', '6، 12، 18، 24', '9، 18، 27، 36'],
-    correctIndex: 0,
-    explanation: 'السلسلة الصحيحة لمضاعفات 7 تبدأ بـ7، 14، 21، 28.',
+    title: 'ما المضاعف التالي للعدد 7 بعد 21؟',
+    options: ['24', '28', '30', '35'],
+    correctIndex: 1,
+    explanation: 'مضاعفات 7 هي 7، 14، 21، 28، ... لذلك التالي بعد 21 هو 28.',
   ),
 ];
 
@@ -1258,6 +1258,27 @@ const _lesson17Hotspots = <LessonHotspot>[
     correctIndex: 1,
     explanation: '1/4 جزء من الوحدة، لذلك هو أصغر من 1.',
   ),
+  LessonHotspot(
+    id: 'l17-p16-h6',
+    pdfPage: 16,
+    rect: PageRect(left: 0.73, top: 0.25, width: 0.20, height: 0.30),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما الكسر الذي يمثل الجزء الملون في الشكل الرابع؟',
+    options: ['1/5', '1/4', '2/5', '3/5'],
+    correctIndex: 0,
+    explanation: 'الشكل الرابع مقسم إلى خمسة أجزاء متساوية والجزء الملون واحد منها، أي 1/5.',
+  ),
+  LessonHotspot(
+    id: 'l17-p16-h7',
+    pdfPage: 16,
+    rect: PageRect(left: 0.76, top: 0.25, width: 0.18, height: 0.30),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما الكسر الذي يمثل الأجزاء الملونة في الشكل الخامس؟',
+    options: ['1/8', '2/8', '3/8', '4/8'],
+    correctIndex: 2,
+    explanation: 'الشكل الخامس مقسم إلى ثمانية أجزاء متساوية، وثلاثة منها ملونة، أي 3/8.',
+  ),
+
 ];
 
 const _lesson18Hotspots = <LessonHotspot>[
