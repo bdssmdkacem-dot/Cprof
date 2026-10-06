@@ -25,10 +25,10 @@ final mathLessonMap = <LessonPageMapping>[
             subject: 'الرياضيات',
             lessonNumber: 13,
             lessonTitle: 'قراءة بيانات بالأعمدة (1)',
-            pdfPage: 5,
+            pdfPage: 6,
             printedPage: 38,
             sourceVerified: true,
-            hotspots: [],
+            hotspots: _lesson13Hotspots,
           )
         : lesson.number == 14
             ? const LessonPageMapping(
@@ -1707,8 +1707,45 @@ const _supportLesson12Hotspots = <LessonHotspot>[
   ),
 ];
 
-/// Lesson 13 intentionally has no hotspots until every activity on printed page 38 is verified against the original page.
-/// The source page itself is linked; no textbook question is inferred here.
+
+const _lesson13Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'l13-h1',
+    rect: PageRect(left: 0.20, top: 0.35, width: 0.58, height: 0.38),
+    type: LessonInteractionType.tapHotspot,
+    title: 'ماذا تمثل الأعمدة الملونة؟',
+    options: ['عدد التلاميذ حسب هواياتهم المفضلة', 'أسماء التلاميذ', 'أعمار التلاميذ', 'عدد أيام الأسبوع'],
+    correctIndex: 0,
+    explanation: 'البيان يمثل توزيع عدد التلاميذ حسب هواياتهم المفضلة.',
+  ),
+  LessonHotspot(
+    id: 'l13-h2',
+    rect: PageRect(left: 0.20, top: 0.35, width: 0.58, height: 0.38),
+    type: LessonInteractionType.numeric,
+    title: 'ما الهواية التي يفضلها أكبر عدد من التلاميذ؟',
+    options: ['القراءة', 'الرسم', 'الطبخ', 'تربية القطط'],
+    correctIndex: 1,
+    explanation: 'أعلى عمود في البيان هو عمود الرسم، وقيمته 12 تلميذا.',
+  ),
+  LessonHotspot(
+    id: 'l13-h3',
+    rect: PageRect(left: 0.20, top: 0.35, width: 0.58, height: 0.38),
+    type: LessonInteractionType.numeric,
+    title: 'ما الهواية التي يفضلها أقل عدد من التلاميذ؟',
+    options: ['القراءة', 'الرسم', 'الطبخ', 'تربية القطط'],
+    correctIndex: 2,
+    explanation: 'أقصر عمود في البيان هو عمود الطبخ، وقيمته 5 تلاميذ.',
+  ),
+  LessonHotspot(
+    id: 'l13-h4',
+    rect: PageRect(left: 0.20, top: 0.35, width: 0.58, height: 0.38),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما الهواية التي يمثلها العمود ذو القيمة 8؟',
+    options: ['القراءة', 'الرسم', 'الطبخ', 'تربية القطط'],
+    correctIndex: 3,
+    explanation: 'العمود الذي يبلغ 8 تلاميذ يمثل هواية تربية القطط.',
+  ),
+];
 
 /// Verified directly against printed pages 40–41 of the uploaded official PDF.
 /// Each question below is derived only from the charts and prompts visible
