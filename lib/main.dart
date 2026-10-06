@@ -628,6 +628,99 @@ class _InteractivePageState extends State<InteractivePage> {
     );
   }
 
+  Widget _buildSupportSourcePage(LessonPageMapping mapping, double w, double h) {
+    final source = mapping.sourceLabel ?? 'مصدر الدعم الرسمي';
+    return Container(
+      color: Theme.of(context).colorScheme.surface,
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: LinearGradient(
+                colors: [
+                  Theme.of(context).colorScheme.primaryContainer,
+                  Theme.of(context).colorScheme.surfaceContainerHighest,
+                ],
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  'مرحلة الدعم قبل دروس السنة الرابعة',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  mapping.lessonTitle,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  source,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          Expanded(
+            child: Column(
+              children: [
+                for (var i = 0; i < mapping.hotspots.length; i++)
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.outlineVariant,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              child: Text('${i + 1}'),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                mapping.hotspots[i].title,
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            const Icon(Icons.touch_app_outlined),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildPendingSourceState() {
     final mapping = widget.subject.title == 'الرياضيات'
         ? mathLessonMapping(widget.lessonNumber)
@@ -697,7 +790,9 @@ class _InteractivePageState extends State<InteractivePage> {
                           return Stack(
                             fit: StackFit.expand,
                             children: [
-                              if (_controller != null)
+                              if (mapping?.isSupport == true)
+                                _buildSupportSourcePage(mapping!, w, h)
+                              else if (_controller != null)
                                 PdfView(
                                   controller: _controller!,
                                   onPageChanged: (page) {
