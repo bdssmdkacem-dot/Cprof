@@ -134,8 +134,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                         lessonTitle: 'قواسم عدد',
                                                         pdfPage: 41,
                                                         printedPage: 74,
-                                                        sourceVerified: true,
-                                                        hotspots: _lesson25Hotspots,
+                                                        sourceVerified: false,
+                                                        hotspots: const <LessonHotspot>[],
                                                       )
                                                     : lesson.number == 26
                                                         ? const LessonPageMapping(
@@ -144,8 +144,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                             lessonTitle: 'مضاعفات عدد',
                                                             pdfPage: 43,
                                                             printedPage: 76,
-                                                            sourceVerified: true,
-                                                            hotspots: _lesson26Hotspots,
+                                                            sourceVerified: false,
+                                                            hotspots: const <LessonHotspot>[],
                                                           )
                                                         : lesson.number == 27
                                                             ? const LessonPageMapping(
@@ -154,8 +154,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                 lessonTitle: 'المضاعفات والقواسم المشتركة لعددين',
                                                                 pdfPage: 45,
                                                                 printedPage: 78,
-                                                                sourceVerified: true,
-                                                                hotspots: _lesson27Hotspots,
+                                                                sourceVerified: false,
+                                                                hotspots: const <LessonHotspot>[],
                                                               )
                                                             : lesson.number == 28
                                                                 ? const LessonPageMapping(
@@ -164,8 +164,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                     lessonTitle: 'حل المسائل (وضعيات المقارنة) (2)',
                                                                     pdfPage: 47,
                                                                     printedPage: 80,
-                                                                    sourceVerified: true,
-                                                                    hotspots: _lesson28Hotspots,
+                                                                    sourceVerified: false,
+                                                                    hotspots: const <LessonHotspot>[],
                                                                   )
                                                                 : lesson.number == 29
                                                                     ? const LessonPageMapping(
@@ -174,8 +174,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                         lessonTitle: 'التناسبية (1)',
                                                                         pdfPage: 51,
                                                                         printedPage: 84,
-                                                                        sourceVerified: true,
-                                                                        hotspots: _lesson29Hotspots,
+                                                                        sourceVerified: false,
+                                                                        hotspots: const <LessonHotspot>[],
                                                                       )
                                                                     : lesson.number == 30
                                                                         ? const LessonPageMapping(
@@ -184,8 +184,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                             lessonTitle: 'التناسبية (2)',
                                                                             pdfPage: 53,
                                                                             printedPage: 86,
-                                                                            sourceVerified: true,
-                                                                            hotspots: _lesson30Hotspots,
+                                                                            sourceVerified: false,
+                                                                            hotspots: const <LessonHotspot>[],
                                                                           )
                                                                         : lesson.number == 31
                                                                             ? const LessonPageMapping(
@@ -194,8 +194,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                 lessonTitle: 'التناسبية (3)',
                                                                                 pdfPage: 55,
                                                                                 printedPage: 88,
-                                                                                sourceVerified: true,
-                                                                                hotspots: _lesson31Hotspots,
+                                                                                sourceVerified: false,
+                                                                                hotspots: const <LessonHotspot>[],
                                                                               )
                                                                             : lesson.number == 32
                                                                                 ? const LessonPageMapping(
@@ -204,8 +204,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                     lessonTitle: 'حل المسائل (وضعيات المقارنة) (3)',
                                                                                     pdfPage: 57,
                                                                                     printedPage: 90,
-                                                                                    sourceVerified: true,
-                                                                                    hotspots: _lesson32Hotspots,
+                                                                                    sourceVerified: false,
+                                                                                    hotspots: const <LessonHotspot>[],
                                                                                   )
                                                                                 : lesson.number == 33
                                                                                     ? const LessonPageMapping(
@@ -214,8 +214,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                         lessonTitle: 'حساب محيطي المربع والمستطيل',
                                                                                         pdfPage: 61,
                                                                                         printedPage: 94,
-                                                                                        sourceVerified: true,
-                                                                                        hotspots: _lesson33Hotspots,
+                                                                                        sourceVerified: false,
+                                                                                        hotspots: const <LessonHotspot>[],
                                                                                       )
                                                                                     : lesson.number == 34
                                                                                         ? const LessonPageMapping(
@@ -224,8 +224,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                             lessonTitle: 'مقارنة مساحتين',
                                                                                             pdfPage: 63,
                                                                                             printedPage: 96,
-                                                                                            sourceVerified: true,
-                                                                                            hotspots: _lesson34Hotspots,
+                                                                                            sourceVerified: false,
+                                                                                            hotspots: const <LessonHotspot>[],
                                                                                           )
                                                                                         : lesson.number == 35
                                                                                             ? const LessonPageMapping(
@@ -234,8 +234,8 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                                 lessonTitle: 'حساب مساحتي المربع والمستطيل',
                                                                                                 pdfPage: 65,
                                                                                                 printedPage: 98,
-                                                                                                sourceVerified: true,
-                                                                                                hotspots: _lesson35Hotspots,
+                                                                                                sourceVerified: false,
+                                                                                                hotspots: const <LessonHotspot>[],
                                                                                               )
                                                                                             :
             LessonPageMapping(
