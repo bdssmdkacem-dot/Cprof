@@ -342,39 +342,6 @@ class BookReaderPage extends StatefulWidget {
 class _BookReaderPageState extends State<BookReaderPage> {
   late final PdfControllerPinch _controller;
 
-  String _typeLabel(LessonInteractionType type) {
-    switch (type) {
-      case LessonInteractionType.multipleChoice:
-        return 'اختيار من متعدد';
-      case LessonInteractionType.numeric:
-        return 'حساب';
-      case LessonInteractionType.readAndAnswer:
-        return 'اقرأ وأجب';
-      case LessonInteractionType.tapHotspot:
-        return 'اكتشف على الصفحة';
-      case LessonInteractionType.order:
-        return 'رتّب';
-      case LessonInteractionType.classify:
-        return 'صنّف';
-      case LessonInteractionType.match:
-        return 'صِل';
-      case LessonInteractionType.fillBlank:
-        return 'أكمل';
-      default:
-        return 'نشاط تفاعلي';
-    }
-  }
-
-  Future<void> _goToInteractionPage(int index) async {
-    if (index < 0 || index >= hotspots.length) return;
-    final target = hotspots[index].pdfPage;
-    if (_controller != null && target != null && target != _currentPdfPage) {
-      await _controller!.jumpToPage(target);
-      if (mounted) setState(() => _currentPdfPage = target);
-      await Future<void>.delayed(const Duration(milliseconds: 180));
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -523,6 +490,46 @@ class _InteractivePageState extends State<InteractivePage> {
           correction: hotspot.explanation ?? '',
         ),
     ];
+  }
+
+  List<LessonHotspot> get hotspots {
+    if (widget.subject.title != 'الرياضيات') return const [];
+    final mapping = mathLessonMapping(widget.lessonNumber);
+    if (!mapping.sourceVerified) return const [];
+    return mapping.hotspots;
+  }
+
+  String _typeLabel(LessonInteractionType type) {
+    switch (type) {
+      case LessonInteractionType.multipleChoice:
+        return 'اختيار من متعدد';
+      case LessonInteractionType.numeric:
+        return 'حساب';
+      case LessonInteractionType.readAndAnswer:
+        return 'اقرأ وأجب';
+      case LessonInteractionType.tapHotspot:
+        return 'اكتشف على الصفحة';
+      case LessonInteractionType.order:
+        return 'رتّب';
+      case LessonInteractionType.classify:
+        return 'صنّف';
+      case LessonInteractionType.match:
+        return 'صِل';
+      case LessonInteractionType.fillBlank:
+        return 'أكمل';
+      default:
+        return 'نشاط تفاعلي';
+    }
+  }
+
+  Future<void> _goToInteractionPage(int index) async {
+    if (index < 0 || index >= hotspots.length) return;
+    final target = hotspots[index].pdfPage;
+    if (_controller != null && target != null && target != _currentPdfPage) {
+      await _controller!.jumpToPage(target);
+      if (mounted) setState(() => _currentPdfPage = target);
+      await Future<void>.delayed(const Duration(milliseconds: 180));
+    }
   }
 
   @override
