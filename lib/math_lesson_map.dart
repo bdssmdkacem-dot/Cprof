@@ -303,7 +303,7 @@ const _lesson26Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l26-p43-h1',
     pdfPage: 43,
-    rect: PageRect(left: 0.06, top: 0.22, width: 0.88, height: 0.32),
+    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.19),
     type: LessonInteractionType.numeric,
     title: 'ما ناتج 15 × 2 في النشاط الأول؟',
     options: ['25', '30', '35', '45'],
@@ -313,7 +313,7 @@ const _lesson26Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l26-p43-h2',
     pdfPage: 43,
-    rect: PageRect(left: 0.06, top: 0.57, width: 0.88, height: 0.34),
+    rect: PageRect(left: 0.06, top: 0.40, width: 0.88, height: 0.23),
     type: LessonInteractionType.multipleChoice,
     title: 'أي عدد من الآتية هو من مضاعفات العدد 9؟',
     options: ['35', '54', '58', '65'],
@@ -323,7 +323,7 @@ const _lesson26Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l26-p43-h3',
     pdfPage: 43,
-    rect: PageRect(left: 0.06, top: 0.78, width: 0.88, height: 0.16),
+    rect: PageRect(left: 0.06, top: 0.65, width: 0.88, height: 0.30),
     type: LessonInteractionType.multipleChoice,
     title: 'ما أول مضاعف للعدد 3 في السلسلة الظاهرة بعد 24؟',
     options: ['27', '28', '30', '33'],
@@ -382,7 +382,7 @@ const _lesson29Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l29-p51-h1',
     pdfPage: 51,
-    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    rect: PageRect(left: 0.66, top: 0.27, width: 0.28, height: 0.27),
     type: LessonInteractionType.numeric,
     title: 'كم بيضة تلزم لإعداد 3 كعكات إذا كانت كل كعكة تحتاج 3 بيضات؟',
     options: ['6', '9', '12', '15'],
@@ -392,7 +392,7 @@ const _lesson29Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l29-p51-h2',
     pdfPage: 51,
-    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    rect: PageRect(left: 0.36, top: 0.27, width: 0.28, height: 0.27),
     type: LessonInteractionType.numeric,
     title: 'ما ثمن 5 قصص إذا كان ثمن القصة الواحدة 7 دراهم؟',
     options: ['28', '30', '35', '42'],
@@ -402,7 +402,7 @@ const _lesson29Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l29-p51-h3',
     pdfPage: 51,
-    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    rect: PageRect(left: 0.07, top: 0.27, width: 0.28, height: 0.27),
     type: LessonInteractionType.numeric,
     title: 'كم لترا تستهلك السيارة في 100 كيلومتر وفق المعطى في الصفحة؟',
     options: ['5 لترات', '10 لترات', '15 لترا', '20 لترا'],
@@ -415,7 +415,7 @@ const _lesson30Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l30-p53-h1',
     pdfPage: 53,
-    rect: PageRect(left: 0.06, top: 0.20, width: 0.88, height: 0.30),
+    rect: PageRect(left: 0.66, top: 0.27, width: 0.28, height: 0.24),
     type: LessonInteractionType.numeric,
     title: 'ما ثمن 6 بيضات إذا كان ثمن البيضة درهمين؟',
     options: ['8', '10', '12', '14'],
@@ -425,7 +425,7 @@ const _lesson30Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l30-p53-h2',
     pdfPage: 53,
-    rect: PageRect(left: 0.06, top: 0.22, width: 0.88, height: 0.30),
+    rect: PageRect(left: 0.36, top: 0.27, width: 0.28, height: 0.24),
     type: LessonInteractionType.numeric,
     title: 'كم كيلوغراما من البرتقال تستهلك الأسرة خلال 7 أيام إذا استهلكت 2 كغ يوميا؟',
     options: ['7 كغ', '9 كغ', '12 كغ', '14 كغ'],
@@ -435,7 +435,7 @@ const _lesson30Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l30-p53-h3',
     pdfPage: 53,
-    rect: PageRect(left: 0.06, top: 0.62, width: 0.88, height: 0.28),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.28, height: 0.24),
     type: LessonInteractionType.numeric,
     title: 'ما ثمن 4 أقلام إذا كان ثمن القلم الواحد 6 دراهم؟',
     options: ['18', '20', '24', '30'],
@@ -481,7 +481,7 @@ const _lesson32Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l32-p57-h2',
     pdfPage: 57,
-    rect: PageRect(left: 0.55, top: 0.58, width: 0.40, height: 0.30),
+    rect: PageRect(left: 0.08, top: 0.62, width: 0.35, height: 0.28),
     type: LessonInteractionType.tapHotspot,
     title: 'اضغط على منطقة تمثيل المسألة الثانية على نموذج الأشرطة.',
     options: ['نموذج الأشرطة', 'نص المسألة', 'منطقة الإجابة', 'عنوان الدرس'],
@@ -494,7 +494,7 @@ const _lesson33Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l33-p61-h1',
     pdfPage: 61,
-    rect: PageRect(left: 0.05, top: 0.20, width: 0.90, height: 0.34),
+    rect: PageRect(left: 0.05, top: 0.20, width: 0.90, height: 0.24),
     type: LessonInteractionType.numeric,
     title: 'ما محيط ملعب طوله 38 م وعرضه 20 م؟',
     options: ['96 م', '116 م', '120 م', '140 م'],
@@ -504,7 +504,7 @@ const _lesson33Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l33-p61-h2',
     pdfPage: 61,
-    rect: PageRect(left: 0.05, top: 0.55, width: 0.90, height: 0.34),
+    rect: PageRect(left: 0.05, top: 0.45, width: 0.90, height: 0.18),
     type: LessonInteractionType.numeric,
     title: 'ما محيط الحديقة التي طولها 120 م وعرضها 80 م؟',
     options: ['200 م', '320 م', '400 م', '480 م'],
@@ -514,7 +514,7 @@ const _lesson33Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l33-p61-h3',
     pdfPage: 61,
-    rect: PageRect(left: 0.54, top: 0.64, width: 0.40, height: 0.28),
+    rect: PageRect(left: 0.54, top: 0.65, width: 0.40, height: 0.28),
     type: LessonInteractionType.numeric,
     title: 'ما محيط المربع الذي طول ضلعه 5 سم؟',
     options: ['10 سم', '15 سم', '20 سم', '25 سم'],
@@ -540,9 +540,9 @@ const _lesson34Hotspots = <LessonHotspot>[
     rect: PageRect(left: 0.52, top: 0.20, width: 0.42, height: 0.30),
     type: LessonInteractionType.numeric,
     title: 'ما مساحة الشكل B باستعمال الوحدة u؟',
-    options: ['12 u', '14 u', '16 u', '18 u'],
+    options: ['14 u', '16 u', '17 u', '18 u'],
     correctIndex: 2,
-    explanation: 'بعد عد الوحدات المربعة الملوّنة في الشكل B نجد 16 وحدة مربعة.',
+    explanation: 'بعد عد الوحدات المربعة الملوّنة في الشكل B نجد 17 وحدة مربعة.',
   ),
   LessonHotspot(
     id: 'l34-p63-h3',
@@ -570,7 +570,7 @@ const _lesson35Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l35-p65-h2',
     pdfPage: 65,
-    rect: PageRect(left: 0.05, top: 0.57, width: 0.90, height: 0.30),
+    rect: PageRect(left: 0.05, top: 0.50, width: 0.90, height: 0.22),
     type: LessonInteractionType.numeric,
     title: 'ما مساحة المربع B في النشاط الثاني؟',
     options: ['2 cm²', '4 cm²', '6 cm²', '8 cm²'],
@@ -580,7 +580,7 @@ const _lesson35Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l35-p65-h3',
     pdfPage: 65,
-    rect: PageRect(left: 0.05, top: 0.74, width: 0.90, height: 0.22),
+    rect: PageRect(left: 0.05, top: 0.73, width: 0.90, height: 0.23),
     type: LessonInteractionType.numeric,
     title: 'ما مساحة المستطيل B في النشاط الثالث؟',
     options: ['8 cm²', '10 cm²', '12 cm²', '15 cm²'],
