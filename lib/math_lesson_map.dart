@@ -6,127 +6,19 @@ import 'lesson_catalog.dart';
 /// A lesson is not source-verified until its original textbook page has been
 /// inspected. Hotspots and questions therefore stay empty until verification.
 final mathLessonMap = <LessonPageMapping>[
-    lesson.number == 1
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 1,
-            lessonTitle: 'الدعم المكثف — الحصة 1: الأعداد من 0 إلى 50 والجمع',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson1Hotspots,
-          )
-        :    lesson.number == 2
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 2,
-            lessonTitle: 'الدعم المكثف — الحصة 2: الأعداد من 0 إلى 99 والجمع باحتفاظ',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson2Hotspots,
-          )
-        :    lesson.number == 3
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 3,
-            lessonTitle: 'الدعم المكثف — الحصة 3: الأعداد من 0 إلى 99 والجمع باحتفاظ',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson3Hotspots,
-          )
-        :    lesson.number == 4
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 4,
-            lessonTitle: 'الدعم المكثف — الحصة 4: مراجعة وتوليف ورائز اللبنة 1',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson4Hotspots,
-          )
-        :    lesson.number == 5
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 5,
-            lessonTitle: 'الدعم المكثف — الحصة 5: الأعداد من 0 إلى 999 والجمع باحتفاظ',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson5Hotspots,
-          )
-        :    lesson.number == 6
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 6,
-            lessonTitle: 'الدعم المكثف — الحصة 6: الأعداد من 0 إلى 999 والجمع باحتفاظ',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson6Hotspots,
-          )
-        :    lesson.number == 7
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 7,
-            lessonTitle: 'الدعم المكثف — الحصة 7: الأعداد من 0 إلى 999 والجمع باحتفاظ',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson7Hotspots,
-          )
-        :    lesson.number == 8
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 8,
-            lessonTitle: 'الدعم المكثف — الحصة 8: مراجعة وتحقق اللبنة 2',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson8Hotspots,
-          )
-        :    lesson.number == 9
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 9,
-            lessonTitle: 'الدعم المكثف — الحصة 9: الأعداد من 0 إلى 999 والطرح بالمبادلة',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson9Hotspots,
-          )
-        :    lesson.number == 10
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 10,
-            lessonTitle: 'الدعم المكثف — الحصة 10: الأعداد من 0 إلى 999 والطرح بالمبادلة',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson10Hotspots,
-          )
-        :    lesson.number == 11
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 11,
-            lessonTitle: 'الدعم المكثف — الحصة 11: الأعداد من 0 إلى 999 والطرح بالمبادلة',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson11Hotspots,
-          )
-        :    lesson.number == 12
-        ? const LessonPageMapping(
-            subject: 'الرياضيات',
-            lessonNumber: 12,
-            lessonTitle: 'الدعم المكثف — الحصة 12: الأعداد من 0 إلى 999 والطرح بالمبادلة',
-            sourceVerified: true,
-            isSupport: true,
-            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
-            hotspots: _supportLesson12Hotspots,
-          )
-        :
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 1, lessonTitle: 'الدعم المكثف — الحصة 1: الأعداد من 0 إلى 50 والجمع', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson1Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 2, lessonTitle: 'الدعم المكثف — الحصة 2: الأعداد من 0 إلى 99 والجمع باحتفاظ', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson2Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 3, lessonTitle: 'الدعم المكثف — الحصة 3: الأعداد من 0 إلى 99 والجمع باحتفاظ', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson3Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 4, lessonTitle: 'الدعم المكثف — الحصة 4: مراجعة وتوليف ورائز اللبنة 1', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson4Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 5, lessonTitle: 'الدعم المكثف — الحصة 5: الأعداد من 0 إلى 999 والجمع باحتفاظ', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson5Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 6, lessonTitle: 'الدعم المكثف — الحصة 6: الأعداد من 0 إلى 999 والجمع باحتفاظ', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson6Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 7, lessonTitle: 'الدعم المكثف — الحصة 7: الأعداد من 0 إلى 999 والجمع باحتفاظ', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson7Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 8, lessonTitle: 'الدعم المكثف — الحصة 8: مراجعة وتحقق اللبنة 2', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson8Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 9, lessonTitle: 'الدعم المكثف — الحصة 9: الأعداد من 0 إلى 999 والطرح بالمبادلة', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson9Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 10, lessonTitle: 'الدعم المكثف — الحصة 10: الأعداد من 0 إلى 999 والطرح بالمبادلة', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson10Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 11, lessonTitle: 'الدعم المكثف — الحصة 11: الأعداد من 0 إلى 999 والطرح بالمبادلة', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson11Hotspots),
+  LessonPageMapping(subject: 'الرياضيات', lessonNumber: 12, lessonTitle: 'الدعم المكثف — الحصة 12: الأعداد من 0 إلى 999 والطرح بالمبادلة', sourceVerified: true, isSupport: true, sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1', hotspots: _supportLesson12Hotspots),
+
   for (final lesson in _mathEntries)
     lesson.number == 13
         ? const LessonPageMapping(
