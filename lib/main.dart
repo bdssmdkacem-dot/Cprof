@@ -342,6 +342,39 @@ class BookReaderPage extends StatefulWidget {
 class _BookReaderPageState extends State<BookReaderPage> {
   late final PdfControllerPinch _controller;
 
+  String _typeLabel(LessonInteractionType type) {
+    switch (type) {
+      case LessonInteractionType.multipleChoice:
+        return 'اختيار من متعدد';
+      case LessonInteractionType.numeric:
+        return 'حساب';
+      case LessonInteractionType.readAndAnswer:
+        return 'اقرأ وأجب';
+      case LessonInteractionType.tapHotspot:
+        return 'اكتشف على الصفحة';
+      case LessonInteractionType.order:
+        return 'رتّب';
+      case LessonInteractionType.classify:
+        return 'صنّف';
+      case LessonInteractionType.match:
+        return 'صِل';
+      case LessonInteractionType.fillBlank:
+        return 'أكمل';
+      default:
+        return 'نشاط تفاعلي';
+    }
+  }
+
+  Future<void> _goToInteractionPage(int index) async {
+    if (index < 0 || index >= hotspots.length) return;
+    final target = hotspots[index].pdfPage;
+    if (_controller != null && target != null && target != _currentPdfPage) {
+      await _controller!.jumpToPage(target);
+      if (mounted) setState(() => _currentPdfPage = target);
+      await Future<void>.delayed(const Duration(milliseconds: 180));
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -473,6 +506,8 @@ class _InteractivePageState extends State<InteractivePage> {
   int? selectedInteraction;
   String? feedback;
   int? _currentPdfPage;
+  int _score = 0;
+  final Set<int> _answeredCorrectly = <int>{};
 
   List<LessonInteraction> get interactions {
     if (widget.subject.title != 'الرياضيات') return const [];
@@ -510,7 +545,10 @@ class _InteractivePageState extends State<InteractivePage> {
 
   Future<void> _openInteraction(int index) async {
     if (index < 0 || index >= interactions.length) return;
+    await _goToInteractionPage(index);
+    if (!mounted) return;
     final item = interactions[index];
+    final hotspot = hotspots[index];
 
     setState(() {
       selectedInteraction = index;
@@ -539,6 +577,26 @@ class _InteractivePageState extends State<InteractivePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      Row(
+                        children: [
+                          CircleAvatar(radius: 16, child: Text('${index + 1}')),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              _typeLabel(hotspot.type),
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '${index + 1}/${interactions.length}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
                       Text(
                         item.title,
                         style: const TextStyle(
@@ -566,12 +624,20 @@ class _InteractivePageState extends State<InteractivePage> {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: OutlinedButton(
                             onPressed: () {
+                              final correct = answerIndex == item.correctIndex;
                               setSheetState(() {
                                 selectedAnswer = answerIndex;
-                                localFeedback = answerIndex == item.correctIndex
+                                localFeedback = correct
                                     ? '✓ أحسنت. ${item.correction}'
                                     : 'لنصححها معًا. ${item.correction}';
                               });
+                              if (correct && !_answeredCorrectly.contains(index) && mounted) {
+                                setState(() {
+                                  _answeredCorrectly.add(index);
+                                  _score++;
+                                  feedback = 'أحسنت — السؤال ${index + 1} صحيح';
+                                });
+                              }
                             },
                             child: Text(item.answers[answerIndex]),
                           ),
@@ -780,6 +846,25 @@ class _InteractivePageState extends State<InteractivePage> {
             ? _buildPendingSourceState()
             : Column(
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 8, 10, 4),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: LinearProgressIndicator(
+                            value: interactions.isEmpty ? 0 : _score / interactions.length,
+                            minHeight: 8,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          '$_score/${interactions.length}',
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
                   Expanded(
                     child: Card(
                       clipBehavior: Clip.antiAlias,
@@ -893,7 +978,9 @@ class _InteractivePageState extends State<InteractivePage> {
                           avatar: CircleAvatar(
                             child: Text('${index + 1}'),
                           ),
-                          label: Text(items[index].title),
+                          label: Text(
+                            '${_typeLabel(hotspots[index].type)} • ${items[index].title}',
+                          ),
                           onPressed: () => _openInteraction(index),
                         );
                       },
