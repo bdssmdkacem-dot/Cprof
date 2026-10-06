@@ -135,7 +135,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                         pdfPage: 41,
                                                         printedPage: 74,
                                                         sourceVerified: false,
-                                                        hotspots: const <LessonHotspot>[],
+                                                        hotspots: <LessonHotspot>[],
                                                       )
                                                     : lesson.number == 26
                                                         ? const LessonPageMapping(
@@ -145,7 +145,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                             pdfPage: 43,
                                                             printedPage: 76,
                                                             sourceVerified: false,
-                                                            hotspots: const <LessonHotspot>[],
+                                                            hotspots: <LessonHotspot>[],
                                                           )
                                                         : lesson.number == 27
                                                             ? const LessonPageMapping(
@@ -155,7 +155,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                 pdfPage: 45,
                                                                 printedPage: 78,
                                                                 sourceVerified: false,
-                                                                hotspots: const <LessonHotspot>[],
+                                                                hotspots: <LessonHotspot>[],
                                                               )
                                                             : lesson.number == 28
                                                                 ? const LessonPageMapping(
@@ -165,7 +165,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                     pdfPage: 47,
                                                                     printedPage: 80,
                                                                     sourceVerified: false,
-                                                                    hotspots: const <LessonHotspot>[],
+                                                                    hotspots: <LessonHotspot>[],
                                                                   )
                                                                 : lesson.number == 29
                                                                     ? const LessonPageMapping(
@@ -175,7 +175,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                         pdfPage: 51,
                                                                         printedPage: 84,
                                                                         sourceVerified: false,
-                                                                        hotspots: const <LessonHotspot>[],
+                                                                        hotspots: <LessonHotspot>[],
                                                                       )
                                                                     : lesson.number == 30
                                                                         ? const LessonPageMapping(
@@ -185,7 +185,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                             pdfPage: 53,
                                                                             printedPage: 86,
                                                                             sourceVerified: false,
-                                                                            hotspots: const <LessonHotspot>[],
+                                                                            hotspots: <LessonHotspot>[],
                                                                           )
                                                                         : lesson.number == 31
                                                                             ? const LessonPageMapping(
@@ -195,7 +195,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                 pdfPage: 55,
                                                                                 printedPage: 88,
                                                                                 sourceVerified: false,
-                                                                                hotspots: const <LessonHotspot>[],
+                                                                                hotspots: <LessonHotspot>[],
                                                                               )
                                                                             : lesson.number == 32
                                                                                 ? const LessonPageMapping(
@@ -205,7 +205,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                     pdfPage: 57,
                                                                                     printedPage: 90,
                                                                                     sourceVerified: false,
-                                                                                    hotspots: const <LessonHotspot>[],
+                                                                                    hotspots: <LessonHotspot>[],
                                                                                   )
                                                                                 : lesson.number == 33
                                                                                     ? const LessonPageMapping(
@@ -215,7 +215,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                         pdfPage: 61,
                                                                                         printedPage: 94,
                                                                                         sourceVerified: false,
-                                                                                        hotspots: const <LessonHotspot>[],
+                                                                                        hotspots: <LessonHotspot>[],
                                                                                       )
                                                                                     : lesson.number == 34
                                                                                         ? const LessonPageMapping(
@@ -225,7 +225,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                             pdfPage: 63,
                                                                                             printedPage: 96,
                                                                                             sourceVerified: false,
-                                                                                            hotspots: const <LessonHotspot>[],
+                                                                                            hotspots: <LessonHotspot>[],
                                                                                           )
                                                                                         : lesson.number == 35
                                                                                             ? const LessonPageMapping(
@@ -235,7 +235,7 @@ final mathLessonMap = <LessonPageMapping>[
                                                                                                 pdfPage: 65,
                                                                                                 printedPage: 98,
                                                                                                 sourceVerified: false,
-                                                                                                hotspots: const <LessonHotspot>[],
+                                                                                                hotspots: <LessonHotspot>[],
                                                                                               )
                                                                                             :
             LessonPageMapping(
