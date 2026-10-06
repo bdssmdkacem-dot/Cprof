@@ -6,6 +6,127 @@ import 'lesson_catalog.dart';
 /// A lesson is not source-verified until its original textbook page has been
 /// inspected. Hotspots and questions therefore stay empty until verification.
 final mathLessonMap = <LessonPageMapping>[
+    lesson.number == 1
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 1,
+            lessonTitle: 'الدعم المكثف — الحصة 1: الأعداد من 0 إلى 50 والجمع',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson1Hotspots,
+          )
+        :    lesson.number == 2
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 2,
+            lessonTitle: 'الدعم المكثف — الحصة 2: الأعداد من 0 إلى 99 والجمع باحتفاظ',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson2Hotspots,
+          )
+        :    lesson.number == 3
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 3,
+            lessonTitle: 'الدعم المكثف — الحصة 3: الأعداد من 0 إلى 99 والجمع باحتفاظ',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson3Hotspots,
+          )
+        :    lesson.number == 4
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 4,
+            lessonTitle: 'الدعم المكثف — الحصة 4: مراجعة وتوليف ورائز اللبنة 1',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson4Hotspots,
+          )
+        :    lesson.number == 5
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 5,
+            lessonTitle: 'الدعم المكثف — الحصة 5: الأعداد من 0 إلى 999 والجمع باحتفاظ',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson5Hotspots,
+          )
+        :    lesson.number == 6
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 6,
+            lessonTitle: 'الدعم المكثف — الحصة 6: الأعداد من 0 إلى 999 والجمع باحتفاظ',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson6Hotspots,
+          )
+        :    lesson.number == 7
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 7,
+            lessonTitle: 'الدعم المكثف — الحصة 7: الأعداد من 0 إلى 999 والجمع باحتفاظ',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson7Hotspots,
+          )
+        :    lesson.number == 8
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 8,
+            lessonTitle: 'الدعم المكثف — الحصة 8: مراجعة وتحقق اللبنة 2',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson8Hotspots,
+          )
+        :    lesson.number == 9
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 9,
+            lessonTitle: 'الدعم المكثف — الحصة 9: الأعداد من 0 إلى 999 والطرح بالمبادلة',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson9Hotspots,
+          )
+        :    lesson.number == 10
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 10,
+            lessonTitle: 'الدعم المكثف — الحصة 10: الأعداد من 0 إلى 999 والطرح بالمبادلة',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson10Hotspots,
+          )
+        :    lesson.number == 11
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 11,
+            lessonTitle: 'الدعم المكثف — الحصة 11: الأعداد من 0 إلى 999 والطرح بالمبادلة',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson11Hotspots,
+          )
+        :    lesson.number == 12
+        ? const LessonPageMapping(
+            subject: 'الرياضيات',
+            lessonNumber: 12,
+            lessonTitle: 'الدعم المكثف — الحصة 12: الأعداد من 0 إلى 999 والطرح بالمبادلة',
+            sourceVerified: true,
+            isSupport: true,
+            sourceLabel: 'الدعم المكثف TaRL — الرياضيات — المستوى الرابع — المسار 1',
+            hotspots: _supportLesson12Hotspots,
+          )
+        :
   for (final lesson in _mathEntries)
     lesson.number == 13
         ? const LessonPageMapping(
@@ -1025,6 +1146,371 @@ LessonPageMapping mathLessonMapping(int lessonNumber) =>
 ///
 /// The questions/options below are taken from the visible exercise on that
 /// page; no values are inferred from the lesson title or catalog.
+
+
+/// Interactive adaptations of the official TaRL support sequence for grade 4.
+/// The skills and session sequence come from the daily-activity guide; the
+/// questions below are app-native practice items aligned to those stated skills.
+const _supportLesson1Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-1-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما العدد الذي تمثله 3 عشرات و4 وحدات؟',
+    options: ['34', '43', '30', '7'],
+    correctIndex: 0,
+    explanation: '3 عشرات = 30، ومع 4 وحدات يصبح العدد 34.',
+  ),
+  LessonHotspot(
+    id: 'support-1-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أكمل عائلة العدد 10: 6 + ؟ = 10',
+    options: ['2', '3', '4', '5'],
+    correctIndex: 2,
+    explanation: 'العدد الذي يكمل 6 إلى 10 هو 4.',
+  ),
+  LessonHotspot(
+    id: 'support-1-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 12 + 5؟',
+    options: ['15', '16', '17', '18'],
+    correctIndex: 2,
+    explanation: '12 + 5 = 17.',
+  ),
+];
+
+const _supportLesson2Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-2-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 27 + 8؟',
+    options: ['33', '34', '35', '36'],
+    correctIndex: 2,
+    explanation: '27 + 8 = 35، مع احتفاظ بالعشرة.',
+  ),
+  LessonHotspot(
+    id: 'support-2-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'فكك العدد 42.',
+    options: ['40 + 2', '4 + 2', '40 + 20', '4 عشرات + 20'],
+    correctIndex: 0,
+    explanation: '42 = 40 + 2.',
+  ),
+  LessonHotspot(
+    id: 'support-2-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أكمل عائلة العدد 11: 7 + ؟ = 11',
+    options: ['2', '3', '4', '5'],
+    correctIndex: 2,
+    explanation: '7 + 4 = 11.',
+  ),
+];
+
+const _supportLesson3Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-3-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما العدد السابق للعدد 39؟',
+    options: ['37', '38', '40', '41'],
+    correctIndex: 1,
+    explanation: 'السابق مباشرة لـ39 هو 38.',
+  ),
+  LessonHotspot(
+    id: 'support-3-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما العدد اللاحق للعدد 27؟',
+    options: ['26', '28', '29', '30'],
+    correctIndex: 1,
+    explanation: 'اللاحق مباشرة لـ27 هو 28.',
+  ),
+  LessonHotspot(
+    id: 'support-3-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 48 + 27؟',
+    options: ['65', '75', '85', '95'],
+    correctIndex: 1,
+    explanation: '48 + 27 = 75.',
+  ),
+];
+
+const _supportLesson4Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-4-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 36 + 27؟',
+    options: ['53', '63', '73', '83'],
+    correctIndex: 1,
+    explanation: '36 + 27 = 63.',
+  ),
+  LessonHotspot(
+    id: 'support-4-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي كتابة تمثل العدد 58؟',
+    options: ['50 + 8', '5 + 8', '50 + 80', '5 عشرات + 8 عشرات'],
+    correctIndex: 0,
+    explanation: '58 = 50 + 8.',
+  ),
+  LessonHotspot(
+    id: 'support-4-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'لدى طفل 24 كرة وأضاف 15 كرة. كم أصبح لديه؟',
+    options: ['29', '39', '49', '59'],
+    correctIndex: 1,
+    explanation: '24 + 15 = 39.',
+  ),
+];
+
+const _supportLesson5Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-5-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي العددين أكبر؟',
+    options: ['407', '470', '407 متساويان', 'لا يمكن المقارنة'],
+    correctIndex: 1,
+    explanation: '470 أكبر من 407.',
+  ),
+  LessonHotspot(
+    id: 'support-5-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 238 + 157؟',
+    options: ['385', '395', '405', '415'],
+    correctIndex: 1,
+    explanation: '238 + 157 = 395.',
+  ),
+  LessonHotspot(
+    id: 'support-5-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'اكتب 604 مفككًا.',
+    options: ['600 + 4', '60 + 4', '600 + 40', '6 + 4'],
+    correctIndex: 0,
+    explanation: '604 = 600 + 4.',
+  ),
+];
+
+const _supportLesson6Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-6-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 326 + 189؟',
+    options: ['505', '515', '525', '535'],
+    correctIndex: 1,
+    explanation: '326 + 189 = 515.',
+  ),
+  LessonHotspot(
+    id: 'support-6-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي عدد هو الأكبر؟',
+    options: ['405', '450', '405 متساويان', '400'],
+    correctIndex: 1,
+    explanation: '450 هو الأكبر.',
+  ),
+  LessonHotspot(
+    id: 'support-6-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 475 + 126؟',
+    options: ['591', '601', '611', '621'],
+    correctIndex: 1,
+    explanation: '475 + 126 = 601.',
+  ),
+];
+
+const _supportLesson7Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-7-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 278 + 145؟',
+    options: ['413', '423', '433', '443'],
+    correctIndex: 1,
+    explanation: '278 + 145 = 423.',
+  ),
+  LessonHotspot(
+    id: 'support-7-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'رتب تصاعديًا: 305، 350، 305؟',
+    options: ['305 ثم 305 ثم 350', '350 ثم 305 ثم 305', '305 ثم 350 ثم 305', 'لا يمكن'],
+    correctIndex: 0,
+    explanation: 'الأعداد المتساوية أولًا، ثم 350.',
+  ),
+  LessonHotspot(
+    id: 'support-7-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'لدى القسم 245 قلمًا وأضاف 178. كم أصبح لديه؟',
+    options: ['413', '423', '433', '443'],
+    correctIndex: 1,
+    explanation: '245 + 178 = 423.',
+  ),
+];
+
+const _supportLesson8Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-8-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'اكتب 507 بالحروف.',
+    options: ['خمسة وسبعون', 'خمسمائة وسبعة', 'خمسة آلاف وسبعة', 'خمسمائة وسبعون'],
+    correctIndex: 1,
+    explanation: '507 = خمسمائة وسبعة.',
+  ),
+  LessonHotspot(
+    id: 'support-8-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 506 + 287؟',
+    options: ['783', '793', '803', '813'],
+    correctIndex: 1,
+    explanation: '506 + 287 = 793.',
+  ),
+  LessonHotspot(
+    id: 'support-8-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي عملية جمع صحيحة؟',
+    options: ['248 + 125 = 363', '248 + 125 = 373', '248 + 125 = 383', '248 + 125 = 393'],
+    correctIndex: 1,
+    explanation: '248 + 125 = 373.',
+  ),
+];
+
+const _supportLesson9Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-9-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 532 − 178؟',
+    options: ['344', '354', '364', '374'],
+    correctIndex: 1,
+    explanation: '532 − 178 = 354.',
+  ),
+  LessonHotspot(
+    id: 'support-9-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي عملية تتطلب مبادلة؟',
+    options: ['45 − 12', '63 − 21', '72 − 38', '90 − 10'],
+    correctIndex: 2,
+    explanation: '72 − 38 يتطلب المبادلة لأن 2 لا تكفي لطرح 8.',
+  ),
+  LessonHotspot(
+    id: 'support-9-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'لدى سارة 500 درهم وأنفقت 125. كم بقي؟',
+    options: ['365', '375', '385', '395'],
+    correctIndex: 1,
+    explanation: '500 − 125 = 375.',
+  ),
+];
+
+const _supportLesson10Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-10-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 604 − 278؟',
+    options: ['316', '326', '336', '346'],
+    correctIndex: 1,
+    explanation: '604 − 278 = 326.',
+  ),
+  LessonHotspot(
+    id: 'support-10-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 721 − 356؟',
+    options: ['355', '365', '375', '385'],
+    correctIndex: 1,
+    explanation: '721 − 356 = 365.',
+  ),
+  LessonHotspot(
+    id: 'support-10-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'لدى متجر 800 قلم وباع 245. كم بقي؟',
+    options: ['545', '555', '565', '575'],
+    correctIndex: 1,
+    explanation: '800 − 245 = 555.',
+  ),
+];
+
+const _supportLesson11Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-11-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 900 − 467؟',
+    options: ['423', '433', '443', '453'],
+    correctIndex: 1,
+    explanation: '900 − 467 = 433.',
+  ),
+  LessonHotspot(
+    id: 'support-11-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 603 − 289؟',
+    options: ['304', '314', '324', '334'],
+    correctIndex: 1,
+    explanation: '603 − 289 = 314.',
+  ),
+  LessonHotspot(
+    id: 'support-11-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'لدى القسم 725 بطاقة واستعمل 368. كم بقي؟',
+    options: ['347', '357', '367', '377'],
+    correctIndex: 1,
+    explanation: '725 − 368 = 357.',
+  ),
+];
+
+const _supportLesson12Hotspots = <LessonHotspot>[
+  LessonHotspot(
+    id: 'support-12-1',
+    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'ما ناتج 814 − 276؟',
+    options: ['528', '538', '548', '558'],
+    correctIndex: 1,
+    explanation: '814 − 276 = 538.',
+  ),
+  LessonHotspot(
+    id: 'support-12-2',
+    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'أي عدد أصغر؟',
+    options: ['392', '329', '923', '932'],
+    correctIndex: 1,
+    explanation: '329 هو الأصغر.',
+  ),
+  LessonHotspot(
+    id: 'support-12-3',
+    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    type: LessonInteractionType.multipleChoice,
+    title: 'كان لدى تاجر 650 درهمًا ودفع 285. كم بقي؟',
+    options: ['355', '365', '375', '385'],
+    correctIndex: 1,
+    explanation: '650 − 285 = 365.',
+  ),
+];
+
 const _lesson13Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'l13-h1',
