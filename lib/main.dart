@@ -526,7 +526,7 @@ class _InteractivePageState extends State<InteractivePage> {
     if (index < 0 || index >= hotspots.length) return;
     final target = hotspots[index].pdfPage;
     if (_controller != null && target != null && target != _currentPdfPage) {
-      await _controller!.jumpToPage(target);
+      _controller!.jumpToPage(target);
       if (mounted) setState(() => _currentPdfPage = target);
       await Future<void>.delayed(const Duration(milliseconds: 180));
     }
