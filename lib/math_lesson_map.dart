@@ -1154,7 +1154,7 @@ LessonPageMapping mathLessonMapping(int lessonNumber) =>
 const _supportLesson1Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-1-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما العدد الذي تمثله 3 عشرات و4 وحدات؟',
     options: ['34', '43', '30', '7'],
@@ -1163,7 +1163,7 @@ const _supportLesson1Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-1-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'أكمل عائلة العدد 10: 6 + ؟ = 10',
     options: ['2', '3', '4', '5'],
@@ -1172,7 +1172,7 @@ const _supportLesson1Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-1-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 12 + 5؟',
     options: ['15', '16', '17', '18'],
@@ -1184,7 +1184,7 @@ const _supportLesson1Hotspots = <LessonHotspot>[
 const _supportLesson2Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-2-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 27 + 8؟',
     options: ['33', '34', '35', '36'],
@@ -1193,7 +1193,7 @@ const _supportLesson2Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-2-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'فكك العدد 42.',
     options: ['40 + 2', '4 + 2', '40 + 20', '4 عشرات + 20'],
@@ -1202,7 +1202,7 @@ const _supportLesson2Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-2-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'أكمل عائلة العدد 11: 7 + ؟ = 11',
     options: ['2', '3', '4', '5'],
@@ -1214,7 +1214,7 @@ const _supportLesson2Hotspots = <LessonHotspot>[
 const _supportLesson3Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-3-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما العدد السابق للعدد 39؟',
     options: ['37', '38', '40', '41'],
@@ -1223,7 +1223,7 @@ const _supportLesson3Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-3-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما العدد اللاحق للعدد 27؟',
     options: ['26', '28', '29', '30'],
@@ -1232,7 +1232,7 @@ const _supportLesson3Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-3-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 48 + 27؟',
     options: ['65', '75', '85', '95'],
@@ -1244,7 +1244,7 @@ const _supportLesson3Hotspots = <LessonHotspot>[
 const _supportLesson4Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-4-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 36 + 27؟',
     options: ['53', '63', '73', '83'],
@@ -1253,7 +1253,7 @@ const _supportLesson4Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-4-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'أي كتابة تمثل العدد 58؟',
     options: ['50 + 8', '5 + 8', '50 + 80', '5 عشرات + 8 عشرات'],
@@ -1262,7 +1262,7 @@ const _supportLesson4Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-4-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'لدى طفل 24 كرة وأضاف 15 كرة. كم أصبح لديه؟',
     options: ['29', '39', '49', '59'],
@@ -1274,7 +1274,7 @@ const _supportLesson4Hotspots = <LessonHotspot>[
 const _supportLesson5Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-5-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'أي العددين أكبر؟',
     options: ['407', '470', '407 متساويان', 'لا يمكن المقارنة'],
@@ -1283,7 +1283,7 @@ const _supportLesson5Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-5-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 238 + 157؟',
     options: ['385', '395', '405', '415'],
@@ -1292,7 +1292,7 @@ const _supportLesson5Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-5-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'اكتب 604 مفككًا.',
     options: ['600 + 4', '60 + 4', '600 + 40', '6 + 4'],
@@ -1304,7 +1304,7 @@ const _supportLesson5Hotspots = <LessonHotspot>[
 const _supportLesson6Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-6-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 326 + 189؟',
     options: ['505', '515', '525', '535'],
@@ -1313,7 +1313,7 @@ const _supportLesson6Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-6-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'أي عدد هو الأكبر؟',
     options: ['405', '450', '405 متساويان', '400'],
@@ -1322,7 +1322,7 @@ const _supportLesson6Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-6-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 475 + 126؟',
     options: ['591', '601', '611', '621'],
@@ -1334,7 +1334,7 @@ const _supportLesson6Hotspots = <LessonHotspot>[
 const _supportLesson7Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-7-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 278 + 145؟',
     options: ['413', '423', '433', '443'],
@@ -1343,7 +1343,7 @@ const _supportLesson7Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-7-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'رتب تصاعديًا: 305، 350، 305؟',
     options: ['305 ثم 305 ثم 350', '350 ثم 305 ثم 305', '305 ثم 350 ثم 305', 'لا يمكن'],
@@ -1352,7 +1352,7 @@ const _supportLesson7Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-7-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'لدى القسم 245 قلمًا وأضاف 178. كم أصبح لديه؟',
     options: ['413', '423', '433', '443'],
@@ -1364,7 +1364,7 @@ const _supportLesson7Hotspots = <LessonHotspot>[
 const _supportLesson8Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-8-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'اكتب 507 بالحروف.',
     options: ['خمسة وسبعون', 'خمسمائة وسبعة', 'خمسة آلاف وسبعة', 'خمسمائة وسبعون'],
@@ -1373,7 +1373,7 @@ const _supportLesson8Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-8-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 506 + 287؟',
     options: ['783', '793', '803', '813'],
@@ -1382,7 +1382,7 @@ const _supportLesson8Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-8-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'أي عملية جمع صحيحة؟',
     options: ['248 + 125 = 363', '248 + 125 = 373', '248 + 125 = 383', '248 + 125 = 393'],
@@ -1394,7 +1394,7 @@ const _supportLesson8Hotspots = <LessonHotspot>[
 const _supportLesson9Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-9-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 532 − 178؟',
     options: ['344', '354', '364', '374'],
@@ -1403,7 +1403,7 @@ const _supportLesson9Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-9-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'أي عملية تتطلب مبادلة؟',
     options: ['45 − 12', '63 − 21', '72 − 38', '90 − 10'],
@@ -1412,7 +1412,7 @@ const _supportLesson9Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-9-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'لدى سارة 500 درهم وأنفقت 125. كم بقي؟',
     options: ['365', '375', '385', '395'],
@@ -1424,7 +1424,7 @@ const _supportLesson9Hotspots = <LessonHotspot>[
 const _supportLesson10Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-10-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 604 − 278؟',
     options: ['316', '326', '336', '346'],
@@ -1433,7 +1433,7 @@ const _supportLesson10Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-10-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 721 − 356؟',
     options: ['355', '365', '375', '385'],
@@ -1442,7 +1442,7 @@ const _supportLesson10Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-10-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'لدى متجر 800 قلم وباع 245. كم بقي؟',
     options: ['545', '555', '565', '575'],
@@ -1454,7 +1454,7 @@ const _supportLesson10Hotspots = <LessonHotspot>[
 const _supportLesson11Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-11-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 900 − 467؟',
     options: ['423', '433', '443', '453'],
@@ -1463,7 +1463,7 @@ const _supportLesson11Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-11-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 603 − 289؟',
     options: ['304', '314', '324', '334'],
@@ -1472,7 +1472,7 @@ const _supportLesson11Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-11-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'لدى القسم 725 بطاقة واستعمل 368. كم بقي؟',
     options: ['347', '357', '367', '377'],
@@ -1484,7 +1484,7 @@ const _supportLesson11Hotspots = <LessonHotspot>[
 const _supportLesson12Hotspots = <LessonHotspot>[
   LessonHotspot(
     id: 'support-12-1',
-    rect: PageRect(left: 0.06, top: 0.16, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.28, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'ما ناتج 814 − 276؟',
     options: ['528', '538', '548', '558'],
@@ -1493,7 +1493,7 @@ const _supportLesson12Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-12-2',
-    rect: PageRect(left: 0.06, top: 0.43, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.50, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'أي عدد أصغر؟',
     options: ['392', '329', '923', '932'],
@@ -1502,7 +1502,7 @@ const _supportLesson12Hotspots = <LessonHotspot>[
   ),
   LessonHotspot(
     id: 'support-12-3',
-    rect: PageRect(left: 0.06, top: 0.70, width: 0.88, height: 0.22),
+    rect: PageRect(left: 0.06, top: 0.72, width: 0.88, height: 0.18),
     type: LessonInteractionType.multipleChoice,
     title: 'كان لدى تاجر 650 درهمًا ودفع 285. كم بقي؟',
     options: ['355', '365', '375', '385'],
